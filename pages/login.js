@@ -1,0 +1,117 @@
+import React, { useEffect, useState } from 'react';
+import { getSession } from 'next-auth/react';
+import Router from 'next/router';
+import { toast } from 'react-toastify';
+import BtnLogin from '../components/auth/BtnLogin';
+// import Email from '../components/auth/Email'
+
+const Login = ({ session }) => {
+  const [email, setEmail] = useState('');
+  const [email2, setEmail2] = useState('');
+  const [password, setPassword] = useState('');
+  useEffect(() => {
+    if (session) return Router.push('/');
+  }, [session]);
+
+  useEffect(() => {
+    if (Router.query.error) {
+      toast.error(Router.query.error);
+      return Router.push('/login');
+    }
+  }, []);
+
+  if (session) return null;
+  return (
+    <div
+      className="flex justify-content-center align-items-center"
+      style={{ minHeight: '100vh' }}
+    >
+      <div
+        style={{ maxWidth: '450px', width: '100%' }}
+        className="border border-1 max-auto p-4 shadow"
+      >
+        <h2
+          className="text-center fw-bolder text-uppercase"
+          style={{ color: '#555', letterSpacing: '1px' }}
+        >
+          Login
+        </h2>
+
+        <BtnLogin
+          provider={'credentials'}
+          bgColor="gray"
+          options={{ redirect: false, email, password }}
+        >
+          <div className="flex flex-col items-center p-3 bg-white bottom-0">
+            <label>Email address</label>
+            <input
+              type="email"
+              name="email"
+              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              placeholder="email@example.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </BtnLogin>
+
+        <div className="text-center">✦ Or ✦</div>
+        <div>
+          <BtnLogin provider={'google'} bgColor="#f2573f" />
+          {/* <BtnLogin 
+        provider={providers.facebook}
+        bgColor='#0404be'
+        csrfToken={csrfToken}
+      />
+      <BtnLogin 
+        provider={providers.github}
+        bgColor='#444'
+        csrfToken={csrfToken}
+      /> */}
+        </div>
+        <div className="text-center">✦ Or ✦</div>
+        <BtnLogin
+          provider={'email'}
+          bgColor="#22b05b"
+          options={{ redirect: false, email: email2 }}
+        >
+          <div className="flex flex-col items-center p-3 bg-white bottom-0">
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              id="email2"
+              name="email2"
+              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              placeholder="email@example.com"
+              required
+              value={email2}
+              onChange={(e) => setEmail2(e.target.value)}
+            />
+          </div>
+        </BtnLogin>
+      </div>
+    </div>
+  );
+};
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
+}
+
+export default Login;
