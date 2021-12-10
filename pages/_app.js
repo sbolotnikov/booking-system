@@ -3,6 +3,7 @@ import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/general.css';
 import '../styles/navStyle.css';
 import '../styles/rating.css';
 import Layout from '../components/layout'

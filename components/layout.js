@@ -12,11 +12,9 @@ export default function Layout ({children}) {
     
   return (
 
-       <main className="h-screen bg-black overflow-hidden overflow-y-scroll">
+       <main className="h-screen bg-[#0c1118] text-white overflow-hidden overflow-y-scroll">
        <Navbar navbarLinks={navbarLinks} />
-       <div className=" h-screen px-0 my-2 flex flex-col justify-center items-center bg-gray-800">
         {children}
-        </div>
         <Footer/>
         </main>
 

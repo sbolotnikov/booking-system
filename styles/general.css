@@ -1,0 +1,26 @@
+.inner-wrap {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, transparent 0, #0c1118 250px);
+  height: 100%;
+  min-height: 250px;
+  padding: 3em 20px;
+  text-align: center;
+  font-family: "Source Sans Pro","Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
+}
+.containerDescription {
+    width: auto;
+    max-width: 768px;
+    margin: auto;
+    padding: 0 1em;
+    font-family: "Source Sans Pro","Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 2fr 1fr;
+}
+@media screen and (max-width: 980px) {
+    .containerDescription {
+        display:block;
+    }
+
+}
