@@ -1,22 +1,30 @@
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
+import Head from "next/head";
 const navbarLinks = [
-    { url: "#", title: "Об игре" },
-    { url: "#", title: "Забронировать" },
-    { url: "#", title: "День Рождения" },
-    { url: "#", title: "Корпоратив" },
-    { url: "#", title: "Сертификат" },
-    { url: "#", title: "Где находится?" },
-  ];
-export default function Layout ({children}) {
-    
+  { url: '/about', title: 'Об игре' },
+  { url: '#', title: 'Забронировать' },
+  { url: '#', title: 'День Рождения' },
+  { url: '#', title: 'Корпоратив' },
+  { url: '#', title: 'Сертификат' },
+  { url: '/contacts/0', title: 'Где находится?' },
+];
+export default function Layout({ children }) {
   return (
-
-       <main className="h-screen bg-[#0c1118] text-white overflow-hidden overflow-y-scroll">
-       <Navbar navbarLinks={navbarLinks} />
+    <div>
+      <Head>
+        {/* <link
+          rel="preload"
+          href="/fonts/SourceSansPro-ExtraLight.ttf"
+          as="SourceSansPro"
+          crossOrigin=""
+        /> */}
+      </Head>
+      <main className="h-screen bg-main-bg containerFont text-white text-lg overflow-hidden overflow-y-scroll">
+        <Navbar navbarLinks={navbarLinks} />
         {children}
-        <Footer/>
-        </main>
-
-  )
+        <Footer />
+      </main>
+    </div>
+  );
 }

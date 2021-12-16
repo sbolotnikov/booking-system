@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function GetPlayersAmount(props) {
-  const maxParticipance = 35;
+  const maxParticipants = 35;
   const rules = [
     {
       maxParticipance: 10,
@@ -45,16 +45,18 @@ function GetPlayersAmount(props) {
       roomForRestAvailability: true,
     },
   ];
-  const [numberOfParticipants, setNumberOfParticipants] = useState(0);
+  const [numberOfParticipants, setNumberOfParticipants] = useState(props.num);
   const [gameLength, setGameLength] = useState(0);
   const [instructions, setInstructions] = useState(0);
   const [rounds, setRounds] = useState(0);
   const [roomAvailability, setRoomAvailability] = useState(false);
-  let arrSkull = Array.from(Array(maxParticipance).keys());
-
+  let arrSkull = Array.from(Array(maxParticipants).keys());
+  useEffect(() => {
+    handleChoice(props.num);
+  }, []);
   const handleChoice = (numberClicked) => {
-    for (let i = 0; i < maxParticipance; i++) {
-      document.getElementById(`skull-img-${i}`).setAttribute('fill', 'black');
+    for (let i = 0; i < maxParticipants; i++) {
+      document.getElementById(`skull-img-${i}`).setAttribute('fill', '#5B646F');
     }
     for (let i = 0; i < numberClicked; i++) {
       document.getElementById(`skull-img-${i}`).setAttribute('fill', 'white');
@@ -72,8 +74,8 @@ function GetPlayersAmount(props) {
   };
   const handleMaxParticipants = (e) => {
     e.preventDefault();
-    handleChoice(maxParticipance);
-    setNumberOfParticipants(maxParticipance + 1);
+    handleChoice(maxParticipants);
+    setNumberOfParticipants(maxParticipants + 1);
     document.getElementById('btn-max').classList.add('bg-indigo-900');
   };
   const handleClick = (e) => {
@@ -108,12 +110,13 @@ function GetPlayersAmount(props) {
         : '';
   };
   return (
-    <div className="w-full h-1/2 flex flex-col items-center justify-center max-w-md text-white">
+    <div className="w-full flex flex-col items-center justify-center max-w-md text-white bg-popup p-5">
       <h3 className="m-5 ">Укажите примерное количество игроков</h3>
       <div className="w-full h-auto flex justify-center  flex-wrap max-w-md">
         {arrSkull.map((item, index) => {
           return (
             <svg
+              key={`skull-svg-${index}`}
               className="w-8 cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 68.592 67.306"
@@ -130,7 +133,7 @@ function GetPlayersAmount(props) {
         })}
       </div>
       <button
-        className="w-full m-auto  text-sm border rounded border-gray-700"
+        className="w-full m-3  text-sm border rounded border-gray-700"
         id="btn-max"
         onClick={handleMaxParticipants}
       >
@@ -148,21 +151,21 @@ function GetPlayersAmount(props) {
               stroke="white"
               strokeWidth="20"
             />
-            {numberOfParticipants > maxParticipance && (
+            {numberOfParticipants > maxParticipants && (
               <path
                 d="M55.6894 193.812C50.3013 189.339 47.5161 183.388 47.3752 177.397C47.2362 171.408 49.7435 165.364 54.9157 160.706C60.0841 156.051 66.9673 153.642 73.8955 153.522C80.8274 153.398 87.8157 155.559 93.2077 160.035L139.759 198.758L232.44 96.9817L235.761 99.1719L232.437 96.972C232.701 96.6749 233.002 96.4216 233.336 96.2154C238.85 92.0867 245.771 90.2229 252.536 90.5411V90.5346L252.866 90.5606C259.67 90.9503 266.317 93.5642 271.224 98.2984C276.216 103.112 278.479 109.226 278.102 115.203H278.109L278.079 115.488C277.636 121.265 274.716 126.91 269.423 131.126L158.196 248.168L158.204 248.174C157.995 248.403 157.761 248.6 157.505 248.772C152.297 252.725 145.72 254.664 139.181 254.566C132.587 254.467 126.006 252.3 120.887 248.046L55.6894 193.812Z"
                 fill="white"
               />
             )}
           </svg>
-          Больше 35 игроков?
+          Больше {maxParticipants} игроков?
         </h4>
       </button>
 
-      {numberOfParticipants > maxParticipance ? (
+      {numberOfParticipants > maxParticipants ? (
         <h4 className="mt-5">
-          Больше <strong className="text-lg">{maxParticipance}</strong> игрок
-          {endingfix(maxParticipance, false)} в команде
+          Больше <strong className="text-lg">{maxParticipants}</strong> игрок
+          {endingfix(maxParticipants, false)} в команде
         </h4>
       ) : (
         <h4 className="mt-5">
@@ -184,6 +187,11 @@ function GetPlayersAmount(props) {
           </span>
         )}
       </div>
+      <button
+        className="w-full m-auto p-3 text-sm border rounded-xl bg-indigo-900 border-gray-700"
+        id="btn-max"
+        onClick={(e)=>{e.preventDefault(); props.onChange(numberOfParticipants)}}
+      >Выбрать время</button>
     </div>
   );
 }

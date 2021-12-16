@@ -1,3 +1,17 @@
+@font-face {
+  font-family: Lumberjack;
+  src: url('/fonts/lumberjack.inline-rough.otf') format('opentype');
+}
+@font-face {
+  font-family: SourceSansPro;
+  src: url('/fonts/SourceSansPro-ExtraLight.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+html {
+    font-size: 24px;
+  }
 .inner-wrap {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -6,21 +20,79 @@
   min-height: 250px;
   padding: 3em 20px;
   text-align: center;
-  font-family: "Source Sans Pro","Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
+}
+.inner-wrap h2 {
+  font-family: Lumberjack;
+}
+.inner-wrap h3 {
+  font-family: SourceSansPro;
+  font-style: light;
+  font-weight: 300;
+}
+
+.containerFont{
+    font-weight: 300;
+    font-style: light;
+    font-family: SourceSansPro;
 }
 .containerDescription {
-    width: auto;
-    max-width: 768px;
-    margin: auto;
-    padding: 0 1em;
-    font-family: "Source Sans Pro","Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;
-    display: grid;
-    gap: 1em;
-    grid-template-columns: 2fr 1fr;
+  width: auto;
+  max-width: 768px;
+  margin: auto;
+  padding: 0 1em;
+  font-weight: 300;
+  font-style: light;
+  font-family: SourceSansPro;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 2fr 1fr;
 }
-@media screen and (max-width: 980px) {
-    .containerDescription {
-        display:block;
-    }
+.containerContacts {
+  width: auto;
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 1em;
+  font-weight: 300;
+  font-style: light;
+  font-family: SourceSansPro;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 2fr;
+}
+.containerForm {
+  width: auto;
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 1em;
+  font-weight: 300;
+  font-style: light;
+  font-family: SourceSansPro;
+}
+.borderleft {
+  border-color: rgba(55, 65, 81, 1);
+  border-left-width: 2px;
+}
 
+.btnBlue{
+    border-width: 2px;
+    border-color:#74b9ff;
+    color: #74b9ff;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 980px) {
+  .containerDescription {
+    display: block;
+  }
+  .borderleft {
+    border-left-width: 0px;
+  }
+  .containerContacts {
+    display: block;
+  }
+  .hideOnSmall {
+    display: none;
+  }
 }

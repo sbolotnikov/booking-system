@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<linearGradient id="linear-gradient-rune-6">
+ <stop offset="0%" stop-color="#4592c6"></stop>
+ <stop offset="100%" stop-color="#5f80cd"></stop>
+</linearGradient>
+<svg fill="url(#linear-gradient-rune-6)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<path d="M20.589,0V9.489L78.834,50.273V33.582L59.872,20.305l3.43-4.912L78.834,26.268V0h6.015V100H78.834V82.941L20.589,42.157V66.42L39.551,79.695,36.12,84.607,20.589,73.732V100H14.573V0ZM78.834,75.628V57.586L20.589,16.8V34.844Z" style="fill-rule:evenodd"></path></svg>
+</svg>

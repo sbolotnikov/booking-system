@@ -6,7 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/general.css';
 import '../styles/navStyle.css';
 import '../styles/rating.css';
-import Layout from '../components/layout'
+import Layout from '../components/layout';
+import AppContext from '../appContext';
+import dataObject from "../dataObject";
 function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider
@@ -30,14 +32,19 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>СТРАШНОТЕМНО</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@200&display=swap"
           rel="stylesheet"
-        ></link>
+        />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <AppContext.Provider
+        value={dataObject}
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppContext.Provider>
       <ToastContainer />
     </SessionProvider>
   );

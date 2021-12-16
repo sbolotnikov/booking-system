@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link'
 // import CallIcon from '@mui/icons-material/Call';
 // import ContactMailIcon from '@mui/icons-material/ContactMail';
 const Navbar = ({ navbarLinks }) => {
@@ -30,9 +31,9 @@ const Navbar = ({ navbarLinks }) => {
         {navbarLinks.map((item, index) => {
           return (
             <li className="navbar__item" key={index}>
-              <a className="navbar__link" href={item.url}>
+              <Link className="navbar__link" href={item.url}>
                 {item.title}
-              </a>
+              </Link>
             </li>
           );
         })}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<linearGradient id="linear-gradient-rune-5">
+    <stop offset="0%" stop-color="#349cc1"></stop>
+    <stop offset="100%" stop-color="#4592c6"></stop>
+</linearGradient>
+<polygon fill="url(#linear-gradient-rune-5)" points="32.023 19.693 32.023 100 26.008 100 26.008 23.904 13.886 32.392 10.456 27.481 47.988 1.2 49.703 0 51.419 1.2 88.953 27.481 85.522 32.392 73.399 23.904 73.399 100 67.384 100 67.384 19.693 49.703 7.313 32.023 19.693" style="fill-rule:evenodd"></polygon>
+</svg>
