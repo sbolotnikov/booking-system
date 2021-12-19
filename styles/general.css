@@ -9,9 +9,7 @@
   font-weight: 400;
   font-display: swap;
 }
-html {
-    font-size: 24px;
-  }
+
 .inner-wrap {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -48,7 +46,7 @@ html {
   grid-template-columns: 2fr 1fr;
 }
 .containerContacts {
-  width: auto;
+  width: 100%;
   max-width: 1170px;
   margin: auto;
   padding: 0 1em;
@@ -80,8 +78,13 @@ html {
     border-radius: 0.25rem;
     padding: 0.5rem;
     margin-top: 0.5rem;
+    margin-left: 0.5rem;
 }
-
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 15px;
+      }
+}
 @media screen and (max-width: 980px) {
   .containerDescription {
     display: block;
@@ -95,4 +98,13 @@ html {
   .hideOnSmall {
     display: none;
   }
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+    html {
+        font-size: 22px;
+      }
 }

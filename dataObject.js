@@ -10,7 +10,7 @@ let dataObject = {
             'Стоимость за одного игрока:<br><b>540 руб.</b> - в будние дни<br><b>650 руб.</b> - в выходные, праздники и ночью<br>Независимо от количества игроков минимальная общая стоимость игры: 2000 руб. - в будние дни / 2600 руб. - в выходные, праздники и ночью.',
           booking:
             'Игра длится 60 минут (+10 минут на инструктаж). Если игроков больше 10, то время игры может быть увеличено за счет дополнительных раундов.',
-          locs: [0,1],
+          locs: [0,2],
         },
         {
           name: 'МГЛА',
@@ -22,7 +22,7 @@ let dataObject = {
             'Стоимость за одного игрока:<br><b>650 руб.</b> - в будние дни.<br><b>800 руб.</b> - в выходные, праздники и ночью.<br>Независимо от количества игроков минимальная общая стоимость игры: 2600 руб. - в будние дни / 3200 руб. - в выходные, праздники и ночью.',
           booking:
             'Игра длится 60 минут (+10 минут на инструктаж). Если игроков больше 10, то время игры может быть увеличено за счет дополнительных раундов.',
-          locs: [0,1],
+          locs: [0,1,2],
         },
       ],
       locations: [
@@ -44,7 +44,60 @@ let dataObject = {
           email: "chel@strashnotemno.ru",
           address_desc:"Игра расположена в начале северо-запада, в районе обувной фабрики, на улице Тепличной 21, в 50 м от проспекта Победы. Ближайшая остановка трамвая «ул. Тепличная».<br><br>На двери - табличка «Прятки в темноте»."
         },
+        {
+            name: 'Прятки на Sovetskoy 67',
+            description: 'Home. Home base. Look around for clues',
+            symbol: '/icons/teplichnaya.svg',
+            address: "г. Челябинск,<br> ул.Sovetskaya 67",
+            telephone: "+7 (351) 220-75-49",
+            email: "chel@strashnotemno.ru",
+            address_desc:"Home sweet home.<br><br>На двери - табличка «Прятки в темноте»."
+          },
       ], 
+      rules :[
+        {
+          maxParticipance: 10,
+          gameLength: 60,
+          instructions: 10,
+          additionalRounds: 0,
+          roomForRestAvailability: false,
+        },
+        {
+          maxParticipance: 15,
+          gameLength: 90,
+          instructions: 10,
+          additionalRounds: 1,
+          roomForRestAvailability: false,
+        },
+        {
+          maxParticipance: 20,
+          gameLength: 120,
+          instructions: 20,
+          additionalRounds: 2,
+          roomForRestAvailability: true,
+        },
+        {
+          maxParticipance: 25,
+          gameLength: 150,
+          instructions: 20,
+          additionalRounds: 3,
+          roomForRestAvailability: true,
+        },
+        {
+          maxParticipance: 30,
+          gameLength: 160,
+          instructions: 20,
+          additionalRounds: 4,
+          roomForRestAvailability: true,
+        },
+        {
+          maxParticipance: 35,
+          gameLength: 160,
+          instructions: 20,
+          additionalRounds: 5,
+          roomForRestAvailability: true,
+        },
+      ],
   };
   
   export default dataObject;

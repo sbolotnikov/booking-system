@@ -22,7 +22,7 @@ const Navbar = ({ navbarLinks }) => {
       {menuClicked &&
         <li className="navbar__item" key={'zeroitem'}>
           <a className="navbar__link" href={'#'}>
-            <div className="h-8 w-8">
+            <div className="h-4 w-4">
               <img src={'/icons/call.svg'} alt="menu call" />
             </div>
             +7 (351) 220-75-49

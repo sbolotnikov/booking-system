@@ -1,50 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import AppContext from '../appContext';
 function GetPlayersAmount(props) {
   const maxParticipants = 35;
-  const rules = [
-    {
-      maxParticipance: 10,
-      gameLength: 60,
-      instructions: 10,
-      additionalRounds: 0,
-      roomForRestAvailability: false,
-    },
-    {
-      maxParticipance: 15,
-      gameLength: 90,
-      instructions: 10,
-      additionalRounds: 1,
-      roomForRestAvailability: false,
-    },
-    {
-      maxParticipance: 20,
-      gameLength: 120,
-      instructions: 20,
-      additionalRounds: 2,
-      roomForRestAvailability: true,
-    },
-    {
-      maxParticipance: 25,
-      gameLength: 150,
-      instructions: 20,
-      additionalRounds: 3,
-      roomForRestAvailability: true,
-    },
-    {
-      maxParticipance: 30,
-      gameLength: 160,
-      instructions: 20,
-      additionalRounds: 4,
-      roomForRestAvailability: true,
-    },
-    {
-      maxParticipance: 35,
-      gameLength: 160,
-      instructions: 20,
-      additionalRounds: 5,
-      roomForRestAvailability: true,
-    },
-  ];
+  const value = useContext(AppContext);
+  let rules = value.rules;
   const [numberOfParticipants, setNumberOfParticipants] = useState(props.num);
   const [gameLength, setGameLength] = useState(0);
   const [instructions, setInstructions] = useState(0);

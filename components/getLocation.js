@@ -39,18 +39,18 @@ function GetLocation(props) {
           <button
             key={`top-loc-${index}`}
             id={`loc-${index}`}
-            className="m-1 min-w-[20rem] "
+            className="m-1 "
             value={index}
             onClick={handleLocation}
           >
             <div
               key={`inner-loc-${index}`}
-              className="grid grid-cols-5 rounded-r w-full h-full border-2 border-gray-700 max-w-xs bg-popup p-5"
+              className="grid xs:grid-cols-1  sm:grid-cols-4 phone:grid-cols-4  rounded-r  h-full border-2 border-gray-700 max-w-xs bg-popup p-2"
               value={index}
             >
               <div
                 key={`text-loc-${index}`}
-                className="col-span-4 text-left"
+                className="xs:col-span-1 sm:col-span-3 phone:col-span-3 text-left whitespace-normal"
                 value={index}
               >
                 <h4
@@ -72,7 +72,7 @@ function GetLocation(props) {
                 key={`img-loc-${index}`}
                 src={item.symbol}
                 alt=""
-                className="col-span-1 w-8 m-auto"
+                className="col-span-1 h-9 m-auto"
                 value={index}
               />
             </div>
