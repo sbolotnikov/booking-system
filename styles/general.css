@@ -80,6 +80,7 @@
     margin-top: 0.5rem;
     margin-left: 0.5rem;
 }
+
 @media screen and (max-width: 768px) {
     html {
         font-size: 15px;

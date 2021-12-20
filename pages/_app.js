@@ -32,11 +32,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>СТРАШНОТЕМНО</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@200&display=swap"
-          rel="stylesheet"
-        />
+
       </Head>
       <AppContext.Provider
         value={dataObject}

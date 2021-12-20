@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Link from 'next/link'
+import Emailform from './emailform';
 // import CallIcon from '@mui/icons-material/Call';
 // import ContactMailIcon from '@mui/icons-material/ContactMail';
 const Navbar = ({ navbarLinks }) => {
   // Determines if the "menu icon" was clicked or not. Note that this icon is only visible when the window width is small.
   const [menuClicked, setMenuClicked] = useState(false);
-
+  const [emailFormVis, setEmailFormVis] = useState(false);
   const toggleMenuClick = () => {
     setMenuClicked(!menuClicked);
   };
@@ -21,8 +21,8 @@ const Navbar = ({ navbarLinks }) => {
       >
       {menuClicked &&
         <li className="navbar__item" key={'zeroitem'}>
-          <a className="navbar__link" href={'#'}>
-            <div className="h-4 w-4">
+          <a className="navbar__link" onClick={()=>{setMenuClicked(!menuClicked);}} href={'tel:+7(351)220-7549'}>
+            <div className="w-4">
               <img src={'/icons/call.svg'} alt="menu call" />
             </div>
             +7 (351) 220-75-49
@@ -31,23 +31,23 @@ const Navbar = ({ navbarLinks }) => {
         {navbarLinks.map((item, index) => {
           return (
             <li className="navbar__item" key={index}>
-              <Link className="navbar__link" href={item.url}>
+              <a className="navbar__link" onClick={()=>{setMenuClicked(!menuClicked);}} href={item.url}>
                 {item.title}
-              </Link>
+              </a>
             </li>
           );
         })}
       </ul>
       <div className="navbar__right_span">
         <div className="navbar__menu_grid" >
-          <img src={'/icons/call.svg'} alt="menu call" />
+          <a  href={'tel:+7(351)220-7549'}><img  src={'/icons/call.svg'} alt="menu call" /></a>
         </div>
-        <div className="navbar__menu_grid" >
-          <img src={'/icons/message.svg'} alt="menu send email" />
+        <div className="navbar__menu_grid" onClick={()=>{setEmailFormVis(true)}}>
+          <img src={'/icons/message.svg'}  alt="menu send email" />
         </div>
         {menuClicked ? (
           <div className="navbar__menu" onClick={toggleMenuClick}>
-            <img src={'/icons/close.svg'} alt="menu close" />
+            <img src={'/icons/close.svg'}   alt="menu close" />
           </div>
         ) : (
           <div className="navbar__menu" onClick={toggleMenuClick}>
@@ -55,6 +55,7 @@ const Navbar = ({ navbarLinks }) => {
           </div>
         )}
       </div>
+      {emailFormVis &&<Emailform onChange={(e)=>{setEmailFormVis(false)}}/>}
     </nav>
   );
 };

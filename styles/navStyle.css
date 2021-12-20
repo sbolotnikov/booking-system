@@ -81,6 +81,7 @@
       backdrop-filter: blur(1rem);
     }
   }
+
 @media screen and (max-width: 1070px) {
   .navbar__list {
     --gap: 4rem;  
@@ -135,4 +136,13 @@
     border-width: 0px;
     opacity: 0.9;
   }
+}
+@media screen and (max-width: 420px) {
+  .navbar__link {
+    font-size: 1.1rem;
+  }
+  .navbar__item {
+    white-space: nowrap;
+    margin: 0.1rem;
+}
 }

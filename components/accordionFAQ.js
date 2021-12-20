@@ -8,13 +8,11 @@ function AccordionFAQ(props) {
         console.log("pressed",n, "old-",visible)
         if (visible>-1){ 
             document.getElementById("img."+visible).classList.remove("rotate-180");
-            document.getElementById("question"+visible).classList.remove("text-red-400");
-            document.getElementById("question"+visible).classList.remove("font-black");
+            document.getElementById("question"+visible).classList.remove("text-red-400","font-black");
         }
         if (n!==visible){
         document.getElementById("img."+n).classList.add("rotate-180");
-        document.getElementById("question"+n).classList.add("text-red-400");
-        document.getElementById("question"+n).classList.add("font-black");
+        document.getElementById("question"+n).classList.add("text-red-400","font-black");
         } 
         n!==visible?setVisible(n):setVisible(-1);
       }
