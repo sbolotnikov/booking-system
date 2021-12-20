@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import BookingCard from './BookingCard'
+import BookingCard from './bookingCard'
 import AppContext from '../appContext';
 function Booking() {
     const value = useContext(AppContext);
