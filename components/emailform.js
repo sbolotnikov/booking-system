@@ -1,12 +1,36 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import AppContext from '../appContext';
 function Emailform(props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [text, setText] = useState("");
+    const [message, setMessage]= useState("");
+    const value = useContext(AppContext);
+    const mainEmail = value.mainEmail;
     const handleSubmit=(e)=>{
         e.preventDefault();
-
-        console.log(`Form submitted, ${name} ${text}${email}`); 
+        let data = {
+            name,
+            email,
+            message,
+            mainEmail:mainEmail
+          }
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then((res) => {
+            console.log('Response received')
+            if (res.status === 200) {
+              console.log('Response succeeded!')   
+              setName('')
+              setEmail('')
+              setMessage('')
+              props.onChange(true);
+            }
+          })
     }
   return (
 
@@ -58,8 +82,8 @@ function Emailform(props) {
               className="w-full rounded bg-[#0C1118]"
               placeholder="Любые вопросы или пожелания"
               required
-              onChange={(e)=>{setText(e.target.value)}}
-              value = {text}
+              onChange={(e)=>{setMessage(e.target.value)}}
+              value = {message}
               minLength="5"
             ></textarea>
             <div className="error alert alert-error"></div>
