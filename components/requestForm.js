@@ -1,11 +1,45 @@
 import GetPlayersAmount from './getPlayersAmount';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import GetLocation from './getLocation';
 function RequestForm(props) {
   const [participants, setParticipants] = useState(0);
   const [location, setLocation] = useState(-1);
   const [visible, setVisible] = useState(true);
-  console.log(location, participants);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    if (location>-1){
+    console.log("location N",location,"game-",props.gameIndex);
+    console.log(JSON.stringify({
+      location: location,
+      game: props.gameIndex,
+      dateStart: new Date('2021-12-22'),
+      dateEnd: new Date('2021-12-23'),}));
+    setError('');
+    setLoading(true);
+    fetch('/api/reservation/getrange', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        location: location,
+        game: props.gameIndex,
+        dateStart: new Date('2021-12-22'),
+        dateEnd: new Date('2021-12-23'),
+      }),
+    }).then((res)=>{
+    const data = res.json();
+    console.log(data);
+    
+  }).catch((err) =>{
+    setError('Failed to get times',err);
+  })
+
+  setLoading(false); 
+  }
+  }, [location]);
+
   return (
     <div className="w-full">
       <GetLocation

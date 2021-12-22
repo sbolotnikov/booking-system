@@ -48,16 +48,7 @@ function contacts(props) {
               __html: locations[location].address_desc,
             }}
           ></p>
-        </div>
-      </div>
-      <div className="rounded w-full font-SourceSansPro bg-popup max-w-[1170px] my-3 mx-auto p-1">
-        <span>&#9888;</span> Локации работают только по предварительной записи,
-        если вы хотите посетить нас просто, чтобы осмотреться, пожалуйста,
-        позвоните предварительно по телефону +7 (351) 220-75-49. Будем рады вас
-        видеть!
-      </div>
-      <div className="rounded w-full max-w-[1170px] my-3 mx-auto p-1 flex justify-between  items-center">
-       <div className="m-auto">
+          <div className="m-auto">
         <YMaps>
           <Map
             state={{
@@ -66,9 +57,9 @@ function contacts(props) {
                 locations[location].coordinates.y,
               ],
               zoom: locations[location].coordinates.zoom,
-            }}
-            width={350}
-            height={300}
+            }} 
+            style={{overflow: 'hidden',borderRadius: '0.5rem',width: '350px',height: '300px'}}
+          
           >
             <GeoObject
               // The geometry description.
@@ -96,6 +87,13 @@ function contacts(props) {
           </Map>
         </YMaps>
         </div>
+        </div>
+      </div>
+      <div className="rounded w-full font-SourceSansPro bg-popup max-w-[1170px] my-3 mx-auto p-1">
+        <span>&#9888;</span> Локации работают только по предварительной записи,
+        если вы хотите посетить нас просто, чтобы осмотреться, пожалуйста,
+        позвоните предварительно по телефону +7 (351) 220-75-49. Будем рады вас
+        видеть!
       </div>
     </div>
   );

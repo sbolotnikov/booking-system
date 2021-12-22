@@ -3,9 +3,9 @@ import RequestForm from '../../components/requestForm';
 import AppContext from '../../appContext';
 function Game(gameId) {
   const value = useContext(AppContext);
-  let gameX = value.games.find((x) => x.id === gameId.id);
+  const gameX = value.games.find((x) => x.id === gameId.id);
+  const gameIndex= value.games.findIndex((x) => x.id === gameId.id);
   let locationsX=[];
-  console.log(gameX)
   for(let i=0;i<gameX.locs.length;i++) locationsX.push(value.locations[gameX.locs[i]])
   console.log(gameX.locs, value.locations, locationsX)
   useEffect(() => {
@@ -54,7 +54,7 @@ function Game(gameId) {
         </div>
       </div>
       <div className="containerForm">
-        <RequestForm locations={locationsX} />
+        <RequestForm locations={locationsX} gameIndex={gameIndex} />
       </div>
     </div>
   );
