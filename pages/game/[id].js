@@ -7,7 +7,6 @@ function Game(gameId) {
   const gameIndex= value.games.findIndex((x) => x.id === gameId.id);
   let locationsX=[];
   for(let i=0;i<gameX.locs.length;i++) locationsX.push(value.locations[gameX.locs[i]])
-  console.log(gameX.locs, value.locations, locationsX)
   useEffect(() => {
     document.getElementById(
       'gameHero'

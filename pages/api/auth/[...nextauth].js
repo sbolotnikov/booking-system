@@ -11,7 +11,7 @@ import Users from '../../../models/userModel';
 import bcrypt from 'bcryptjs';
 import { MongoClient } from 'mongodb';
 
-connectDB();
+// connectDB();
 export default async function auth(req, res) {
   return await NextAuth(req, res, {
     session: {

@@ -36,12 +36,12 @@ const ReservationSchema = new Schema({
       }
 
 );
-UserSchema.virtual('timeStatus')
+ReservationSchema.virtual('timeStatus')
   .get( function () {
     if(this.reservationConfirmDate) return "red";
     if (this.requests.length>0) return "yellow";
     return "green";
   })
-const Reservation = mongoose.model('Reservation', ReservationSchema);
+const Reservation = mongoose.models.Reservation ||mongoose.model('Reservation', ReservationSchema);
 
 module.exports = Reservation;

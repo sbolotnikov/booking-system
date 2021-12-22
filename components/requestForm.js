@@ -6,40 +6,43 @@ function RequestForm(props) {
   const [location, setLocation] = useState(-1);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [times, setTimes] = useState([]);
   const [error, setError] = useState('');
   useEffect(() => {
     if (location>-1){
     console.log("location N",location,"game-",props.gameIndex);
-    console.log(JSON.stringify({
-      location: location,
-      game: props.gameIndex,
-      dateStart: new Date('2021-12-22'),
-      dateEnd: new Date('2021-12-23'),}));
-    setError('');
-    setLoading(true);
-    fetch('/api/reservation/getrange', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        location: location,
-        game: props.gameIndex,
-        dateStart: new Date('2021-12-22'),
-        dateEnd: new Date('2021-12-23'),
-      }),
-    }).then((res)=>{
-    const data = res.json();
-    console.log(data);
-    
-  }).catch((err) =>{
-    setError('Failed to get times',err);
-  })
-
-  setLoading(false); 
+    setTimes(getTimes)
   }
   }, [location]);
+  async function getTimes() {  
+    try {
+      setError('');
+      setLoading(true);
+      
+      const res = await fetch('/api/reservation/getrange', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          location: location,
+          game: props.gameIndex,
+          dateStart: '2021-12-21',
+          dateEnd: '2021-12-23',
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      return data
+      
+      
+    } catch {
+      setError('Failed to get times');
+      return [];
+    }
 
+    setLoading(false);  
+  }
   return (
     <div className="w-full">
       <GetLocation

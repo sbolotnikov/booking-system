@@ -17,7 +17,7 @@ function EditTimes(props) {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(reservationTimeRef.current.value)
     try {
       setError('');
       setLoading(true);
@@ -33,7 +33,6 @@ function EditTimes(props) {
           price: priceRef.current.value,
         }),
       });
-      //Await for data for any desirable next steps
       const data = await res.json();
       console.log(data);
       

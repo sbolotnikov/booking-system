@@ -44,10 +44,6 @@ function GetPlayersAmount(props) {
   const timeInHHandMM = (time) => {
     let hours = Math.floor(time / 60);
     let minutes = time % 60;
-    console.log(
-      hours > 0 ? `${hours}час${endingfix(hours, false)}` : '',
-      minutes > 0 ? `${minutes} минут` : ''
-    );
     let timeX = hours > 0 ? `${hours}час${endingfix(hours, false)}` : '';
     let timeY = minutes > 0 ? `${minutes} минут` : '';
     return timeX + ' ' + timeY;

@@ -33,6 +33,6 @@ const RequestSchema = new Schema({
   });
 
 RequestSchema.set('timestamps', true);   
-const Request = mongoose.model('Request', RequestSchema);
+const Request = mongoose.models.Request ||mongoose.model('Request', RequestSchema);
 
 module.exports = Request;
