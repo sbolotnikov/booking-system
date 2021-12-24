@@ -54,7 +54,7 @@ function Emailform(props) {
                 />
               </div>
             </button>
-            <h2 className="w-full text-center text-extrabold">Есть вопросы?</h2>
+            <h2 className="w-full text-center font-extrabold">Есть вопросы?</h2>
             <p className="w-full text-gray-400">
               Мы с удовольствием ответим! Если вопрос срочный, лучше позвонить{' '}
               <strong>+7 (351) 220-75-49</strong>.

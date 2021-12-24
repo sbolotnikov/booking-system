@@ -12,7 +12,7 @@ const RequestSchema = new Schema({
         type: String,
         required: true,
       },
-      telefone: {
+      phone: {
         type: String,
         required: true,
       },
@@ -22,13 +22,9 @@ const RequestSchema = new Schema({
       }, 
       participants: {
         type: Number,
-        required: true,
       },
-      discount: {
-        type: Number
-      },
-      Total: {
-        type: Number
+      message: {
+        type: String
       },
   });
 

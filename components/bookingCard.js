@@ -43,7 +43,7 @@ function BookingCard(props) {
             </div>
         <div>
           <span>от </span>
-          <span className="ml-1 text-white text-extrabold text-4xl">{props.item.price}</span>
+          <span className="ml-1 text-white font-extrabold text-4xl">{props.item.price}</span>
           <span> ₽</span>
           <br />
           <span>за участника</span>

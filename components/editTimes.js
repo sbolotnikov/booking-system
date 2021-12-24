@@ -29,7 +29,7 @@ function EditTimes(props) {
         body: JSON.stringify({
           location: locationRef.current.value,
           game: gameRef.current.value,
-          reservationTime: new Date(reservationTimeRef.current.value),
+          reservationTime: reservationTimeRef.current.value,
           price: priceRef.current.value,
         }),
       });

@@ -11,7 +11,7 @@ handler.post(async (req, res) => {
         await db.connect();    
 
         const reservationsRange = await Reservation
-        .find({ location: location, game: game, reservationTime:{ $gt: new Date(dateStart), $lt: new Date(dateEnd)} }); 
+        .find({ location: location, game: game, reservationTime:{ $gt: dateStart, $lt: dateEnd} }).sort({reservationTime:1}); 
         //Send success response
         res.status(201).json(reservationsRange);
         //Close DB connection

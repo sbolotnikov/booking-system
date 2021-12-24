@@ -1,55 +1,54 @@
 import GetPlayersAmount from './getPlayersAmount';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import GetLocation from './getLocation';
+import TimeDisplay from './timeDisplay';
+import SendReservationForm from './sendReservationForm';
 function RequestForm(props) {
   const [participants, setParticipants] = useState(0);
   const [location, setLocation] = useState(-1);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [revealForm, setRevealForm] = useState(false);
+  const [reservedTime, setReservedTime] = useState({});
   const [times, setTimes] = useState([]);
   const [error, setError] = useState('');
   useEffect(() => {
-    if (location>-1){
-    console.log("location N",location,"game-",props.gameIndex);
-    setTimes(getTimes)
-  }
-  }, [location]);
-  async function getTimes() {  
-    try {
-      setError('');
-      setLoading(true);
-      
-      const res = await fetch('/api/reservation/getrange', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          location: location,
-          game: props.gameIndex,
-          dateStart: '2021-12-21',
-          dateEnd: '2021-12-23',
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-      return data
-      
-      
-    } catch {
-      setError('Failed to get times');
-      return [];
+    if (location > -1) {
+      console.log(times, 'location N', location, 'game-', props.gameIndex);
     }
+  }, [location]);
 
-    setLoading(false);  
-  }
   return (
     <div className="w-full">
+    {revealForm && <SendReservationForm players={participants} time={reservedTime} onChange={(e)=>{setRevealForm(false)}}/>}
       <GetLocation
         loc={location}
         list={props.locations}
-        onChange={(loc) => {
+        onChange={async (loc) => {
           setLocation(loc);
+          try {
+            setError('');
+            setLoading(true);
+
+            const res = await fetch('/api/reservation/getrange', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                location: loc,
+                game: props.gameIndex,
+                dateStart: '2021-12-22',
+                dateEnd: '2021-12-23',
+              }),
+            });
+            const data = await res.json();
+            console.log(data);
+            setTimes(data);
+          } catch {
+            setError('Failed to get times');
+          }
+          setLoading(false);
         }}
       />
       <h4
@@ -77,6 +76,26 @@ function RequestForm(props) {
           }}
         />
       )}
+      <div className="flex flex-row justify-center items-center flex-wrap">
+        {times &&
+          times.map((item, index) => {
+            return (
+              <button key={"btn"+item.id} id={item.id} onClick={(e)=>
+              {  
+                let item=times.find((x) => x._id === e.currentTarget.id)
+                console.log(item)
+                 if((participants>0)&&(item.timeStatus=="green"))setRevealForm(true); setReservedTime(item)}}>
+              <TimeDisplay
+                key={item.id}
+                _id={item.id}
+                price={item.price}
+                time={item.reservationTime.split('T')[1]}
+                timeStatus={item.timeStatus}
+              />
+              </button>
+            );
+          })}
+      </div>
     </div>
   );
 }

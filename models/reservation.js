@@ -11,7 +11,7 @@ const ReservationSchema = new Schema({
         required: true,
       },
       reservationTime: {
-        type: Date,
+        type: String,
         required: true,
       },
       price: {
@@ -39,7 +39,7 @@ const ReservationSchema = new Schema({
 ReservationSchema.virtual('timeStatus')
   .get( function () {
     if(this.reservationConfirmDate) return "red";
-    if (this.requests.length>0) return "yellow";
+    if (this.requests.length>0) return "orange";
     return "green";
   })
 const Reservation = mongoose.models.Reservation ||mongoose.model('Reservation', ReservationSchema);

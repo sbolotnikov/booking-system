@@ -9,7 +9,7 @@ function contacts(props) {
   let locations = value.locations;
   return (
     <div>
-      <h1 className="text-center p-10 text-extrabold">Где находится?</h1>
+      <h1 className="text-center p-10 font-extrabold">Где находится?</h1>
       <div className="containerContacts">
         <div>
           <GetLocation
@@ -31,7 +31,7 @@ function contacts(props) {
           </h2>
         </div>
         <div className="borderleft pl-6 ">
-          <h2 className="text-extrabold">{locations[location].name}</h2>
+          <h2 className="font-extrabold">{locations[location].name}</h2>
           <p
             dangerouslySetInnerHTML={{ __html: locations[location].address }}
           ></p>
