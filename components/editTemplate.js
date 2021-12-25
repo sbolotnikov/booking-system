@@ -2,6 +2,7 @@ import EditTimePriceForm from './editTimePriceForm';
 import { useState, useEffect } from 'react';
 function EditTemplate(props) {
   const [name, setName] = useState('');
+  const [color, setColor] = useState("#74b9ff");
   const [templates, setTemplates] = useState([]);
   const [appointments, setAppointments] = useState([]);
   useEffect(() => {
@@ -26,12 +27,13 @@ function EditTemplate(props) {
   };
   const handleUpdateTemplate = async (e) => {
     e.preventDefault();
+    
     const res = await fetch('/api/admin/add_update_template', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, appointments }),
+      body: JSON.stringify({ name,color, appointments }),
     });
     const data = await res.json();
     window.location.reload(false);
@@ -44,6 +46,7 @@ function EditTemplate(props) {
         onChange={(e) => {
           e.preventDefault();
           setName(templates[e.target.value].name);
+          setColor(templates[e.target.value].color);
           setAppointments(
             templates[e.target.value].appointments.sort(
               (a, b) => a.reservationHour - b.reservationHour
@@ -70,7 +73,20 @@ function EditTemplate(props) {
         }}
         value={name}
       />
-
+      <div className="w-full rounded m-1 flex justify-center items-center bg-[#0C1118]">
+      <input
+        className="w-[25%] max-w-[100px] rounded m-1 "
+        type="color"
+        value={"#74b9ff"}
+        onChange={(e) => {
+          e.preventDefault();
+          console.log(e.target.value);
+          setColor(e.target.value);
+        }}
+        value={color}
+      />
+      <h3>Выбрерите цвет</h3>
+      </div>
       <button
         className="rounded border-[#74b9ff] text-[#74b9ff] border-2 m-1 p-2"
         onClick={handleUpdateTemplate}

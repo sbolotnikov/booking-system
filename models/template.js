@@ -22,6 +22,9 @@ const TemplateSchema = new Schema({
       name: {
         type: String
       },
+      color: {
+        type: String
+      },
     }, 
 );
 
