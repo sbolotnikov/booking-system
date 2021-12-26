@@ -26,7 +26,7 @@ function Templates() {
           setEditable(!editable);
         }}
       >
-        <img className="w-5 h-5 m-1" src={'/icons/edit.svg'} alt="edit button" />{(editable)?"Редактировать":"Установить"} расписание
+        <img className="w-5 h-5 m-1" src={'/icons/edit.svg'} alt="edit button" />{(editable)?"Редактировать":"Установить"} расписания
       </button>
       {editable && <EditTemplate choice={templates} />}
       {!editable && <Schedule choice={templates} />}

@@ -7,7 +7,9 @@ export const useDate = (events, nav) => {
   const eventForDate = date => events.find(e => e.date === date);
 
   useEffect(() => {
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    // const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    // for english need to change weekdays array and change locale in 2 places to 'en-us'
+    const weekdays = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
     const dt = new Date();
 
     if (nav !== 0) {
@@ -20,7 +22,7 @@ export const useDate = (events, nav) => {
 
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const dateString = firstDayOfMonth.toLocaleDateString('ru-RU', {
+    const dateString = firstDayOfMonth.toLocaleDateString('ru-ru', {
       weekday: 'long',
       year: 'numeric',
       month: 'numeric',
@@ -28,11 +30,9 @@ export const useDate = (events, nav) => {
     });
 
     setDateDisplay(`${dt.toLocaleDateString('ru-ru', { month: 'long' })} ${year}`);
-    // const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
-    const paddingDaysAmer = weekdays.indexOf(dateString.split(', ')[0]);
-    const paddingDays=(paddingDaysAmer-1<0)?6:paddingDaysAmer-1
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
     const daysArr = [];
-
+    console.log(dateString);
     for (let i = 1; i <= paddingDays + daysInMonth; i++) {
       const dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
