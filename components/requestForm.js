@@ -100,7 +100,7 @@ function RequestForm(props) {
             <div key={'wrapp_day' + index}> {new Date(item.date).toLocaleDateString('ru-ru', {weekday: 'long',day: 'numeric', month: 'long',})}
               <DayDisplay
                 key={'day' + index}
-                times={item.template_id.appointments}
+                times={item.appointments}
               />
             </div>
           );

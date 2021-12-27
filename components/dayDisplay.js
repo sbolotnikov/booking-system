@@ -8,11 +8,10 @@ function DayDisplay(props) {
           return (
             <button
               key={'btn' + index}
+              id={index+"_timeIndex"}
               onClick={(e) => {
-                let item = props.times.find(
-                  (x) => x._id === e.currentTarget.id
-                );
-                console.log(item);
+                let item =props.times[parseInt(e.currentTarget.id)]
+                console.log(e.currentTarget.id,item, props.times);
                 // if (participants > 0 && item.timeStatus == 'green')
                 //   setRevealForm(true);
                 // setReservedTime(item);
@@ -20,6 +19,7 @@ function DayDisplay(props) {
             >
               <TimeDisplay
                 key={'time' + index}
+                
                 price={item.price}
                 time={`${item.reservationHour}:${
                   item.reservationMin < 10 ? '0' : ''

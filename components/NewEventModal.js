@@ -4,7 +4,7 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
     const [title, setTitle] = useState('');
     const [error, setError] = useState(false);
     const [templates, setTemplates] = useState([]);
-    const [id, setId] = useState('');
+    // const [id, setId] = useState('');
     const [color, setColor] = useState("");
     const [appointments, setAppointments] = useState([]);  
     useEffect(() => {
@@ -30,7 +30,7 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
             onChange={(e) => {
               e.preventDefault();
               setTitle(templates[e.target.value].name);
-              setId(templates[e.target.value]._id);
+              // setId(templates[e.target.value]._id);
               setColor(templates[e.target.value].color);
               console.log(templates[e.target.value].color)
               setAppointments(
@@ -72,7 +72,7 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
             onClick={() => {
               if (title) {
                 setError(false);
-                onSave(title, id, color);
+                onSave(title, appointments, color);
               } else {
                 setError(true);
               }

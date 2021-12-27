@@ -143,7 +143,7 @@ function Schedule(props) {
         <NewEventModal
           choice={templates}
           onClose={() => setClicked(null)}
-          onSave={async (title, id, color) => {
+          onSave={async (title, appointments, color) => {
             //  update ADD request
 
             const res = await fetch('/api/admin/add_update_schedule', {
@@ -152,7 +152,7 @@ function Schedule(props) {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                template_id: id,
+                appointments,
                 color,
                 title,
                 date: clicked,
@@ -165,7 +165,7 @@ function Schedule(props) {
             setEvents([
               ...events,
               {
-                template_id:id,
+                appointments,
                 color,
                 title,
                 date: clicked,
@@ -182,8 +182,7 @@ function Schedule(props) {
       {clicked && eventForDate(clicked) && (
         <DeleteEventModal
           eventText={eventForDate(clicked).title}
-          eventSchedule={
-            templates[templates.map(function (e) {return e._id}).indexOf(eventForDate(clicked).template_id)].appointments
+          eventSchedule={eventForDate(clicked).appointments
           }
           onClose={() => setClicked(null)}
           onDelete={async() => {
