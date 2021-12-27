@@ -19,6 +19,24 @@ function RequestForm(props) {
     }
   }, [location]);
 
+  // function to add 1 hour for date to be a actual day
+  const timeshift = (n) => {
+    let dateStr = n.split('T')[0];
+    let dateArr = dateStr.split('-');
+    let event = new Date(
+      parseInt(dateArr[0]),
+      parseInt(dateArr[1]) - 1,
+      parseInt(dateArr[2]),
+      1
+    );
+    // Date() gives local time
+    return event.toLocaleDateString('ru-ru', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+    });
+  };
+  // new Date(item.date).setHours(1)].toLocaleDateString('ru-ru', {weekday: 'long',day: 'numeric', month: 'long',})}
   return (
     <div className="w-full">
       {revealForm && (
@@ -97,11 +115,10 @@ function RequestForm(props) {
       {times &&
         times.map((item, index) => {
           return (
-            <div key={'wrapp_day' + index}> {new Date(item.date).toLocaleDateString('ru-ru', {weekday: 'long',day: 'numeric', month: 'long',})}
-              <DayDisplay
-                key={'day' + index}
-                times={item.appointments}
-              />
+            <div key={'wrapp_day' + index}>
+              {' '}
+              {timeshift(item.date)}
+              <DayDisplay key={'day' + index} times={item.appointments} />
             </div>
           );
         })}
