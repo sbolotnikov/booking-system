@@ -53,6 +53,7 @@ function RequestForm(props) {
         list={props.locations}
         onChange={async (loc) => {
           setLocation(loc);
+          console.log(props.locs[loc])
           try {
             setError('');
             setLoading(true);
@@ -62,7 +63,7 @@ function RequestForm(props) {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                location: loc,
+                location: props.locs[loc],
                 game: props.gameIndex,
               }),
             });

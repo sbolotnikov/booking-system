@@ -53,7 +53,7 @@ function Game(gameId) {
         </div>
       </div>
       <div className="containerForm">
-        <RequestForm locations={locationsX} gameIndex={gameIndex} />
+        <RequestForm locations={locationsX} gameIndex={gameIndex} locs={gameX.locs} />
       </div>
     </div>
   );
