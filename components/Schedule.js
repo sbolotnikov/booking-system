@@ -145,7 +145,7 @@ function Schedule(props) {
           onClose={() => setClicked(null)}
           onSave={async (title, appointments, color) => {
             //  update ADD request
-
+console.log(title, appointments, color)
             const res = await fetch('/api/admin/add_update_schedule', {
               method: 'POST',
               headers: {

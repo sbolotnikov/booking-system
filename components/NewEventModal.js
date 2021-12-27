@@ -38,6 +38,9 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
                   (a, b) => a.reservationHour - b.reservationHour
                 )
               );
+              console.log(templates[e.target.value].appointments.sort(
+                  (a, b) => a.reservationHour - b.reservationHour
+                ))
             }}
           >
             {templates &&
@@ -70,8 +73,10 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
         </div>
           <button 
             onClick={() => {
+              
               if (title) {
                 setError(false);
+                console.log(appointments)
                 onSave(title, appointments, color);
               } else {
                 setError(true);

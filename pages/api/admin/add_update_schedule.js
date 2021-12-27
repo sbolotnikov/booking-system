@@ -8,15 +8,15 @@ const handler = nc({
     onError,
   });
 handler.post(async (req, res) => {
-  const { date, location, game, template_id, color,title} = req.body;
+  const { date, location, game, appointments, color,title} = req.body;
   console.log(color);
   await db.connect();
   const checkExisting = await Schedule.findOne({
-    date
+    date,location,game
   });
   if (checkExisting) {
     const rec = await Schedule.updateOne(
-      {date },
+      {date,location,game },
       { $set: { location, game, appointments, color,title} })
       console.log(rec)
     res.status(201).json({ message: 'record updated' });
