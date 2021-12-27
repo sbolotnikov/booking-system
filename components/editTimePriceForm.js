@@ -42,7 +42,7 @@ function EditTimePriceForm(props) {
             e.preventDefault();
             let h = parseInt(e.target.value > 23 ? 23 : e.target.value);
             let appt = {
-              appt: { reservationHour: h, reservationMin: minutes, price: price},
+              appt: { reservationHour: h, reservationMin: minutes, price: price, status:"green"},
               i: props.info.i,
             };
             props.onEnter(appt);
@@ -62,7 +62,7 @@ function EditTimePriceForm(props) {
             e.preventDefault();
             let m = parseInt(e.target.value > 59 ? 59: e.target.value);
             let appt = {
-              appt: { reservationHour: hours, reservationMin: m, price: price },
+              appt: { reservationHour: hours, reservationMin: m, price: price,status:"green" },
               i: props.info.i,
             };
             props.onEnter(appt);
@@ -85,6 +85,7 @@ function EditTimePriceForm(props) {
               reservationHour: hours,
               reservationMin: minutes,
               price: parseFloat(e.target.value),
+              status:"green"
             },
             i: props.info.i,
           };

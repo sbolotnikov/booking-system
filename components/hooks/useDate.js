@@ -4,7 +4,7 @@ export const useDate = (events, nav) => {
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
-  const eventForDate = date => events.find(e => e.date === date);
+  const eventForDate = date =>events.find(e => e.date.split('T')[0] === date);
 
   useEffect(() => {
     // const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -32,10 +32,9 @@ export const useDate = (events, nav) => {
     setDateDisplay(`${dt.toLocaleDateString('ru-ru', { month: 'long' })} ${year}`);
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
     const daysArr = [];
-    console.log(dateString);
-    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-      const dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
+    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
+      const dayString = `${year}-${month + 1}-${i - paddingDays}`;
       if (i > paddingDays) {
         daysArr.push({
           value: i - paddingDays,

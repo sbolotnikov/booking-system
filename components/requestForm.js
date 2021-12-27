@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import GetLocation from './getLocation';
 import TimeDisplay from './timeDisplay';
 import SendReservationForm from './sendReservationForm';
+import DayDisplay from './dayDisplay';
 function RequestForm(props) {
   const [participants, setParticipants] = useState(0);
   const [location, setLocation] = useState(-1);
@@ -20,7 +21,15 @@ function RequestForm(props) {
 
   return (
     <div className="w-full">
-    {revealForm && <SendReservationForm players={participants} time={reservedTime} onChange={(e)=>{setRevealForm(false)}}/>}
+      {revealForm && (
+        <SendReservationForm
+          players={participants}
+          time={reservedTime}
+          onChange={(e) => {
+            setRevealForm(false);
+          }}
+        />
+      )}
       <GetLocation
         loc={location}
         list={props.locations}
@@ -29,8 +38,7 @@ function RequestForm(props) {
           try {
             setError('');
             setLoading(true);
-
-            const res = await fetch('/api/reservation/getrange', {
+            const res = await fetch('/api/reservation/getschedule', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -38,10 +46,20 @@ function RequestForm(props) {
               body: JSON.stringify({
                 location: loc,
                 game: props.gameIndex,
-                dateStart: '2021-12-22',
-                dateEnd: '2021-12-23',
               }),
             });
+            // const res = await fetch('/api/reservation/getrange', {
+            //   method: 'POST',
+            //   headers: {
+            //     'Content-Type': 'application/json',
+            //   },
+            //   body: JSON.stringify({
+            //     location: loc,
+            //     game: props.gameIndex,
+            //     dateStart: '2021-12-22',
+            //     dateEnd: '2021-12-23',
+            //   }),
+            // });
             const data = await res.json();
             console.log(data);
             setTimes(data);
@@ -76,26 +94,17 @@ function RequestForm(props) {
           }}
         />
       )}
-      <div className="flex flex-row justify-center items-center flex-wrap">
-        {times &&
-          times.map((item, index) => {
-            return (
-              <button key={"btn"+item.id} id={item.id} onClick={(e)=>
-              {  
-                let item=times.find((x) => x._id === e.currentTarget.id)
-                console.log(item)
-                 if((participants>0)&&(item.timeStatus=="green"))setRevealForm(true); setReservedTime(item)}}>
-              <TimeDisplay
-                key={item.id}
-                _id={item.id}
-                price={item.price}
-                time={item.reservationTime.split('T')[1]}
-                timeStatus={item.timeStatus}
+      {times &&
+        times.map((item, index) => {
+          return (
+            <div key={'wrapp_day' + index}> {new Date(item.date).toLocaleDateString('ru-ru', {weekday: 'long',day: 'numeric', month: 'long',})}
+              <DayDisplay
+                key={'day' + index}
+                times={item.template_id.appointments}
               />
-              </button>
-            );
-          })}
-      </div>
+            </div>
+          );
+        })}
     </div>
   );
 }

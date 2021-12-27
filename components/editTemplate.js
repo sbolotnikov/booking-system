@@ -27,7 +27,7 @@ function EditTemplate(props) {
   };
   const handleUpdateTemplate = async (e) => {
     e.preventDefault();
-    
+   console.log(appointments);
     const res = await fetch('/api/admin/add_update_template', {
       method: 'POST',
       headers: {
@@ -98,7 +98,7 @@ function EditTemplate(props) {
         onClick={(e) => {
           e.preventDefault();
           setAppointments([
-            ...[{ reservationHour: 0, reservationMin: 0, price: 0 }],
+            ...[{ reservationHour: 0, reservationMin: 0, price: 0, status:"green" }],
           ]);
           setName('');
         }}
@@ -146,7 +146,7 @@ function EditTemplate(props) {
             e.preventDefault();
             setAppointments([
               ...appointments,
-              { reservationHour: 0, reservationMin: 0, price: 0 },
+              { reservationHour: 0, reservationMin: 0, price: 0, status:"green" },
             ]);
           }}
         >
