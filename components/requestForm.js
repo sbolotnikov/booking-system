@@ -53,7 +53,7 @@ function RequestForm(props) {
         list={props.locations}
         onChange={async (loc) => {
           setLocation(loc);
-          console.log(props.locs[loc])
+          console.log(props.locs[loc]);
           try {
             setError('');
             setLoading(true);
@@ -119,7 +119,32 @@ function RequestForm(props) {
             <div key={'wrapp_day' + index}>
               {' '}
               {timeshift(item.date)}
-              <DayDisplay key={'day' + index} times={item.appointments} />
+              <DayDisplay
+                key={'day' + index}
+                times={item.appointments}
+                dayIndex={index}
+                onChoice={(choice, dayIndex) => {
+                  console.log(
+                    choice,
+                    times[dayIndex].date.split('T')[0],
+                    'game',
+                    props.gameIndex,
+                    'location',
+                    props.locs[location]
+                  );
+                  if (participants > 0 && choice.status == 'green')
+                    setRevealForm(true);
+                  setReservedTime({
+                    _id:choice._id,
+                    date: times[dayIndex].date.split('T')[0],
+                    hour: choice.reservationHour,
+                    minutes: choice.reservationMin,
+                    price: choice.price,
+                    game: props.gameIndex,
+                    location: props.locs[location],
+                  });
+                }}
+              />
             </div>
           );
         })}

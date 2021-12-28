@@ -8,7 +8,7 @@ function SendReservationForm(props) {
   const [message, setMessage] = useState('');
   const value = useContext(AppContext);
   const mainEmail = value.mainEmail;
-  const monthDay = monthDayText(props.time.reservationTime.split('T')[0]);
+  const monthDay = monthDayText(props.time.date.split('T')[0]);
   function monthDayText(a) {
     const months = [
       'Января',
@@ -34,7 +34,7 @@ function SendReservationForm(props) {
     let html_message=`
     <h2 style="width: 100%;text-align:center">
     <strong>Время проведения: ${monthDay} -${' '}
-     ${props.time.reservationTime.split('T')[1]}</strong>
+     ${`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}</strong>
    </h2>
    <h3 style="width: 100%;text-align:center">
    Адрес:${' '}<span> ${value.locations[props.time.location].address}</span>
@@ -44,7 +44,7 @@ function SendReservationForm(props) {
  <h3 style="width:100%"><strong>Стоимость игры — ${props.time.price} руб.</strong> за участника. Если игроков меньше ***-ти, то стоимость игры для всей команды составляет **** руб.</h3>
  <h3 style="width:100%"><strong>Специальные пожелания:</strong>${message}</h3>
  `;
- let reg_message=`Время проведения: ${monthDay} -${' '} ${props.time.reservationTime.split('T')[1]}\n
+ let reg_message=`Время проведения: ${monthDay} -${' '} ${`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}\n
 Адрес:${value.locations[props.time.location].address},\n
 Вы выбрали игру ${value.games[props.time.game].name}.\n
 Количество игроков:${props.players+'ч.'}\n
@@ -66,7 +66,12 @@ function SendReservationForm(props) {
       phone,
       message,
       participants:props.players,
-      reservation:props.time._id
+      game:props.time.game,
+      location:props.time.location,
+      date:props.time.date,
+      reservationHour:props.time.hour,
+      reservationMin:props.time.minutes,
+      schedule_id:props.time._id
     };
     const res = await fetch('/api/reservation/grab', {
         method: 'POST',
@@ -124,7 +129,7 @@ function SendReservationForm(props) {
         <div className="w-full">
           <h2 className="w-full text-center font-extrabold">
            <span className="xs:hidden">Время проведения:</span> {monthDay} -{' '}
-            {props.time.reservationTime.split('T')[1]}
+            {`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}
           </h2>
           <h3 className=" text-gray-400">
             Адрес:{' '}

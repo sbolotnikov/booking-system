@@ -10,11 +10,8 @@ function DayDisplay(props) {
               key={'btn' + index}
               id={index+"_timeIndex"}
               onClick={(e) => {
-                let item =props.times[parseInt(e.currentTarget.id)]
-                console.log(e.currentTarget.id,item, props.times);
-                // if (participants > 0 && item.timeStatus == 'green')
-                //   setRevealForm(true);
-                // setReservedTime(item);
+                let choice =props.times[parseInt(e.currentTarget.id)]
+                props.onChoice(choice, props.dayIndex);
               }}
             >
               <TimeDisplay
