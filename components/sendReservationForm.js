@@ -30,25 +30,40 @@ function SendReservationForm(props) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if ((parseInt(phone)<1000000000)||(parseInt(phone)>9999999999)) {setError("Номер телефона неверен");return}
-    let html_message=`
+    if (parseInt(phone) < 1000000000 || parseInt(phone) > 9999999999) {
+      setError('Номер телефона неверен');
+      return;
+    }
+    let html_message = `
     <h2 style="width: 100%;text-align:center">
     <strong>Время проведения: ${monthDay} -${' '}
-     ${`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}</strong>
+     ${`${props.time.hour}:${props.time.minutes < 10 ? '0' : ''}${
+       props.time.minutes
+     }`}</strong>
    </h2>
    <h3 style="width: 100%;text-align:center">
    Адрес:${' '}<span> ${value.locations[props.time.location].address}</span>
  </h3>
- <h3 style="width:100%;text-align:left"><strong>Игра:</strong> ${value.games[props.time.game].name}.</h3>
- <h3 style="width:100%"><strong>Количество игроков:</strong>${props.players+'ч.'}</h3>
- <h3 style="width:100%"><strong>Стоимость игры — ${props.time.price} руб.</strong> за участника. Если игроков меньше ***-ти, то стоимость игры для всей команды составляет **** руб.</h3>
+ <h3 style="width:100%;text-align:left"><strong>Игра:</strong> ${
+   value.games[props.time.game].name
+ }.</h3>
+ <h3 style="width:100%"><strong>Количество игроков:</strong>${
+   props.players + 'ч.'
+ }</h3>
+ <h3 style="width:100%"><strong>Стоимость игры — ${
+   props.time.price
+ } руб.</strong> за участника. Если игроков меньше ***-ти, то стоимость игры для всей команды составляет **** руб.</h3>
  <h3 style="width:100%"><strong>Специальные пожелания:</strong>${message}</h3>
  `;
- let reg_message=`Время проведения: ${monthDay} -${' '} ${`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}\n
+    let reg_message = `Время проведения: ${monthDay} -${' '} ${`${
+      props.time.hour
+    }:${props.time.minutes < 10 ? '0' : ''}${props.time.minutes}`}\n
 Адрес:${value.locations[props.time.location].address},\n
 Вы выбрали игру ${value.games[props.time.game].name}.\n
-Количество игроков:${props.players+'ч.'}\n
-Стоимость игры — ${props.time.price} руб. за участника. Если игроков меньше ***-ти, то \n
+Количество игроков:${props.players + 'ч.'}\n
+Стоимость игры — ${
+      props.time.price
+    } руб. за участника. Если игроков меньше ***-ти, то \n
  стоимость игры для всей команды составляет **** руб.\n\n
 Специальные пожелания:\n ${message}
  `;
@@ -58,56 +73,74 @@ function SendReservationForm(props) {
       phone,
       html_message,
       reg_message,
-      mainEmail
+      mainEmail,
     };
     let data = {
       name,
       email,
       phone,
       message,
-      participants:props.players,
-      game:props.time.game,
-      location:props.time.location,
-      date:props.time.date,
-      reservationHour:props.time.hour,
-      reservationMin:props.time.minutes,
-      schedule_id:props.time._id
+      participants: props.players,
+      game: props.time.game,
+      location: props.time.location,
+      date: props.time.date,
+      reservationHour: props.time.hour,
+      reservationMin: props.time.minutes,
+      schedule_id: props.time._id,
     };
+    // Create new reservation Request
     const res = await fetch('/api/reservation/grab', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const confirm_code = await res.json();
-            console.log(confirm_code.code);
-      data_mail.html_message=`
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const confirm_code = await res.json();
+    console.log(confirm_code.code);
+
+    console.log('schedule_id for request', props.time._id);
+// Updating busy status on Schedule
+    const res1 = await fetch('/api/reservation/make_busy', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        date: props.time.date,
+        schedule_id: props.time._id,
+      }),
+    });
+    console.log("result of PUT request",res1);
+
+    data_mail.html_message =
+      `
       <h2 style="width: 100%;text-align:left">
       <strong>Код подтверждения: ${confirm_code.code} </strong>
-     </h2>`+data_mail.html_message;
-     data_mail.reg_message=`
-      Код подтверждения: ${confirm_code.code}\n`+data_mail.reg_message;
-      
+     </h2>` + data_mail.html_message;
+    data_mail.reg_message =
+      `
+      Код подтверждения: ${confirm_code.code}\n` + data_mail.reg_message;
+// sending 2 emails client and admin
     fetch('/api/request_time', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data_mail)
-      }).then((res) => {
-        console.log('Response received')
-        if (res.status === 200) {
-          console.log('Response succeeded!')
-          setName('')
-          setEmail('')
-          setMessage('')
-          setPhone('')
-          props.onChange(true);
-        }
-      })
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data_mail),
+    }).then((res) => {
+      console.log('Response received');
+      if (res.status === 200) {
+        console.log('Response succeeded!');
+        setName('');
+        setEmail('');
+        setMessage('');
+        setPhone('');
+        props.onChange(true);
+      }
+    });
   };
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
@@ -128,23 +161,41 @@ function SendReservationForm(props) {
         </button>
         <div className="w-full">
           <h2 className="w-full text-center font-extrabold">
-           <span className="xs:hidden">Время проведения:</span> {monthDay} -{' '}
-            {`${props.time.hour}:${props.time.minutes<10?"0":""}${props.time.minutes}`}
+            <span className="xs:hidden">Время проведения:</span> {monthDay} -{' '}
+            {`${props.time.hour}:${props.time.minutes < 10 ? '0' : ''}${
+              props.time.minutes
+            }`}
           </h2>
           <h3 className=" text-gray-400">
             Адрес:{' '}
-            <span className="xs:text-xs"
+            <span
+              className="xs:text-xs"
               dangerouslySetInnerHTML={{
                 __html: value.locations[props.time.location].address_short,
               }}
             />
           </h3>
-          <h3 className="w-full text-gray-400"> <span className="xs:hidden">Вы выбрали игру</span> {value.games[props.time.game].name}. <span className="xs:hidden">Количество
-            игроков:</span>{props.players}{'ч.'}
+          <h3 className="w-full text-gray-400">
+            {' '}
+            <span className="xs:hidden">Вы выбрали игру</span>{' '}
+            {value.games[props.time.game].name}.{' '}
+            <span className="xs:hidden">Количество игроков:</span>
+            {props.players}
+            {'ч.'}
           </h3>
-          <h3 className="w-full text-gray-400 text-xs">Стоимость игры — <span className="text-white font-extrabold">{props.time.price} руб.</span> за участника. Если игроков меньше ***-ти, то стоимость игры для всей команды составляет **** руб.</h3>
+          <h3 className="w-full text-gray-400 text-xs">
+            Стоимость игры —{' '}
+            <span className="text-white font-extrabold">
+              {props.time.price} руб.
+            </span>{' '}
+            за участника. Если игроков меньше ***-ти, то стоимость игры для всей
+            команды составляет **** руб.
+          </h3>
         </div>
-        <h3 className="w-full text-gray-400"><span className="xs:hidden">Пожалуйста, укажите ваши</span> контактные данные:</h3>
+        <h3 className="w-full text-gray-400">
+          <span className="xs:hidden">Пожалуйста, укажите ваши</span> контактные
+          данные:
+        </h3>
         <input
           className="w-full rounded mb-1 bg-[#0C1118]"
           type="text"
@@ -157,7 +208,7 @@ function SendReservationForm(props) {
           minLength="3"
         />
         <div className="text-red-700 font-extrabold xs:text-xs">{error}</div>
-         <input
+        <input
           className="w-full rounded mb-1 bg-[#0C1118]"
           type="tel"
           placeholder="Телефон"
@@ -165,10 +216,10 @@ function SendReservationForm(props) {
           minLength={13}
           maxLength={13}
           onChange={(e) => {
-            setError('')
+            setError('');
             setPhone(e.target.value.slice(3));
           }}
-          value={'+7 '+phone}
+          value={'+7 ' + phone}
         />
         <input
           className="w-full rounded mb-1 bg-[#0C1118]"
@@ -190,8 +241,16 @@ function SendReservationForm(props) {
           minLength="5"
           rows={4}
         />
-        <button type="submit" className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around">
-       <span> Забронировать</span><img className="ml-1 w-5 h-5" src={"/icons/booking.svg"}  alt="booking"  />
+        <button
+          type="submit"
+          className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around"
+        >
+          <span> Забронировать</span>
+          <img
+            className="ml-1 w-5 h-5"
+            src={'/icons/booking.svg'}
+            alt="booking"
+          />
         </button>
       </form>
     </div>

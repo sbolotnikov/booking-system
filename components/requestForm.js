@@ -45,6 +45,7 @@ function RequestForm(props) {
           time={reservedTime}
           onChange={(e) => {
             setRevealForm(false);
+            window.location.reload(false)
           }}
         />
       )}
@@ -67,18 +68,6 @@ function RequestForm(props) {
                 game: props.gameIndex,
               }),
             });
-            // const res = await fetch('/api/reservation/getrange', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: JSON.stringify({
-            //     location: loc,
-            //     game: props.gameIndex,
-            //     dateStart: '2021-12-22',
-            //     dateEnd: '2021-12-23',
-            //   }),
-            // });
             const data = await res.json();
             console.log(data);
             setTimes(data);
@@ -123,7 +112,7 @@ function RequestForm(props) {
                 key={'day' + index}
                 times={item.appointments}
                 dayIndex={index}
-                onChoice={(choice, dayIndex) => {
+                onChoice={async(choice, dayIndex) => {
                   console.log(
                     choice,
                     times[dayIndex].date.split('T')[0],
