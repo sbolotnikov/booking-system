@@ -14,7 +14,7 @@ handler.post(async (req, res) => {
   const results = await Schedule.find({
     location: location,
     game: game,
-  })
+  }).sort({date:1})
   // .find({ location: location, game: game, reservationTime:{ $gt: dateStart, $lt: dateEnd} }).populate("template_id").then(function (results) {
   // results are available to us inside the .then
   res.status(201).json(results);

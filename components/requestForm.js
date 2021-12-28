@@ -1,14 +1,16 @@
 import GetPlayersAmount from './getPlayersAmount';
 import { useState, useEffect } from 'react';
 import GetLocation from './getLocation';
-import TimeDisplay from './timeDisplay';
 import SendReservationForm from './sendReservationForm';
 import DayDisplay from './dayDisplay';
+import AlertMenu from './alertMenu';
 function RequestForm(props) {
   const [participants, setParticipants] = useState(0);
   const [location, setLocation] = useState(-1);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [revealAlert, setRevealAlert] = useState(false);
+  const [alertStyle, setAlertStyle] = useState({});
   const [revealForm, setRevealForm] = useState(false);
   const [reservedTime, setReservedTime] = useState({});
   const [times, setTimes] = useState([]);
@@ -36,16 +38,22 @@ function RequestForm(props) {
       month: 'long',
     });
   };
-  // new Date(item.date).setHours(1)].toLocaleDateString('ru-ru', {weekday: 'long',day: 'numeric', month: 'long',})}
+  const onReturn = (decision1) => {
+    //
+
+    setRevealAlert(false);
+    console.log(decision1);
+  };
   return (
     <div className="w-full">
+      {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       {revealForm && (
         <SendReservationForm
           players={participants}
           time={reservedTime}
           onChange={(e) => {
             setRevealForm(false);
-            window.location.reload(false)
+            window.location.reload(false);
           }}
         />
       )}
@@ -58,6 +66,7 @@ function RequestForm(props) {
           try {
             setError('');
             setLoading(true);
+
             const res = await fetch('/api/reservation/getschedule', {
               method: 'POST',
               headers: {
@@ -81,7 +90,7 @@ function RequestForm(props) {
         className="flex flex-row justify-center items-center"
         onClick={() => setVisible(true)}
       >
-        <span>{participants + ' x '}</span>
+        <span>Количество игроков:{participants + ' x '}</span>
         <svg
           className="h-5 w-5 ml-1"
           xmlns="http://www.w3.org/2000/svg"
@@ -112,26 +121,30 @@ function RequestForm(props) {
                 key={'day' + index}
                 times={item.appointments}
                 dayIndex={index}
-                onChoice={async(choice, dayIndex) => {
-                  console.log(
-                    choice,
-                    times[dayIndex].date.split('T')[0],
-                    'game',
-                    props.gameIndex,
-                    'location',
-                    props.locs[location]
-                  );
-                  if (participants > 0 && choice.status == 'green')
+                onChoice={async (choice, dayIndex) => {
+                  if (participants > 0 && choice.status == 'green') {
                     setRevealForm(true);
-                  setReservedTime({
-                    _id:choice._id,
-                    date: times[dayIndex].date.split('T')[0],
-                    hour: choice.reservationHour,
-                    minutes: choice.reservationMin,
-                    price: choice.price,
-                    game: props.gameIndex,
-                    location: props.locs[location],
-                  });
+                    setReservedTime({
+                      _id: choice._id,
+                      date: times[dayIndex].date.split('T')[0],
+                      hour: choice.reservationHour,
+                      minutes: choice.reservationMin,
+                      price: choice.price,
+                      game: props.gameIndex,
+                      location: props.locs[location],
+                    });
+                  } else if (participants === 0) {
+                    setAlertStyle({
+                      variantHead: 'info',
+                      heading: 'Сообщение',
+                      text: `Пожалуйста введите количество участников игры`,
+                      color1: 'success',
+                      button1: 'Согласиться',
+                      color2: '',
+                      button2: '',
+                    });
+                    setRevealAlert(true);
+                  }
                 }}
               />
             </div>

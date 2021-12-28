@@ -1,7 +1,38 @@
-import TimeDisplay from "./timeDisplay";
+import TimeDisplay from './timeDisplay';
+import EditTimePriceForm from './editTimePriceForm';
+import { useState } from 'react';
+export const DeleteEventModal = ({
+  onDelete,
+  eventText,
+  eventSchedule,
+  onClose,
+  onSave
+}) => {
+  const [editStatus, setEditStatus] = useState(false);
+  const [appointments, setAppointments] = useState(eventSchedule);
+  console.log(eventSchedule);
+  const onEdit = () => {
+    setEditStatus(!editStatus);
+    if (eventSchedule!==appointments){
+      onSave(appointments)
 
-export const DeleteEventModal = ({ onDelete, eventText, eventSchedule, onClose }) => {
-    console.log(eventSchedule)
+    }
+  };
+  const pull_data = (appt) => {
+    console.log(appt);
+    let apptArray = appointments;
+    apptArray[appt.i] = appt.appt;
+    setAppointments([...apptArray]);
+    // Use spread operator to set up state otherwise children DO NOT RENDER
+  };
+
+  const delete_one = (num) => {
+    console.log(num.n);
+    let apptArray = appointments;
+    apptArray.splice(num.n, 1);
+    setAppointments([...apptArray]);
+    console.log(appointments);
+  };
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
       <div className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4">
@@ -9,10 +40,18 @@ export const DeleteEventModal = ({ onDelete, eventText, eventSchedule, onClose }
 
         <p id="eventText">{eventText}</p>
         <div className="flex flex-row justify-center items-center flex-wrap">
-            {eventSchedule &&
-                eventSchedule.map((item, index) => {
-                return (
-                  <button key={'btnAppt' + index}>
+          {appointments &&
+            appointments.map((item, index) => {
+              return (
+                <div key={'btnAppt' + index}>
+                  {editStatus ? (
+                    <EditTimePriceForm
+                      key={`apptt_${index}`}
+                      info={{ item, i: index }}
+                      onDel={delete_one}
+                      onEnter={pull_data}
+                    />
+                  ) : (
                     <TimeDisplay
                       key={item.id}
                       price={item.price}
@@ -21,10 +60,14 @@ export const DeleteEventModal = ({ onDelete, eventText, eventSchedule, onClose }
                       }${item.reservationMin}`}
                       timeStatus={'green'}
                     />
-                  </button>
-                );
-              })}
-          </div>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+        <button onClick={onEdit} id="editButton">
+        {editStatus ?"Сохранить":"Редактировать"}
+        </button>
         <button onClick={onDelete} id="deleteButton">
           Удалить
         </button>

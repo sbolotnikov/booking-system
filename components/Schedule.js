@@ -146,7 +146,7 @@ function Schedule(props) {
           onSave={async (title, appointments, color) => {
             //  update ADD request
 console.log(title, appointments, color)
-            const res = await fetch('/api/admin/add_update_schedule', {
+            const res = await fetch('/api/admin/add_schedule', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -185,6 +185,25 @@ console.log(title, appointments, color)
           eventSchedule={eventForDate(clicked).appointments
           }
           onClose={() => setClicked(null)}
+          onSave={async(appointments) =>{ 
+            
+            console.log("here to save",appointments)
+            const res = await fetch('/api/admin/update_schedule', {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                appointments,
+                date: clicked,
+                location: location,
+                game: game,
+              }),
+            });           
+            
+            
+            
+            }}
           onDelete={async() => {
             setEvents(events.filter((e) => e.date.split('T')[0]  !== clicked));
 

@@ -146,7 +146,7 @@ function GetPlayersAmount(props) {
         className="w-full m-auto p-3 text-sm border rounded-xl bg-indigo-900 border-gray-700"
         id="btn-max"
         onClick={(e)=>{e.preventDefault(); props.onChange(numberOfParticipants)}}
-      >Выбрать время</button>
+      >Выбрать</button>
     </div>
   );
 }

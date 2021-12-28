@@ -17,7 +17,7 @@ handler.post(async (req, res) => {
   if (checkExisting) {
     const rec = await Schedule.updateOne(
       {date,location,game },
-      { $set: { location, game, appointments, color,title} })
+      { $set: { appointments, color,title} })
       console.log(rec)
     res.status(201).json({ message: 'record updated' });
     await db.disconnect();

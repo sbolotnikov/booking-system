@@ -1,11 +1,14 @@
 import { useState, useContext } from 'react';
 import AppContext from '../appContext';
+import AlertMenu from './alertMenu';
 function SendReservationForm(props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [revealAlert, setRevealAlert] = useState(false);
+  const [alertStyle, setAlertStyle] = useState({});
   const value = useContext(AppContext);
   const mainEmail = value.mainEmail;
   const monthDay = monthDayText(props.time.date.split('T')[0]);
@@ -28,6 +31,19 @@ function SendReservationForm(props) {
     let d = a.slice(-2);
     return `${d} ${months[m - 1]}`;
   }
+  const onReturn = (decision1) => {
+    //
+    setName('');
+    setEmail('');
+    setMessage('');
+    setPhone('');
+    props.onChange(true);
+    setRevealAlert(false);
+  };
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (parseInt(phone) < 1000000000 || parseInt(phone) > 9999999999) {
@@ -116,7 +132,7 @@ function SendReservationForm(props) {
 
     data_mail.html_message =
       `
-      <h2 style="width: 100%;text-align:left">
+      <h2 style="width: 100%;text-align:left; color:red">
       <strong>Код подтверждения: ${confirm_code.code} </strong>
      </h2>` + data_mail.html_message;
     data_mail.reg_message =
@@ -133,17 +149,24 @@ function SendReservationForm(props) {
     }).then((res) => {
       console.log('Response received');
       if (res.status === 200) {
+        setAlertStyle({
+          variantHead: 'info',
+          heading: 'Сообщение',
+          text: data_mail.html_message,
+          color1: 'success',
+          button1: 'Согласиться',
+          color2: '',
+          button2: '',
+        });
+        setRevealAlert(true);
         console.log('Response succeeded!');
-        setName('');
-        setEmail('');
-        setMessage('');
-        setPhone('');
-        props.onChange(true);
+
       }
     });
   };
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
+     {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <form
         className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
