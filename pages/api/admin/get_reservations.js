@@ -10,7 +10,7 @@ handler.post(async (req, res) => {
         await db.connect();    
          console.log(req.body)
         const requests = await Request
-        .find({game:req.body.game, location:req.body.location}).sort({date:1,reservationHour:1,reservationMin:1}); 
+        .find({ location:req.body.location}).sort({date:1,reservationHour:1,reservationMin:1}); 
         //Send success response
         res.status(201).json(requests);
         //Close DB connection

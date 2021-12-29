@@ -126,6 +126,8 @@ function SendReservationForm(props) {
       body: JSON.stringify({
         date: props.time.date,
         schedule_id: props.time._id,
+        game:props.time.game, 
+        location:props.time.location
       }),
     });
     console.log("result of PUT request",res1);

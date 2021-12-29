@@ -10,9 +10,9 @@ import AlertMenu from './alertMenu';
 function Schedule(props) {
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
-  const [location, setLocation] = useState();
-  const [locations, setLocations] = useState();
-  const [game, setGame] = useState();
+  
+  
+  const [game, setGame] = useState(0);
   const [templates, setTemplates] = useState([]);
   const [events, setEvents] = useState([]);
   const [revealAlert, setRevealAlert] = useState(false);
@@ -26,7 +26,29 @@ function Schedule(props) {
   var locationsArray = locs.map((item) =>
     item.map((loc) => [value.locations[loc].name, loc])
   );
+  const [location, setLocation] = useState(locationsArray[0][0][1]);
+  const [locations, setLocations] = useState(locationsArray[0]);
+  const { days, dateDisplay } = useDate(events, nav);
+  // useEffect( () => {
+  //   // document.getElementById("location").value="0"
+  //   // GET request
+  //   fetch('/api/admin/get_schedules', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       location: location,
+  //       game: parseInt(game),
+  //     }),
+  //   }).then(response => {
+  //     return response.json();
+  //   }).then(responseData => {
+  //     setEvents(responseData)
 
+  //   });
+  // }, []);
+  console.log(days)
   const changeLocations = (e) => {
     e.preventDefault();
     setLocations(locationsArray[e.target.value]);
@@ -34,9 +56,8 @@ function Schedule(props) {
   };
   const eventForDate = (date) =>
     events.find((e) => e.date.split('T')[0] === date);
-  const { days, dateDisplay } = useDate(events, nav);
-  const onReturn = async(choice) => {
-
+  
+  const onReturn = async (choice) => {
     if (choice == 'Подтвердить') {
       setEvents(events.filter((e) => e.date.split('T')[0] !== clicked));
 
@@ -149,7 +170,7 @@ function Schedule(props) {
             </div>
 
             <div id="calendar" className="w-full m-auto flex flex-wrap">
-              {days.map((d, index) => (
+              {days && days.map((d, index) => (
                 <Day
                   key={index}
                   day={d}
@@ -164,7 +185,6 @@ function Schedule(props) {
             </div>
           </div>
         )}
-      
       </div>
       {clicked && !eventForDate(clicked) && (
         <NewEventModal

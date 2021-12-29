@@ -5,7 +5,6 @@ export const useDate = (events, nav) => {
   const [days, setDays] = useState([]);
 
   const eventForDate = date =>events.find(e => e.date.split('T')[0] === date);
-
   useEffect(() => {
     // const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     // for english need to change weekdays array and change locale in 2 places to 'en-us'
@@ -29,7 +28,8 @@ export const useDate = (events, nav) => {
       day: 'numeric',
     });
 
-    setDateDisplay(`${dt.toLocaleDateString('ru-ru', { month: 'long' })} ${year}`);
+    setDateDisplay(`${dt.toLocaleDateString('ru-ru', {month: 'long'})} ${year}`);
+
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
     const daysArr = [];
 

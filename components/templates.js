@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import EditTemplate from './editTemplate';
-import ReservationsAdmin from './reservationsAdmin';
 import Schedule from './Schedule';
 import TimeDisplay from './timeDisplay';
 
@@ -31,8 +30,7 @@ function Templates() {
       </button>
       {editable && <EditTemplate choice={templates} />}
       {!editable && <Schedule choice={templates} />}
-      <h2>Резервации</h2>
-      <ReservationsAdmin />
+
     </div>
   );
 }
