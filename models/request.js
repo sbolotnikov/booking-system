@@ -35,6 +35,9 @@ const RequestSchema = new Schema({
   message: {
     type: String,
   },
+  reservationConfirmDate: {
+    type: Date
+  },
 });
 
 RequestSchema.set('timestamps', true);

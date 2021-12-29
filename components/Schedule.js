@@ -5,6 +5,7 @@ import { NewEventModal } from './NewEventModal';
 import { DeleteEventModal } from './DeleteEventModal';
 import { useDate } from './hooks/useDate';
 import AppContext from '../appContext';
+import AlertMenu from './alertMenu';
 
 function Schedule(props) {
   const [nav, setNav] = useState(0);
@@ -14,6 +15,8 @@ function Schedule(props) {
   const [game, setGame] = useState();
   const [templates, setTemplates] = useState([]);
   const [events, setEvents] = useState([]);
+  const [revealAlert, setRevealAlert] = useState(false);
+  const [alertStyle, setAlertStyle] = useState({});
   useEffect(() => {
     setTemplates(props.choice);
   }, [props.choice]);
@@ -29,11 +32,31 @@ function Schedule(props) {
     setLocations(locationsArray[e.target.value]);
     setGame(e.target.value);
   };
-  const eventForDate = (date) => events.find((e) => e.date.split('T')[0]  === date);
+  const eventForDate = (date) =>
+    events.find((e) => e.date.split('T')[0] === date);
   const { days, dateDisplay } = useDate(events, nav);
+  const onReturn = async(choice) => {
 
+    if (choice == 'Подтвердить') {
+      setEvents(events.filter((e) => e.date.split('T')[0] !== clicked));
+
+      // delete request
+      const res = await fetch('/api/admin/del_schedule', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ date: clicked }),
+      });
+
+      let data = await res.json();
+      setClicked(null);
+    }
+    setRevealAlert(false);
+  };
   return (
     <>
+      {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <div id="container" className="w-full max-w-[1000px]">
         {/* location & game */}
         <form className="grid grid-col-2 m-auto sm:grid-flow-row phone:grid-flow-col laptop:grid-flow-col gap-4">
@@ -74,7 +97,10 @@ function Schedule(props) {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify({location:parseInt(e.target.value), game:parseInt(game)}),
+                  body: JSON.stringify({
+                    location: parseInt(e.target.value),
+                    game: parseInt(game),
+                  }),
                 });
 
                 let data = await res.json();
@@ -130,7 +156,7 @@ function Schedule(props) {
                   onClick={() => {
                     if (d.value !== 'padding') {
                       setClicked(d.date);
-                      console.log(d.date)
+                      console.log(d.date);
                     }
                   }}
                 />
@@ -138,6 +164,7 @@ function Schedule(props) {
             </div>
           </div>
         )}
+      
       </div>
       {clicked && !eventForDate(clicked) && (
         <NewEventModal
@@ -145,7 +172,7 @@ function Schedule(props) {
           onClose={() => setClicked(null)}
           onSave={async (title, appointments, color) => {
             //  update ADD request
-console.log(title, appointments, color)
+            console.log(title, appointments, color);
             const res = await fetch('/api/admin/add_schedule', {
               method: 'POST',
               headers: {
@@ -182,12 +209,10 @@ console.log(title, appointments, color)
       {clicked && eventForDate(clicked) && (
         <DeleteEventModal
           eventText={eventForDate(clicked).title}
-          eventSchedule={eventForDate(clicked).appointments
-          }
+          eventSchedule={eventForDate(clicked).appointments}
           onClose={() => setClicked(null)}
-          onSave={async(appointments) =>{ 
-            
-            console.log("here to save",appointments)
+          onSave={async (appointments) => {
+            console.log('here to save', appointments);
             const res = await fetch('/api/admin/update_schedule', {
               method: 'PUT',
               headers: {
@@ -199,25 +224,19 @@ console.log(title, appointments, color)
                 location: location,
                 game: game,
               }),
-            });           
-            
-            
-            
-            }}
-          onDelete={async() => {
-            setEvents(events.filter((e) => e.date.split('T')[0]  !== clicked));
-
-            // delete request
-            const res = await fetch('/api/admin/del_schedule', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-              body: JSON.stringify({ date:clicked }), 
-          });
-          
-          let data = await res.json();
-            setClicked(null);
+            });
+          }}
+          onDelete={async () => {
+            setAlertStyle({
+              variantHead: 'danger',
+              heading: 'Педупреждение!!!',
+              text: 'Вы действительно хотите удалить расписание на день?',
+              color1: 'danger',
+              button1: 'Подтвердить',
+              color2: 'success',
+              button2: 'Отменить',
+            });
+            setRevealAlert(true);
           }}
         />
       )}
