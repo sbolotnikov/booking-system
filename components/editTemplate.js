@@ -39,9 +39,9 @@ function EditTemplate(props) {
     window.location.reload(false);
   };
   return (
-    <div className="w-full flex flex-row justify-center items-center flex-wrap">
+    <div className="w-full max-w-[1000px] flex flex-row justify-center items-center flex-wrap">
       <select
-        className="bg-[#0C1118]"
+        style={{background:color}}
         id="templates"
         onChange={(e) => {
           e.preventDefault();
@@ -57,15 +57,15 @@ function EditTemplate(props) {
         {templates &&
           templates.map((item, index) => {
             return (
-              <option key={'templ' + index} value={index}>
+              <option key={'templ' + index} value={index} style={{background:item.color}}>
                 {item.name}
               </option>
             );
           })}
       </select>
       <input
-        className="w-full rounded m-1 text-center bg-[#0C1118]"
-        type="text"
+        className="w-full rounded m-1 text-center"
+        style={{background:color}}
         placeholder="Название "
         onChange={(e) => {
           e.preventDefault();
@@ -73,9 +73,9 @@ function EditTemplate(props) {
         }}
         value={name}
       />
-      <div className="w-full rounded m-1 flex justify-center items-center bg-[#0C1118]">
+      <div className=" rounded m-1 flex justify-center items-center bg-[#0C1118]">
       <input
-        className="w-[25%] max-w-[100px] rounded m-1 "
+        className=" rounded m-1 "
         type="color"
         value={"#74b9ff"}
         onChange={(e) => {

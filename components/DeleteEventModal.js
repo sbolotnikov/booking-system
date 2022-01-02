@@ -64,6 +64,18 @@ export const DeleteEventModal = ({
                 </div>
               );
             })}
+            {editStatus? (        <button
+          className="rounded border-[#74b9ff] text-[#74b9ff] w-10 h-10 border-2 mx-1 my-auto p-2"
+          onClick={(e) => {
+            e.preventDefault();
+            setAppointments([
+              ...appointments,
+              { reservationHour: 0, reservationMin: 0, price: 0, status:"green" },
+            ]);
+          }}
+        >
+          <img src={'/icons/plus.svg'} alt="add button" />
+        </button>):""}
         </div>
         <button onClick={onEdit} id="editButton">
         {editStatus ?"Сохранить":"Редактировать"}
