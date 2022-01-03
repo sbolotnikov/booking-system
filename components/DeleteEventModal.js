@@ -82,7 +82,7 @@ export const DeleteEventModal = ({
               <img src={'/icons/plus.svg'} alt="add button" />
             </button>
           ) : (
-            'nothing'
+            ''
           )}
         </div>
         <button onClick={onEdit} id="editButton">

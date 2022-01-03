@@ -10,8 +10,6 @@ import AlertMenu from './alertMenu';
 function Schedule(props) {
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
-  
-  
   const [game, setGame] = useState(0);
   const [templates, setTemplates] = useState([]);
   const [events, setEvents] = useState([]);
@@ -245,6 +243,11 @@ function Schedule(props) {
                 game: game,
               }),
             });
+            // window.location.reload(false);
+            console.log('date',clicked,"index of date", events.map(item=>item.date).indexOf(clicked+'T00:00:00.000Z'))
+            let eventsArr=events;
+            eventsArr[events.map(item=>item.date).indexOf(clicked+'T00:00:00.000Z')].appointments=appointments;
+            setEvents(eventsArr)
           }}
           onDelete={async () => {
             setAlertStyle({

@@ -3,8 +3,7 @@ export default function (req, res) {
     require('dotenv').config()
     let nodemailer = require('nodemailer')
     const transporter = nodemailer.createTransport({
-      port: process.env.EMAIL_SERVER_PORT,
-      host: process.env.EMAIL_SERVER_HOST,
+      service: 'gmail',
       auth: {
         user: process.env.EMAIL_SERVER_USER,
         pass: process.env.EMAIL_SERVER_PASSWORD,
@@ -22,7 +21,7 @@ export default function (req, res) {
     transporter.sendMail(mailData, function (err, info) {
       if(err){
         console.log(err)
-        res.status(500).send('Server error');
+        res.status(500).send('Server error', err);
       }
       else
         console.log(info)
