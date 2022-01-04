@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 import TimeDisplay from './timeDisplay';
-export const NewEventModal = ({choice, onSave, onClose }) => {
+export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
     const [title, setTitle] = useState('');
     const [error, setError] = useState(false);
-    const [templates, setTemplates] = useState([]);
-    // const [id, setId] = useState('');
     const [color, setColor] = useState("");
     const [appointments, setAppointments] = useState([]);  
-    useEffect(() => {
-        setTemplates(choice);
-      }, [choice]);
-    
+      useEffect(() => {
+        setTitle(choice[0].name);
+        setColor(choice[0].color);
+        console.log(choice[0].color)
+        setAppointments(
+          choice[0].appointments.sort(
+            (a, b) => a.reservationHour - b.reservationHour
+          )
+        );
+        console.log(choice[0].appointments.sort(
+            (a, b) => a.reservationHour - b.reservationHour
+          ))
+      }, []);
     return(
         <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
         <div className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4">
-          <h2>Новое расписание</h2>
+          <h2>Новое расписание: {new Date(eventDay+'T23:00:00.000Z').toLocaleDateString('ru-ru', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
+          })}</h2>
   
           {/* <input 
             className={error ? 'error' : ''}
@@ -26,27 +37,27 @@ export const NewEventModal = ({choice, onSave, onClose }) => {
   <div className="w-full flex flex-row justify-center items-center flex-wrap">
           <select
             className="bg-[#0C1118]"
-            id="templates"
+            id="templates1"
+            style={{background:color}}
             onChange={(e) => {
               e.preventDefault();
-              setTitle(templates[e.target.value].name);
-              // setId(templates[e.target.value]._id);
-              setColor(templates[e.target.value].color);
-              console.log(templates[e.target.value].color)
+              setTitle(choice[e.target.value].name);
+              setColor(choice[e.target.value].color);
+              console.log(choice[e.target.value].color)
               setAppointments(
-                templates[e.target.value].appointments.sort(
+                choice[e.target.value].appointments.sort(
                   (a, b) => a.reservationHour - b.reservationHour
                 )
               );
-              console.log(templates[e.target.value].appointments.sort(
+              console.log(choice[e.target.value].appointments.sort(
                   (a, b) => a.reservationHour - b.reservationHour
                 ))
             }}
           >
-            {templates &&
-              templates.map((item, index) => {
+            {choice &&
+              choice.map((item, index) => {
                 return (
-                  <option key={'templ' + index} value={index}>
+                  <option key={'templ' + index} value={index} style={{background:item.color}}>
                     {item.name}
                   </option>
                 );

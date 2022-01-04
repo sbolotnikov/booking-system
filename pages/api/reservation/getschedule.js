@@ -7,16 +7,19 @@ const handler = nc({
   onError,
 });
 handler.post(async (req, res) => {
-  const { location, game } = req.body;
+  const { location, game, dt1, dt2 } = req.body;
   // const { location, game, dateStart, dateEnd } = req.body;
   await db.connect();
 
   const results = await Schedule.find({
     location: location,
     game: game,
+    date: {
+      $gte: dt1,
+      $lte: dt2
+    }
   }).sort({date:1})
-  // .find({ location: location, game: game, reservationTime:{ $gt: dateStart, $lt: dateEnd} }).populate("template_id").then(function (results) {
-  // results are available to us inside the .then
+  console.log(results, location, game, dt1, dt2);
   res.status(201).json(results);
 
   //Close DB connection

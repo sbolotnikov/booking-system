@@ -34,7 +34,7 @@ export const useDate = (events, nav) => {
     const daysArr = [];
 
     for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-      const dayString = `${year}-${month + 1}-${i - paddingDays}`;
+      const dayString = `${year}-${(month+1<10)?'0':''}${month + 1}-${(i-paddingDays<10)?'0':''}${i - paddingDays}`;
       if (i > paddingDays) {
         daysArr.push({
           value: i - paddingDays,

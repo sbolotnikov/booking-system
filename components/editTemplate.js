@@ -1,15 +1,19 @@
 import EditTimePriceForm from './editTimePriceForm';
 import { useState, useEffect } from 'react';
-function EditTemplate(props) {
+function EditTemplate({templates}) {
   const [name, setName] = useState('');
   const [color, setColor] = useState("#74b9ff");
-  const [templates, setTemplates] = useState([]);
   const [appointments, setAppointments] = useState([]);
   useEffect(() => {
-    setTemplates(props.choice);
-  }, [props.choice]);
+    setName(templates[0].name);
+    setColor(templates[0].color);
+    setAppointments(
+      templates[0].appointments.sort(
+        (a, b) => a.reservationHour - b.reservationHour
+      )
+    );
+  }, []);
 
-  console.log(props);
   const pull_data = (appt) => {
     console.log(appt);
     let apptArray = appointments;

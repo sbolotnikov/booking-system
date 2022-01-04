@@ -13,6 +13,7 @@ function RequestForm(props) {
   const [alertStyle, setAlertStyle] = useState({});
   const [revealForm, setRevealForm] = useState(false);
   const [reservedTime, setReservedTime] = useState({});
+  const [lastVisibleDate, setLastVisibleDate] = useState({});
   const [times, setTimes] = useState([]);
   const [error, setError] = useState('');
   useEffect(() => {
@@ -44,6 +45,14 @@ function RequestForm(props) {
     setRevealAlert(false);
     console.log(decision1);
   };
+  const getDateString = (dt) => {
+    const day = dt.getDate();
+    const month = dt.getMonth();
+    const year = dt.getFullYear();
+    return `${year}-${month + 1 < 10 ? '0' : ''}${month + 1}-${
+      day < 10 ? '0' : ''
+    }${day}`;
+  };
   return (
     <div className="w-full">
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
@@ -62,7 +71,12 @@ function RequestForm(props) {
         list={props.locations}
         onChange={async (loc) => {
           setLocation(loc);
-          console.log(props.locs[loc]);
+          let dt = new Date();
+          let dt1 = getDateString(dt);
+          let currentHour = dt.getHours();
+          dt.setDate(dt.getDate() + 9);
+          let dt2 = getDateString(dt);
+          setLastVisibleDate(dt2);
           try {
             setError('');
             setLoading(true);
@@ -75,10 +89,16 @@ function RequestForm(props) {
               body: JSON.stringify({
                 location: props.locs[loc],
                 game: props.gameIndex,
+                dt1,
+                dt2,
               }),
             });
             const data = await res.json();
-            console.log(data);
+            console.log(data[0].appointments);
+            let apptTodayArray = data[0].appointments;
+            for (let i = 0; i < apptTodayArray.length; i++)
+              if (apptTodayArray[i].reservationHour <= currentHour)
+                apptTodayArray[i].status = 'blue';
             setTimes(data);
           } catch {
             setError('Failed to get times');
@@ -150,6 +170,43 @@ function RequestForm(props) {
             </div>
           );
         })}
+      <button
+        className="w-full bg-green-700"
+        onClick={async () => {
+          let dt = new Date(lastVisibleDate);
+          dt.setDate(dt.getDate() + 2);
+          let dt1 = getDateString(dt);
+          dt.setDate(dt.getDate() + 9);
+          let dt2 = getDateString(dt);
+          setLastVisibleDate(dt2);
+          console.log(props.gameIndex,parseInt(location),dt1, dt2);
+          try {
+            setError('');
+            setLoading(true);
+
+            const res2 = await fetch('/api/reservation/getschedule', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                location: props.locs[parseInt(location)],
+                game: props.gameIndex,
+                dt1,
+                dt2,
+              }),
+            });
+            const data1 = await res2.json();
+            console.log(data1)
+            setTimes([...times, data1]);
+          } catch {
+            setError('Failed to get times');
+          }
+          setLoading(false);
+        }}
+      >
+        Добавить еще 10 дней
+      </button>
     </div>
   );
 }
