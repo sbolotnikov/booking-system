@@ -9,7 +9,6 @@ const BtnLogin = ({children, provider, bgColor, txtColor, options}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(provider, options)
     // toast.success(provider, options.email)
     if ((provider === "credentials")&&(options.password.length < 6)) {
       return toast.error("Passwords should be at least 6 symbols long");
@@ -19,7 +18,6 @@ const BtnLogin = ({children, provider, bgColor, txtColor, options}) => {
     setLoading(false);
 
     if(provider === "credentials"){
-      console.log(res)
       if(res.error){
         // if(res.error === "Success! Check your email."){
         //   signIn('email', {email: options.email})

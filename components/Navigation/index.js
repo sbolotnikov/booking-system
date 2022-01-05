@@ -10,7 +10,6 @@ function Navigation(props) {
     const [show, setShow] = useState(true);
     
     function changeMenu() {
-        console.log("clicked");
         if (show) {
             gsap.timeline()
                 .to(".menuContainer", { right: "0%", width: window.innerWidth < 740 ? "100%" : "50%", duration: .4 })

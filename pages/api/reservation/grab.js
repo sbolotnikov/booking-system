@@ -12,7 +12,6 @@ handler.post(async (req, res) => {
   const newRequest = new Request(req.body);
   const status = await newRequest.save();
   const rec = await Request.findOne(req.body);
-  console.log("adding Request",status)
   res.status(201).send({ code: rec._id.toString() });
   //Close DB connection
   await db.disconnect();

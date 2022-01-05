@@ -11,7 +11,6 @@ export const EditEventModal = ({
 }) => {
   const [editStatus, setEditStatus] = useState(false);
   const [appointments, setAppointments] = useState(eventSchedule);
-  console.log(eventSchedule);
   const onEdit = () => {
     setEditStatus(!editStatus);
     if (eventSchedule !== appointments) {
@@ -19,7 +18,6 @@ export const EditEventModal = ({
     }
   };
   const pull_data = (appt) => {
-    console.log(appt);
     let apptArray = appointments;
     apptArray[appt.i] = appt.appt;
     setAppointments([...apptArray]);
@@ -27,11 +25,9 @@ export const EditEventModal = ({
   };
 
   const delete_one = (num) => {
-    console.log(num.n);
     let apptArray = appointments;
     apptArray.splice(num.n, 1);
     setAppointments([...apptArray]);
-    console.log(appointments);
   };
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">

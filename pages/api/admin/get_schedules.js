@@ -7,8 +7,7 @@ const handler = nc({
     onError,
   });
 handler.post(async (req, res) => {
-        await db.connect();    
-         console.log(req.body)
+        await db.connect();   
         const schedules = await Schedule
         .find({game:req.body.game, location:req.body.location}); 
         //Send success response

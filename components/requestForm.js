@@ -1,5 +1,5 @@
 import GetPlayersAmount from './getPlayersAmount';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import GetLocation from './getLocation';
 import SendReservationForm from './sendReservationForm';
 import DayDisplay from './dayDisplay';
@@ -16,11 +16,7 @@ function RequestForm(props) {
   const [lastVisibleDate, setLastVisibleDate] = useState({});
   const [times, setTimes] = useState([]);
   const [error, setError] = useState('');
-  useEffect(() => {
-    if (location > -1) {
-      console.log(times, 'location N', location, 'game-', props.gameIndex);
-    }
-  }, [location]);
+
 
   // function to add 1 hour for date to be a actual day
   const timeshift = (n) => {
@@ -43,7 +39,6 @@ function RequestForm(props) {
     //
 
     setRevealAlert(false);
-    console.log(decision1);
   };
   const getDateString = (dt) => {
     const day = dt.getDate();
@@ -94,7 +89,6 @@ function RequestForm(props) {
               }),
             });
             const data = await res.json();
-            console.log(data[0].appointments);
             let apptTodayArray = data[0].appointments;
             dt = new Date();
             dt1 = getDateString(dt);
@@ -182,7 +176,6 @@ function RequestForm(props) {
           dt.setDate(dt.getDate() + 9);
           let dt2 = getDateString(dt);
           setLastVisibleDate(dt2);
-          console.log(props.gameIndex,parseInt(location),dt1, dt2);
           try {
             setError('');
             setLoading(true);
@@ -200,7 +193,6 @@ function RequestForm(props) {
               }),
             });
             const data1 = await res2.json();
-            console.log(data1)
             setTimes(times.concat(data1));
           } catch {
             setError('Failed to get times');

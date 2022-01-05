@@ -29,7 +29,6 @@ function Signup(props) {
     });
     //Await for data for any desirable next steps
     const data = await res.json();
-    console.log(data);
     } catch {
       setError("Failed to create an account");
     }

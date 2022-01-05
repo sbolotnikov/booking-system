@@ -9,7 +9,6 @@ const handler = nc({
 handler.post(async (req, res) => {
     const { selectedId } = req.body;
         await db.connect();    
-         console.log(req.body)
         const request = await Request
         .findOne({_id:selectedId}); 
         const request2 = await Schedule.updateOne(

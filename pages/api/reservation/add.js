@@ -15,7 +15,6 @@ handler.post(async (req, res) => {
     location: location,
     game: game,
   });
-  console.log(checkExisting)
   if (checkExisting) {
     res.status(422).json({ message: 'record already exists' });
     await db.disconnect();

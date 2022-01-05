@@ -15,7 +15,6 @@ handler.put(async (req, res) => {
     { date, location, game },
     { $set: { appointments } }
   );
-  console.log(rec);
   //Send success response
   res.status(201).json({ message: 'Schedule updated', ...rec });
   //Close DB connection

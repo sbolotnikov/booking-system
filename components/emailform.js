@@ -22,9 +22,7 @@ function Emailform(props) {
             },
             body: JSON.stringify(data)
           }).then((res) => {
-            console.log('Response received', res)
-            if (res.status === 200) {
-              console.log('Response succeeded!')   
+            if (res.status === 200) {   
               setName('')
               setEmail('')
               setMessage('')

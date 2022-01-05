@@ -4,8 +4,7 @@ function AccordionFAQ(props) {
     const [visible, setVisible] = useState(-1);
     function handleVisible(e) {
         let n = parseInt(e.currentTarget.id);
-        
-        console.log("pressed",n, "old-",visible)
+
         if (visible>-1){ 
             document.getElementById("img."+visible).classList.remove("rotate-180");
             document.getElementById("question"+visible).classList.remove("text-red-400","font-black");

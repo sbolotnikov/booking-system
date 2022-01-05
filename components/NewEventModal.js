@@ -8,15 +8,12 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
       useEffect(() => {
         setTitle(choice[0].name);
         setColor(choice[0].color);
-        console.log(choice[0].color)
         setAppointments(
           choice[0].appointments.sort(
             (a, b) => a.reservationHour - b.reservationHour
           )
         );
-        console.log(choice[0].appointments.sort(
-            (a, b) => a.reservationHour - b.reservationHour
-          ))
+
       }, []);
     return(
         <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
@@ -43,15 +40,11 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
               e.preventDefault();
               setTitle(choice[e.target.value].name);
               setColor(choice[e.target.value].color);
-              console.log(choice[e.target.value].color)
               setAppointments(
                 choice[e.target.value].appointments.sort(
                   (a, b) => a.reservationHour - b.reservationHour
                 )
               );
-              console.log(choice[e.target.value].appointments.sort(
-                  (a, b) => a.reservationHour - b.reservationHour
-                ))
             }}
           >
             {choice &&
@@ -87,7 +80,6 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
               
               if (title) {
                 setError(false);
-                console.log(appointments)
                 onSave(title, appointments, color);
               } else {
                 setError(true);

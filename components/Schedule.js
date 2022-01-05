@@ -16,7 +16,6 @@ function Schedule({templates, eventsSet, game, location}) {
   useEffect(() => {
     setEvents(eventsSet);
   }, [eventsSet]);
-console.log(events, days)
   const eventForDate = (date) =>
     events.find((e) => e.date.split('T')[0] === date);
   
@@ -80,7 +79,6 @@ console.log(events, days)
                   onClick={() => {
                     if (d.value !== 'padding') {
                       setClicked(d.date);
-                      console.log(d.date);
                     }
                   }}
                 />
@@ -96,7 +94,6 @@ console.log(events, days)
           onClose={() => setClicked(null)}
           onSave={async (title, appointments, color) => {
             //  update ADD request
-            console.log(title, appointments, color);
             const res = await fetch('/api/admin/add_schedule', {
               method: 'POST',
               headers: {
@@ -137,7 +134,6 @@ console.log(events, days)
           eventSchedule={eventForDate(clicked).appointments}
           onClose={() => setClicked(null)}
           onSave={async (appointments) => {
-            console.log('here to save', appointments);
             const res = await fetch('/api/admin/update_schedule', {
               method: 'PUT',
               headers: {
@@ -150,8 +146,6 @@ console.log(events, days)
                 game: game,
               }),
             });
-            // window.location.reload(false);
-            console.log('date',clicked,"index of date", events.map(item=>item.date).indexOf(clicked+'T00:00:00.000Z'))
             let eventsArr=events;
             eventsArr[events.map(item=>item.date).indexOf(clicked+'T00:00:00.000Z')].appointments=appointments;
             setEvents(eventsArr)

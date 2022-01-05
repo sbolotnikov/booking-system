@@ -7,8 +7,7 @@ const handler = nc({
     onError,
   });
 handler.post(async (req, res) => {
-        await db.connect();    
-         console.log(req.body)
+        await db.connect();  
         const requests = await Request
         .find({ location:req.body.location}).sort({date:1,reservationHour:1,reservationMin:1}); 
         //Send success response

@@ -15,7 +15,6 @@ handler.put(async (req, res) => {
     { date, game, location, appointments: { $elemMatch: { _id: schedule_id } } },
     { $set: { 'appointments.$.status': 'orange' } }
   );
-  console.log(rSch);
   res.send(rSch);
   //Close DB connection
   await db.disconnect();

@@ -9,7 +9,6 @@ const handler = nc({
   });
 handler.post(async (req, res) => {
   const { name, color, appointments} = req.body;
-  console.log(color);
   await db.connect();
   const checkExisting = await Template.findOne({
     name: name,
@@ -18,7 +17,6 @@ handler.post(async (req, res) => {
     const rec = await Template.updateOne(
       {name: name },
       { $set: { name, appointments, color} })
-      console.log(rec)
     res.status(201).json({ message: 'record updated' });
     await db.disconnect();
     return;

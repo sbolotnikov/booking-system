@@ -31,7 +31,6 @@ function Templates() {
                   });
   
                   let data = await res.json();
-                  console.log(data);
                   setEvents(data);
  }
 
@@ -52,7 +51,6 @@ function Templates() {
       },
     });
     let data = await res.json();
-    console.log(data);
     setTemplates(data);
     setCurrentEventsUp(location, game);
   }, []);
@@ -94,12 +92,6 @@ function Templates() {
               onChange={async (e) => {
                 e.preventDefault();
                 setLocation(e.target.value);
-                console.log(
-                  'call for events game:',
-                  game,
-                  'loc',
-                  e.target.value
-                );
                 setCurrentEventsUp(e.target.value, game);
               }}
             >

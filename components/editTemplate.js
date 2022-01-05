@@ -15,7 +15,6 @@ function EditTemplate({templates}) {
   }, []);
 
   const pull_data = (appt) => {
-    console.log(appt);
     let apptArray = appointments;
     apptArray[appt.i] = appt.appt;
     setAppointments([...apptArray]);
@@ -23,15 +22,12 @@ function EditTemplate({templates}) {
   };
 
   const delete_one = (num) => {
-    console.log(num.n);
     let apptArray = appointments;
     apptArray.splice(num.n, 1);
     setAppointments([...apptArray]);
-    console.log(appointments);
   };
   const handleUpdateTemplate = async (e) => {
     e.preventDefault();
-   console.log(appointments);
     const res = await fetch('/api/admin/add_update_template', {
       method: 'POST',
       headers: {
@@ -84,7 +80,6 @@ function EditTemplate({templates}) {
         value={"#74b9ff"}
         onChange={(e) => {
           e.preventDefault();
-          console.log(e.target.value);
           setColor(e.target.value);
         }}
         value={color}
@@ -114,9 +109,6 @@ function EditTemplate({templates}) {
         onClick={async (e) => {
           e.preventDefault();
           let idDel = templates[templates.map(function (e) { return e.name;}).indexOf(name)]._id;
-          console.log(idDel);
-          // const mongoose = require('mongoose');
-          // { "_id": mongoose.Types.ObjectId(templates[templates.map(function(e) { return e.name; }).indexOf(name)]._id) }
           const res = await fetch('/api/admin/del_template', {
             method: 'POST',
             headers: {
@@ -127,7 +119,6 @@ function EditTemplate({templates}) {
           
           let data = await res.json();
           window.location.reload(false);
-          console.log(data);
         }}
       >
         Удалить

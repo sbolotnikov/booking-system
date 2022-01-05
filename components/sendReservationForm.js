@@ -111,9 +111,6 @@ function SendReservationForm(props) {
       body: JSON.stringify(data),
     });
     const confirm_code = await res.json();
-    console.log(confirm_code.code);
-
-    console.log('schedule_id for request', props.time._id);
     // Updating busy status on Schedule
     const res1 = await fetch('/api/reservation/make_busy', {
       method: 'PUT',
@@ -127,7 +124,6 @@ function SendReservationForm(props) {
         location: props.time.location,
       }),
     });
-    console.log('result of PUT request', res1);
 
     data_mail.html_message =
       `
@@ -146,7 +142,6 @@ function SendReservationForm(props) {
       },
       body: JSON.stringify(data_mail),
     }).then((res) => {
-      console.log('Response received');
       if (res.status === 200) {
         setAlertStyle({
           variantHead: 'info',
@@ -158,7 +153,6 @@ function SendReservationForm(props) {
           button2: '',
         });
         setRevealAlert(true);
-        console.log('Response succeeded!');
       }
     });
   };

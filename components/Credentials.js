@@ -34,11 +34,9 @@ function Credentials() {
         email: emailRef.current.value,
         password: passwordRef.current.value,
     });
-    console.log(status);
 
     //Await for data for any desirable next steps
     const data = await res.json();
-    console.log(data);
     } catch {
       toast.error("Failed to log in");
     }

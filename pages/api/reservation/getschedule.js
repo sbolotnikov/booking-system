@@ -19,7 +19,6 @@ handler.post(async (req, res) => {
       $lte: dt2
     }
   }).sort({date:1})
-  console.log(results, location, game, dt1, dt2);
   res.status(201).json(results);
 
   //Close DB connection

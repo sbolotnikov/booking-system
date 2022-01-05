@@ -9,7 +9,6 @@ const handler = nc({
   });
 handler.post(async (req, res) => {
   const { date, location, game, appointments, color,title} = req.body;
-  console.log(color);
   await db.connect();
   const checkExisting = await Schedule.findOne({
     date,location,game
@@ -18,7 +17,6 @@ handler.post(async (req, res) => {
     const rec = await Schedule.updateOne(
       {date,location,game },
       { $set: { appointments, color,title} })
-      console.log(rec)
     res.status(201).json({ message: 'record updated' });
     await db.disconnect();
     return;

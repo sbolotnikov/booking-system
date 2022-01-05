@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
 import ReservationForm from '../../components/reservationForm';
 import AppContext from '../../appContext';
 
@@ -22,7 +23,6 @@ function adm_location(props) {
     });
 
     let data = await res.json();
-    console.log(data);
     setReservations(data);
   }, []);
   return (
@@ -37,7 +37,7 @@ function adm_location(props) {
             }}
             onMouseLeave={(e) => {
               setStyle1({ display: 'none' });
-            }}
+            }}          
           >
             {locationsArray[location]}
             <div
@@ -47,13 +47,14 @@ function adm_location(props) {
               <div className="w-auto rounded-md border bg-[#0C1118]  p-0.5 m-1">
                 {locationsArray.map((item, index) => {
                   return (
-                    <a
-                      key={`link__${index}`}
-                      href={`/adm_location/${index}/`}
-                      onClick={() => window.location.reload(false)}
-                    >
-                      <h3 key={`locations__${index}`}>{item}</h3>
-                    </a>
+                    
+                      <h3 key={`locations__${index}`} >
+                      <Link key={`link__${index}`}
+                      href={`/adm_location/[${index}]`} as={`/adm_location/${index}`}
+                      
+                    ><a>{item}</a>
+                    </Link></h3> 
+                    
                   );
                 })}
               </div>

@@ -9,16 +9,13 @@ const handler = nc({
   });
 handler.post(async (req, res) => {
   const { date } = req.body;
-  console.log(req.body)
   await db.connect();
   try {
     const checkExisting =await Schedule.deleteOne( { date } );
-    console.log(checkExisting);
    res.status(201).json({ message: 'record deleted' });
    await db.disconnect();
    return;
  } catch (e) {
-    console.log(e)
     await db.disconnect();
  }
 

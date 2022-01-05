@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 function Card(props) {
     useEffect(() => {
-        console.log(props)
         // for(let i=0; i<props.classesCSS.length; i++){
         let propertiesArr=Object.getOwnPropertyNames(props.classesCSS);
         for (let i=0;i<propertiesArr.length;i++){

@@ -1,7 +1,6 @@
 import TimeDisplay from './timeDisplay';
 
 function DayDisplay(props) {
-  console.log(props.times)
   return (
     <div className="flex flex-row justify-center items-center flex-wrap">
       {props.times &&

@@ -12,11 +12,9 @@ function BookingCard(props) {
       if (n!==visible){
       document.getElementById("img."+props.id).classList.add("rotate-180");
       } 
-      console.log(visible)
       visible===0?setVisible(1):setVisible(0);
     }
   useEffect(() => {
-    console.log(props);
 
     document.getElementById(
       props.id + 'header'
