@@ -36,7 +36,7 @@ const BtnLogin = ({children, provider, bgColor, txtColor, options}) => {
 
       {children}
 
-      <button type="submit" className="w-full button rounded-sm" 
+      <button type="submit" className="w-full button rounded-b-md" 
       style={{ background: `${bgColor}`, color: `${txtColor}`}}>
         Sign in with {provider}
       </button>

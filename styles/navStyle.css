@@ -15,6 +15,7 @@
   color: white;
   font-family: 'MonteCarlo', cursive;
   font-size: 0.85rem;
+  cursor: pointer;
 }
 .navbar__right_span {
     margin-top: 1rem;

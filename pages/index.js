@@ -22,9 +22,6 @@ export default function Home() {
           <>
             Signed in as {session.user.email} <br />
             <div>You can now access our super secret pages</div>
-            <button>
-              <Link href="/secret">To the secret</Link>
-            </button>
             <button onClick={signOut}>sign out</button>
           </>
         )}

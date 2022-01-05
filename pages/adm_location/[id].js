@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import ReservationForm from '../../components/reservationForm';
 import AppContext from '../../appContext';
 
@@ -49,11 +49,11 @@ function adm_location(props) {
                   return (
                     
                       <h3 key={`locations__${index}`} >
-                      <Link key={`link__${index}`}
-                      href={`/adm_location/[${index}]`} as={`/adm_location/${index}`}
-                      
-                    ><a>{item}</a>
-                    </Link></h3> 
+                      <a key={`link__${index}`}
+                      // href={`/adm_location/[${index}]`} as={`/adm_location/${index}`}
+                      href={`/adm_location/${index}`}
+                    >{item}
+                    </a></h3> 
                     
                   );
                 })}

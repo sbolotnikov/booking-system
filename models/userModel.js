@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
     type: String, 
     default: 'https://res.cloudinary.com/sergeyb/image/upload/v1616530982/quizzes/defaultIcon_w0obug.png' 
   },
+  status: { 
+    type: String 
+  },
   phone: { 
     type: String 
   },

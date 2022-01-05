@@ -13,8 +13,9 @@ const Navbar = ({ navbarLinks }) => {
 
   return (
     <nav className="navbar">
+    <Link className="navbar__link" href={'/'}>
       <span className="navbar__logo">Челябинск</span>
-
+      </Link>
        <ul
         className={
           menuClicked ? 'navbar__list navbar__list--active' : 'navbar__list'
@@ -22,18 +23,18 @@ const Navbar = ({ navbarLinks }) => {
       >
       {menuClicked &&
         <li className="navbar__item" key={'zeroitem'}>
-          <Link className="navbar__link" onClick={()=>{setMenuClicked(!menuClicked);}} href={'tel:+7(351)220-7549'}>
-            <a><div className="w-4">
+          <Link className="navbar__link" href={'tel:+7(351)220-7549'}>
+            <a onClick={()=>{setMenuClicked(!menuClicked);}}><div className="w-4">
               <img src={'/icons/call.svg'} alt="menu call" />
             </div>
-            +7 (351) 220-75-49</a>
+            +7(351)220-75-49</a>
           </Link>
         </li>}
         {navbarLinks.map((item, index) => {
           return (
             <li className="navbar__item" key={index}>
-              <Link className="navbar__link" onClick={()=>{setMenuClicked(!menuClicked);}} href={item.url}>
-                <a>{item.title}</a>
+              <Link className="navbar__link"  href={item.url}>
+                <a onClick={()=>{setMenuClicked(!menuClicked);}}>{item.title}</a>
               </Link>
             </li>
           );

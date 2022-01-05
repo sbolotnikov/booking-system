@@ -23,16 +23,15 @@ const Login = ({ session }) => {
   if (session) return null;
   return (
     <div
-      className="flex justify-content-center align-items-center"
-      style={{ minHeight: '100vh' }}
+      className="w-full flex justify-center items-center"
     >
       <div
-        style={{ maxWidth: '450px', width: '100%' }}
-        className="border border-1 max-auto p-4 shadow"
+        className="border-0 max-auto p-4 shadow max-w-[450px] w-full m-3"
+        style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
       >
         <h2
           className="text-center fw-bolder text-uppercase"
-          style={{ color: '#555', letterSpacing: '1px' }}
+          style={{ color: 'whitesmoke', letterSpacing: '1px' }}
         >
           Login
         </h2>
@@ -42,12 +41,12 @@ const Login = ({ session }) => {
           bgColor="gray"
           options={{ redirect: false, email, password }}
         >
-          <div className="flex flex-col items-center p-3 bg-white bottom-0">
+          <div className="flex flex-col items-center p-3 bg-popup rounded-t-md bottom-0">
             <label>Email address</label>
             <input
               type="email"
               name="email"
-              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email}
@@ -59,7 +58,7 @@ const Login = ({ session }) => {
               type="password"
               id="password"
               name="password"
-              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
