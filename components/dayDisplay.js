@@ -1,10 +1,11 @@
 import TimeDisplay from './timeDisplay';
 
 function DayDisplay(props) {
+  console.log(props.times)
   return (
     <div className="flex flex-row justify-center items-center flex-wrap">
       {props.times &&
-        props.times.map((item, index) => {
+        props.times.sort((a, b) => a.reservationHour - b.reservationHour).map((item, index) => {
           return (
             <button
               key={'btn' + index}

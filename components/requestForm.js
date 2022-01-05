@@ -96,6 +96,9 @@ function RequestForm(props) {
             const data = await res.json();
             console.log(data[0].appointments);
             let apptTodayArray = data[0].appointments;
+            dt = new Date();
+            dt1 = getDateString(dt);
+            if (data[0].date.split('T')[0]== dt1)
             for (let i = 0; i < apptTodayArray.length; i++)
               if (apptTodayArray[i].reservationHour <= currentHour)
                 apptTodayArray[i].status = 'blue';
@@ -198,7 +201,7 @@ function RequestForm(props) {
             });
             const data1 = await res2.json();
             console.log(data1)
-            setTimes([...times, data1]);
+            setTimes(times.concat(data1));
           } catch {
             setError('Failed to get times');
           }

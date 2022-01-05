@@ -41,9 +41,6 @@ function SendReservationForm(props) {
     setRevealAlert(false);
   };
 
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (parseInt(phone) < 1000000000 || parseInt(phone) > 9999999999) {
@@ -117,7 +114,7 @@ function SendReservationForm(props) {
     console.log(confirm_code.code);
 
     console.log('schedule_id for request', props.time._id);
-// Updating busy status on Schedule
+    // Updating busy status on Schedule
     const res1 = await fetch('/api/reservation/make_busy', {
       method: 'PUT',
       headers: {
@@ -126,11 +123,11 @@ function SendReservationForm(props) {
       body: JSON.stringify({
         date: props.time.date,
         schedule_id: props.time._id,
-        game:props.time.game, 
-        location:props.time.location
+        game: props.time.game,
+        location: props.time.location,
       }),
     });
-    console.log("result of PUT request",res1);
+    console.log('result of PUT request', res1);
 
     data_mail.html_message =
       `
@@ -140,7 +137,7 @@ function SendReservationForm(props) {
     data_mail.reg_message =
       `
       Код подтверждения: ${confirm_code.code}\n` + data_mail.reg_message;
-// sending 2 emails client and admin
+    // sending 2 emails client and admin
     fetch('/api/request_time', {
       method: 'POST',
       headers: {
@@ -162,13 +159,12 @@ function SendReservationForm(props) {
         });
         setRevealAlert(true);
         console.log('Response succeeded!');
-
       }
     });
   };
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
-     {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
+      {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <form
         className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}

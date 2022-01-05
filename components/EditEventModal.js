@@ -44,18 +44,23 @@ export const EditEventModal = ({
 
         <p id="eventText">{eventText}</p>
         <div className="flex flex-row justify-center items-center flex-wrap">
-          {appointments &&
+          {editStatus && appointments &&
             appointments.map((item, index) => {
               return (
                 <div key={'btnAppt' + index}>
-                  {editStatus ? (
                     <EditTimePriceForm
                       key={`apptt_${index}`}
                       info={{ item, i: index }}
                       onDel={delete_one}
                       onEnter={pull_data}
                     />
-                  ) : (
+                </div>
+              );
+            })}
+            {!editStatus &&appointments &&
+            appointments.sort((a, b) => a.reservationHour - b.reservationHour).map((item, index) => {
+              return (
+                <div key={'btnAppt' + index}>
                     <TimeDisplay
                       key={item.id}
                       price={item.price}
@@ -64,7 +69,6 @@ export const EditEventModal = ({
                       }${item.reservationMin}`}
                       timeStatus={'green'}
                     />
-                  )}
                 </div>
               );
             })}

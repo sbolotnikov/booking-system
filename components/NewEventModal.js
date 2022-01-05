@@ -66,7 +66,7 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
 
           <div className="flex flex-row justify-center items-center flex-wrap">
             {appointments &&
-              appointments.map((item, index) => {
+              appointments.sort((a, b) => a.reservationHour - b.reservationHour).map((item, index) => {
                 return (
                   <button key={'btnAppt' + index}>
                     <TimeDisplay
