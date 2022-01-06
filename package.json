@@ -6,7 +6,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@next-auth/mongodb-adapter": "^0.0.2-next.285",
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",

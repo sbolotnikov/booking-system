@@ -1,18 +1,18 @@
 import NextAuth from 'next-auth';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '../../../utils/mongodb';
-import connectDB from '../../../utils/connectDB';
-// import db from '../../../utils/db';
+// import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+// import clientPromise from '../../../utils/mongodb';
+// import connectDB from '../../../utils/connectDB';
+import db from '../../../utils/db';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import EmailProvider from 'next-auth/providers/email';
-import { html, text } from '../../../utils/htmlEmail';
-import nodemailer from 'nodemailer';
+// import EmailProvider from 'next-auth/providers/email';
+// import { html, text } from '../../../utils/htmlEmail';
+// import nodemailer from 'nodemailer';
 import Users from '../../../models/userModel';
 import bcrypt from 'bcryptjs';
-import { MongoClient } from 'mongodb';
+// import { MongoClient } from 'mongodb';
 
-connectDB();
+// connectDB();
 export default async function auth(req, res) {
   return await NextAuth(req, res, {
     session: {
@@ -29,28 +29,9 @@ export default async function auth(req, res) {
       // You can define your own encode/decode functions for signing and encryption
       // if you want to override the default behaviour.
       // encode: async ({ secret, token, maxAge }) => {},
-      //     encode: async ({ secret, token, maxAge }) => {
-
-      //       const infoUser=await Users.findOne({
-      //         email: token.email,
-      //     });
-      //       console.log(infoUser);
-      //       const jwtNew = {
-      //         "sub": token.id ,
-      //         "name": token.name ,
-      //         "email": token.email,
-      //         "iat": Date.now() / 1000,
-      //         "exp": Math.floor(Date.now() / 1000) + (30*24*60*60),
-      //         "user": infoUser,
-      //       };
-      //       const encodedToken = jwt.sign(jwtNew, secret);
-      //       return encodedToken;
-      // },
+     
       // decode: async ({ secret, token, maxAge }) => {},
-      //     decode: async ({ secret, token, maxAge }) => {
-      //       const decodedToken = jwt.verify(token, secret);
-      //       return decodedToken;
-      //  },
+ 
     },
     providers: [
       CredentialsProvider({
@@ -58,22 +39,17 @@ export default async function auth(req, res) {
         async authorize(credentials) {
           const email = credentials.email;
           const password = credentials.password;
-          //   //Connect to DB
-          //   const client = await MongoClient.connect(
-          //     process.env.MONGODB_URI,
-          //     { useNewUrlParser: true, useUnifiedTopology: true }
-          // );
-          //Get all the users
-          // const users = await client.db().collection('users');
-          //Find user with the email
+         //Connect to DB
 
+          //Find user with the email
+          await db.connect();  
           const result = await Users.findOne({
             email: credentials.email,
           });
           //Not found - send error res
           console.log(result, email);
           if (!result) {
-            // client.close();
+            await db.disconnect();
             throw new Error('No user found with the email');
           }
           //Check hased password with DB password
@@ -83,11 +59,11 @@ export default async function auth(req, res) {
           );
           //Incorrect password - send response
           if (!checkPassword) {
-            // client.close();
+            await db.disconnect();
             throw new Error('Password doesnt match');
           }
           //Else send success response
-          // client.close();
+          await db.disconnect();
           return {
             name: result.name,
             email: result.email,
@@ -121,28 +97,15 @@ export default async function auth(req, res) {
       error: '/login',
     },
     // SQL or MongoDB database (or leave empty)
-    // adapter: MongoDBAdapter(clientPromise),
 
-    //   callbacks:{
-    //     session: async (session, token, user) => {
-    //       // const resUser = await Users.findById(user.sub)
-    //       // session.emailVerified = resUser.emailVerified
-    //       console.log(session)
-    //       console.log("from callback");
-    //     //   session.accessToken = token.accessToken
-    //     //   session.userId = user.id
-    //       return Promise.resolve(session)
-    //     }
-    //   }
     callbacks: {
       session: async ({ session, user, token }) => {
         console.log('from callback session', user);
+        await db.connect(); 
         const resUser = await Users.findOne({
           email: session.user.email,
         });
         if (resUser) {
-          //   session.user.id = user.id;
-          // console.log("session user: ",resUser)
           session.user.id = resUser.id;
           session.user.status = resUser.status;
         } else {
@@ -162,16 +125,18 @@ export default async function auth(req, res) {
           console.log('no user');
         }
         console.log(session);
+        await db.disconnect();
         return Promise.resolve(session);
         // return session
       },
       jwt: async ({ token, user }) => {
         // console.log('token', token, 'user', user);
-
+        await db.connect();
         if (user) {
           const resUser = await Users.findOne({
             email: user.email,
           });
+          await db.disconnect();
           if (resUser) {
             const { accessToken, ...rest } = user;
             token.accessToken = accessToken;
