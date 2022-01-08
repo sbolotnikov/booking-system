@@ -10,21 +10,22 @@ export function html({ url, host, email }) {
     return `
       <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
       
-      <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the DevAT channel.</h2>
+      <h2 style="text-align: center; text-transform: uppercase;color: teal;">Добро пожаловать в Таинственный переулок.</h2>
       
       <h3 style="text-align: center; text-transform: uppercase;">${escapedHost}</h3>
       
-      <p>Congratulations! You're almost set to start using BlogDEV.
-        Sign in as <strong>${escapedEmail}</strong>.
+      <p>Поздравляю! Вы зарегистрировались с эл. адресом <strong>${escapedEmail}</strong>.
+      Нажмите кнопку для входа.
+      
       </p>
       
       <a href=${url} target="_blank" style="background: crimson; text-decoration: none; color: white; padding: 1rem 3rem; margin: 10px 0; display: inline-block;">Sign in with Email</a>
-      <p>If the button doesn't work for any reason, you can also click on the link below:</p>
+      <p>Если кнопка не работает, то используйте ссылку для входа на сайт.</p>
       <div>${url}</div>
       </div>
     `
   }
   
   export function text({ url, host }) {
-    return `Sign in to ${host}\n${url}\n\n`
+    return `Ссылка для входа ${host}\n${url}\n\n`
   }

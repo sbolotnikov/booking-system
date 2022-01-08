@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { gsap } from "../../utils/gsap";
-import Tilt from 'react-parallax-tilt';
+// import Tilt from 'react-parallax-tilt';
 // import { Textfit } from 'react-textfit';
 import Router from 'next/router';
 
@@ -53,10 +53,10 @@ function handleCall(e){
                 <div className="menuLinks"  onClick={e=>{handleCall(e)}}>
                 {props.names.map((option, i) => {
                             return (       
-                                    <Tilt className="link menuLink1" id={`menuIgem_${i}`} glareEnable={true} glareMaxOpacity={0.9} glareColor="lightblue" transitionSpeed={1000} gyroscope={true}
+                                    {/* <Tilt className="link menuLink1" id={`menuIgem_${i}`} glareEnable={true} glareMaxOpacity={0.9} glareColor="lightblue" transitionSpeed={1000} gyroscope={true}
                                     glarePosition="all" scale={1.1 } tiltMaxAngleY={10} tiltMaxAngleX={10} perspective={500}  >
-                                       {/* <Textfit mode="single">{option}</Textfit> */}
-                                   </Tilt>                            
+                                       <Textfit mode="single">{option}</Textfit>
+                                   </Tilt>                             */}
                             )
                         }
                         )}

@@ -1,20 +1,20 @@
 import NextAuth from 'next-auth';
-// import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-// import clientPromise from '../../../utils/mongodb';
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import clientPromise from '../../../utils/mongodb';
 // import connectDB from '../../../utils/connectDB';
 import db from '../../../utils/db';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-// import EmailProvider from 'next-auth/providers/email';
-// import { html, text } from '../../../utils/htmlEmail';
-// import nodemailer from 'nodemailer';
+import EmailProvider from 'next-auth/providers/email';
+import { html, text } from '../../../utils/htmlEmail';
+import nodemailer from 'nodemailer';
+const { google } = require('googleapis');    
 import Users from '../../../models/userModel';
 import bcrypt from 'bcryptjs';
-// import { MongoClient } from 'mongodb';
 
-// connectDB();
 export default async function auth(req, res) {
   return await NextAuth(req, res, {
+    adapter: MongoDBAdapter(clientPromise),
     session: {
       strategy: 'jwt',
       maxAge: 30 * 24 * 60 * 60,
@@ -22,16 +22,10 @@ export default async function auth(req, res) {
     site: process.env.NEXTAUTH_URL,
     jwt: {
       // A secret to use for key generation (you should set this explicitly)
-      // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
       secret: process.env.SECRET,
       // Set to true to use encryption (default: false)
       encryption: true,
-      // You can define your own encode/decode functions for signing and encryption
-      // if you want to override the default behaviour.
-      // encode: async ({ secret, token, maxAge }) => {},
-     
-      // decode: async ({ secret, token, maxAge }) => {},
- 
+
     },
     providers: [
       CredentialsProvider({
@@ -78,18 +72,42 @@ export default async function auth(req, res) {
         clientId: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET,
       }),
-      //   EmailProvider({
-      //     // server: process.env.EMAIL_SERVER,
-      //     server: {
-      //       host: process.env.EMAIL_SERVER_HOST,
-      //       port: process.env.EMAIL_SERVER_PORT,
-      //       auth: {
-      //         user: process.env.EMAIL_SERVER_USER,
-      //         pass: process.env.EMAIL_SERVER_PASSWORD,
-      //       },
-      //     },
-      //     from: process.env.EMAIL_FROM,
-      //   }),
+      EmailProvider({
+        server: process.env.EMAIL_SERVER,
+        from: process.env.EMAIL_SERVER_USER,
+        async sendVerificationRequest({
+          identifier: email,
+          url,
+          provider: { server, from },
+        }) {
+          const oAuth2Client = new google.auth.OAuth2(
+            process.env.CLIENT_ID_MAIL,
+            process.env.CLIENT_SECRET_MAIL,
+            process.env.REDIRECT_URI
+          );
+          oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+          const { host } = new URL(url)
+          const accessToken = await oAuth2Client.getAccessToken();
+          const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              type: 'OAuth2',
+              user: process.env.EMAIL_SERVER_USER,
+              clientId: process.env.CLIENT_ID_MAIL,
+              clientSecret: process.env.CLIENT_SECRET_MAIL,
+              refreshToken: process.env.REFRESH_TOKEN,
+              accessToken: accessToken,
+            },
+          })
+          await transport.sendMail({
+            to: email,
+            from,
+            subject: `Sign in to ${host}`,
+            text: text({ url, host }),
+            html: html({ url, host, email }),
+          })
+        },
+      }),
     ],
 
     pages: {

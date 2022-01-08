@@ -14,7 +14,7 @@ const Navbar = ({ navbarLinks }) => {
   return (
     <nav className="navbar">
     <Link className="navbar__link" href={'/'}>
-      <span className="navbar__logo">Челябинск</span>
+      <span className="navbar__logo"><img  src={'/images/logo.jpg'} alt="menu call" /></span>
       </Link>
        <ul
         className={

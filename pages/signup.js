@@ -2,51 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
-import BtnLogin from '../components/auth/BtnLogin';
-import AlertMenu from '../components/alertMenu';
 // import Email from '../components/auth/Email'
 
-const Login = ({ session }) => {
+const Signup = ({ session }) => {
   const [email, setEmail] = useState('');
-  const [email2, setEmail2] = useState('');
+  const [password2, setPassword2] = useState('');
   const [password, setPassword] = useState('');
-  const [revealAlert, setRevealAlert] = useState(false);
-  const [alertStyle, setAlertStyle] = useState({});
+  const [phone, setPhone] = useState('');
   useEffect(() => {
     if (session) return Router.push('/');
   }, [session]);
 
   useEffect(() => {
     if (Router.query.error) {
-      console.log(Router.query.error)
-      let errText="";
-      (Router.query.error=="OAuthAccountNotLinked")? errText="Для подтверждения вашей идентичности пользуйтесь только одним методом входа!":errText=Router.query.error
-      setAlertStyle({
-        variantHead: 'danger',
-        heading: 'Ошибка регистрации',
-        text: `${errText}`,
-        color1: 'secondary',
-        button1: 'Подтвердить',
-        color2: '',
-        button2: '',
-      });
-      setRevealAlert(true);
-      
+      toast.error(Router.query.error);
+      return Router.push('/login');
     }
   }, []);
 
-  const onReturn = (choice) => {
-    setRevealAlert(false);
-    return Router.push('/login');
-  }
-
   if (session) return null;
-
   return (
     <div
       className="w-full flex justify-center items-center"
     >
-    {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <div
         className="border-0 max-auto p-4 shadow max-w-[450px] w-full m-3"
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
@@ -55,14 +33,8 @@ const Login = ({ session }) => {
           className="text-center fw-bolder text-uppercase"
           style={{ color: 'whitesmoke', letterSpacing: '1px' }}
         >
-          Вход
+          Login
         </h2>
-
-        <BtnLogin
-          provider={'credentials'}
-          bgColor="gray"
-          options={{ redirect: false, email, password }}
-        >
           <div className="flex flex-col items-center p-3 bg-popup rounded-t-md bottom-0">
             <label>Адрес эл. почты</label>
             <input
@@ -82,24 +54,26 @@ const Login = ({ session }) => {
               name="password"
               className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
               required
+              placeholder="введите пароль"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-        </BtnLogin>
-
-        <div className="text-center">✦ или ✦</div>
-        <div>
-          <BtnLogin provider={'google'} bgColor="#f2573f" />    
-        </div>
-        <div className="text-center">✦ или ✦</div>
-        <BtnLogin
-          provider={'email'}
-          bgColor="#22b05b"
-          options={{ redirect: false, email: email2 }}
-        >
           <div className="flex flex-col items-center p-3 bg-white bottom-0">
-            <label htmlFor="email">Вход через ваш эл. адрес</label>
+            <label htmlFor="password2">Подтвердить пароль</label>
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
+              placeholder="потвердите пароль"
+              required
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col items-center p-3 bg-white bottom-0">
+            <label htmlFor="email">Телефон</label>
             <input
               type="email"
               id="email2"
@@ -111,7 +85,19 @@ const Login = ({ session }) => {
               onChange={(e) => setEmail2(e.target.value)}
             />
           </div>
-        </BtnLogin>
+          <input
+          className="w-full rounded mb-1 bg-[#0C1118]"
+          type="tel"
+          placeholder="Телефон"
+          required
+          minLength={13}
+          maxLength={13}
+          onChange={(e) => {
+            setError('');
+            setPhone(e.target.value.slice(3));
+          }}
+          value={'+7 ' + phone}
+        />
       </div>
     </div>
   );
@@ -125,4 +111,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default Login;
+export default Signup;
