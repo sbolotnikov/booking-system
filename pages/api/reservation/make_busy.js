@@ -10,7 +10,6 @@ const handler = nc({
 handler.put(async (req, res) => {
   const { date,game, location, schedule_id } = req.body;
   await db.connect();
-  
   const rSch = await Schedule.updateOne(
     { date, game, location, appointments: { $elemMatch: { _id: schedule_id } } },
     { $set: { 'appointments.$.status': 'orange' } }

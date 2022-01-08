@@ -2,8 +2,9 @@ import Card from '../components/card';
 import { useState } from 'react';
 import AccordionFAQ from '../components/accordionFAQ';
 import Booking from '../components/booking';
+import Slider from '../components/Slider';
 
-function about() {
+function about() {  
   const listArrayLeft = [
     {
       imgLink: '/icons/lamp.svg',
@@ -194,7 +195,6 @@ function about() {
           })}
         </div>
       </div>
-
       <div className="flex w-full justify-between  bg-no-repeat bg-contain bg-left-bottom min-h-[100vh] bg-[#0C1118] laptop:bg-auto laptop:bg-aboutBG">
         <div className="hidden laptop:block laptop:w-[400px]"></div>
         <div className="my-auto">
@@ -324,6 +324,7 @@ function about() {
       <div className="m-7">
         <Booking />
       </div>
+      <Slider />
       <AccordionFAQ options={options} />
     </div>
   );

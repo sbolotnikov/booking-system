@@ -58,15 +58,15 @@ let dataObject = {
           coordinates:{x:55.184659,y:61.367294,zoom:16.73}
         },
         {
-            name: 'Прятки на Sovetskoy 67',
-            description: 'Home. Home base. Look around for clues',
+            name: 'Таинственный переулок',
+            description: 'это объединение двух бывших франчайзи "выХод" и QuestQuest.',
             symbol: '/icons/teplichnaya.svg',
-            address: "г. Челябинск,<br> ул.Sovetskaya 67",
-            address_short:"ул.Sovetskaya 67",
-            telephone: "+7 (351) 220-75-49",
+            address: "г. Челябинск,<br> улица Молодогвардейцев, 7",
+            address_short:"улица Молодогвардейцев, 7, Челябинск",
+            telephone: "+7 (951) 258-30-00",
             email: "chel@strashnotemno.ru",
             address_desc:"Home sweet home.<br><br>На двери - табличка «Прятки в темноте».",
-            coordinates:{x:55.161147,y:61.406875,zoom:16.73}
+            coordinates:{x:55.2038,y:61.3264,zoom:15.73}
         },
       ], 
       rules :[

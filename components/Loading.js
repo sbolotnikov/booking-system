@@ -1,6 +1,6 @@
 function Loading() {
   return (
-    <div className="absolute w-full h-full inset-0 ">
+    <div className="absolute w-full h-full inset-0 z-2000 ">
       <center className="grid place-items-center h-full">
         <div>
           <img src="/images/logo.jpg" alt="" className="w-1/4 mb-2 max-w-lg" />

@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react';
 import AppContext from '../appContext';
 import AlertMenu from './alertMenu';
+import Loading from './Loading'
 function SendReservationForm(props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('');
   const [revealAlert, setRevealAlert] = useState(false);
   const [alertStyle, setAlertStyle] = useState({});
@@ -43,8 +45,10 @@ function SendReservationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (parseInt(phone) < 1000000000 || parseInt(phone) > 9999999999) {
       setError('Номер телефона неверен');
+      setLoading(false);
       return;
     }
     let html_message = `
@@ -143,6 +147,7 @@ function SendReservationForm(props) {
       body: JSON.stringify(data_mail),
     }).then((res) => {
       if (res.status === 200) {
+        setLoading(false);
         setAlertStyle({
           variantHead: 'info',
           heading: 'Сообщение',
@@ -159,6 +164,7 @@ function SendReservationForm(props) {
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
+      { loading && <Loading /> }
       <form
         className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}

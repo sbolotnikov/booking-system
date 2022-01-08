@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { gsap } from "../../utils/gsap";
 import Tilt from 'react-parallax-tilt';
-import { Textfit } from 'react-textfit';
+// import { Textfit } from 'react-textfit';
 import Router from 'next/router';
 
 // import { Link } from 'react-router-dom';
@@ -55,7 +55,7 @@ function handleCall(e){
                             return (       
                                     <Tilt className="link menuLink1" id={`menuIgem_${i}`} glareEnable={true} glareMaxOpacity={0.9} glareColor="lightblue" transitionSpeed={1000} gyroscope={true}
                                     glarePosition="all" scale={1.1 } tiltMaxAngleY={10} tiltMaxAngleX={10} perspective={500}  >
-                                       <Textfit mode="single">{option}</Textfit>
+                                       {/* <Textfit mode="single">{option}</Textfit> */}
                                    </Tilt>                            
                             )
                         }

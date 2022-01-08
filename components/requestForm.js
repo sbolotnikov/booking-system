@@ -72,6 +72,7 @@ function RequestForm(props) {
           dt.setDate(dt.getDate() + 9);
           let dt2 = getDateString(dt);
           setLastVisibleDate(dt2);
+          setTimes([]);
           try {
             setError('');
             setLoading(true);

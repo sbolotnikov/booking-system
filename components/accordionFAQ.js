@@ -16,7 +16,7 @@ function AccordionFAQ(props) {
         n!==visible?setVisible(n):setVisible(-1);
       }
     return (
-        <div className=''>
+        <div className='relative m-8'>
 
         {props.options.map((item, j) => {
           return (
