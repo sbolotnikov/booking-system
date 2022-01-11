@@ -52,7 +52,7 @@ function AllowScroll(){
 }, []);
   return (
 
-    <div className="w-[100vw] h-[100vh] absolute flex justify-center items-center bg-slate-500/70 left-0 z-[1000]" style={{ top: window.pageYOffset }} >
+    <div className="w-[100vw] h-[100vh] absolute flex justify-center items-center bg-slate-500/70 left-0 z-[1000] backdrop-blur-md" style={{ top: window.pageYOffset }} >
       <div className='m-auto max-w-[600px] bg-gray-700 border-2 border-solid border-gray-400 rounded-md w-[97%] p-2 flex flex-col content-evenly'>
         <label className='px-1 py-2 border-2 border-solid border-transparent rounded-sm w-full m-1 text-center' style={Object.values(variant)[Object.keys(variant).indexOf(props.styling.variantHead)]}>{props.styling.heading}</label>
         <h5 className="px-1 py-2 border-2 border-solid border-transparent rounded-sm w-full m-1 text-center"  dangerouslySetInnerHTML={{ __html:props.styling.text}}/>

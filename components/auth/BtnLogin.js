@@ -62,7 +62,7 @@ const BtnLogin = ({children, provider, bgColor, txtColor, options}) => {
           });
           setRevealAlert(true);
         }
-      }
+      } else return Router.push("/")
     }
   }
   const onReturn = (choice) => {

@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 .5rem 0 .5rem;
+    padding: 0 .5rem 0 0;
     /* margin:1rem; */
     z-index: 5;
   }
@@ -16,18 +16,19 @@
     font-family: 'MonteCarlo', cursive;
     font-size: 0.85rem; */
     width:5rem;
+    margin: .5rem 0 0 .5rem;
     border:0;
     border-radius:1.5rem;
     overflow:hidden;
     cursor: pointer;
   }
   .navbar__right_span {
-      margin-top: 1rem;
-      margin-right: 1.5rem;
+      margin-right: .5rem;
       height: 2rem;
-      display: grid;
-      column-gap: 15%;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   
     }
   /*
       This is the container for all the navbar links ( <ul> )
@@ -75,10 +76,10 @@
     width: 2rem;
   }
   .navbar__menu_grid {
-      
+      margin:0 .25rem 0 .25rem;
       cursor: pointer;
       height: 1.5rem;
-      width: 2rem;
+      width: 1.5rem;
     }
   @supports (backdrop-filter: blur(1rem)) {
       .navbar__list {
@@ -103,10 +104,7 @@
       backdrop-filter: blur(1rem);
       transition: all 0.5s ease;
     }
-    .navbar__right_span {
-  
-      grid-template-columns: 1fr 1fr 1fr;
-    }
+   
     .navbar__list--active {
       right: 0;
     }

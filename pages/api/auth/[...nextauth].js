@@ -62,6 +62,7 @@ export default async function auth(req, res) {
             name: result.name,
             email: result.email,
             image: result.image,
+            phone: result.phone,
             id: result._id,
             status: result.status,
           };
@@ -80,25 +81,26 @@ export default async function auth(req, res) {
           url,
           provider: { server, from },
         }) {
-          const oAuth2Client = new google.auth.OAuth2(
-            process.env.CLIENT_ID_MAIL,
-            process.env.CLIENT_SECRET_MAIL,
-            process.env.REDIRECT_URI
-          );
-          oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+          // const oAuth2Client = new google.auth.OAuth2(
+          //   process.env.CLIENT_ID_MAIL,
+          //   process.env.CLIENT_SECRET_MAIL,
+          //   process.env.REDIRECT_URI
+          // );
+          // oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
           const { host } = new URL(url)
-          const accessToken = await oAuth2Client.getAccessToken();
-          const transport = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              type: 'OAuth2',
-              user: process.env.EMAIL_SERVER_USER,
-              clientId: process.env.CLIENT_ID_MAIL,
-              clientSecret: process.env.CLIENT_SECRET_MAIL,
-              refreshToken: process.env.REFRESH_TOKEN,
-              accessToken: accessToken,
-            },
-          })
+          const transport = nodemailer.createTransport(server)
+          // const accessToken = await oAuth2Client.getAccessToken();
+          // const transport = nodemailer.createTransport({
+          //   service: 'gmail',
+          //   auth: {
+          //     type: 'OAuth2',
+          //     user: process.env.EMAIL_SERVER_USER,
+          //     clientId: process.env.CLIENT_ID_MAIL,
+          //     clientSecret: process.env.CLIENT_SECRET_MAIL,
+          //     refreshToken: process.env.REFRESH_TOKEN,
+          //     accessToken: accessToken,
+          //   },
+          // })
           await transport.sendMail({
             to: email,
             from,
@@ -126,6 +128,7 @@ export default async function auth(req, res) {
         if (resUser) {
           session.user.id = resUser.id;
           session.user.status = resUser.status;
+          session.user.phone = resUser.phone;
         } else {
           const newUser = new Users({
             email: session.user.email,
@@ -158,6 +161,7 @@ export default async function auth(req, res) {
           if (resUser) {
             const { accessToken, ...rest } = user;
             token.accessToken = accessToken;
+            token.phone = resUser.phone;
             token.status = resUser.status;
           }
         }
