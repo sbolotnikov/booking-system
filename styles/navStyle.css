@@ -2,7 +2,7 @@
     position: sticky;
     top: 0px;
     height: 3rem;
-    background-color: #0c1118;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,10 +16,10 @@
     font-family: 'MonteCarlo', cursive;
     font-size: 0.85rem; */
     width:5rem;
+    height: 3rem;
     margin: .5rem 0 0 .5rem;
     border:0;
-    border-radius:1.5rem;
-    overflow:hidden;
+    object-fit: fill;
     cursor: pointer;
   }
   .navbar__right_span {
@@ -37,8 +37,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: hsl(0 0% 0% / 0.5);
-    backdrop-filter: blur(1rem);
     list-style: none;
   }
   

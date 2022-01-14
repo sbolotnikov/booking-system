@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import clientPromise from '../../../utils/mongodb';
 // import connectDB from '../../../utils/connectDB';
 import db from '../../../utils/db';
@@ -8,11 +8,21 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import EmailProvider from 'next-auth/providers/email';
 import { html, text } from '../../../utils/htmlEmail';
 import nodemailer from 'nodemailer';
-const { google } = require('googleapis');    
+const { google } = require('googleapis');
 import Users from '../../../models/userModel';
 import bcrypt from 'bcryptjs';
+// const oAuth2Client = new google.auth.OAuth2(
+//   process.env.CLIENT_ID_MAIL,
+//   process.env.CLIENT_SECRET_MAIL,
+//   process.env.REDIRECT_URI
+// );
+// oAuth2Client.setCredentials({
+//   refresh_token: process.env.REFRESH_TOKEN,
+// });
 
 export default async function auth(req, res) {
+  // const accessToken =await oAuth2Client.getAccessToken();
+  // console.log(accessToken);
   return await NextAuth(req, res, {
     adapter: MongoDBAdapter(clientPromise),
     session: {
@@ -25,7 +35,6 @@ export default async function auth(req, res) {
       secret: process.env.SECRET,
       // Set to true to use encryption (default: false)
       encryption: true,
-
     },
     providers: [
       CredentialsProvider({
@@ -33,10 +42,10 @@ export default async function auth(req, res) {
         async authorize(credentials) {
           const email = credentials.email;
           const password = credentials.password;
-         //Connect to DB
+          //Connect to DB
 
           //Find user with the email
-          await db.connect();  
+          await db.connect();
           const result = await Users.findOne({
             email: credentials.email,
           });
@@ -81,33 +90,18 @@ export default async function auth(req, res) {
           url,
           provider: { server, from },
         }) {
-          // const oAuth2Client = new google.auth.OAuth2(
-          //   process.env.CLIENT_ID_MAIL,
-          //   process.env.CLIENT_SECRET_MAIL,
-          //   process.env.REDIRECT_URI
-          // );
-          // oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-          const { host } = new URL(url)
+          const { host } = new URL(url);
           const transport = nodemailer.createTransport(server)
-          // const accessToken = await oAuth2Client.getAccessToken();
-          // const transport = nodemailer.createTransport({
-          //   service: 'gmail',
-          //   auth: {
-          //     type: 'OAuth2',
-          //     user: process.env.EMAIL_SERVER_USER,
-          //     clientId: process.env.CLIENT_ID_MAIL,
-          //     clientSecret: process.env.CLIENT_SECRET_MAIL,
-          //     refreshToken: process.env.REFRESH_TOKEN,
-          //     accessToken: accessToken,
-          //   },
-          // })
-          await transport.sendMail({
+         
+          // const transport = nodemailer.createTransport('SMTP',server);
+          const sendEmailObj = await transport.sendMail({
             to: email,
             from,
             subject: `Sign in to ${host}`,
             text: text({ url, host }),
             html: html({ url, host, email }),
-          })
+          });
+          console.log(sendMail);
         },
       }),
     ],
@@ -121,7 +115,7 @@ export default async function auth(req, res) {
     callbacks: {
       session: async ({ session, user, token }) => {
         console.log('from callback session', user);
-        await db.connect(); 
+        await db.connect();
         const resUser = await Users.findOne({
           email: session.user.email,
         });
@@ -165,7 +159,7 @@ export default async function auth(req, res) {
             token.status = resUser.status;
           }
         }
-        console.log('token',token)
+        console.log('token', token);
         return token;
       },
     },

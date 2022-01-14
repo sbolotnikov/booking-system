@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
 import { toast } from 'react-toastify';

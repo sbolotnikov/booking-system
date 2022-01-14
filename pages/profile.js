@@ -115,7 +115,7 @@ const profile = ({ session }) => {
           className="text-center fw-bolder text-uppercase"
           style={{ color: 'whitesmoke', letterSpacing: '1px' }}
         >
-          Ваш профиль
+          Ваш личный кабинет
           <div className="relative  outline-none border border-gray-100 rounded-md bg-main-bg w-24 p-4 my-6 mx-auto">
             {userURL != null ? (
               <img

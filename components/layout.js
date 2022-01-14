@@ -2,23 +2,27 @@ import Navbar from './navbar';
 import Footer from '../components/footer';
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-const navbarLinks = [
-  { url: '/about', title: 'Об игре' },
-  { url: '/book', title: 'Забронировать' },
-  { url: '#', title: 'День Рождения' },
-  { url: '#', title: 'Корпоратив' },
-  { url: '#', title: 'Сертификат' },
-  { url: '/contacts/0', title: 'Где находится?' },
-];
-const navbarLinksAdmin = [
-  { url: '/book', title: 'Забронировать' },
-  { url: '/admin', title: 'Расписание' },
-  { url: '/adm_location/0', title: 'Резервации' },
-  { url: '/contacts/0', title: 'Где находится?' },
-];
+
 export default function Layout({ children }) {
   const {data:session, loading} = useSession();
+  let navbarLinks = [
+    { url: '/about', title: 'Об игре' },
+    { url: '/book', title: 'Забронировать' },
+    { url: '#', title: 'День Рождения' },
+    { url: '#', title: 'Корпоратив' },
+    { url: '#', title: 'Сертификат' },,
+    { url: '/contacts/0', title: 'Где находится?' },
+  ];
+  let navbarLinksAdmin = [
+    { url: '/book', title: 'Забронировать' },
+    { url: '/admin', title: 'Расписание' },
+    { url: '/adm_location/0', title: 'Резервации' },
+    { url: '/contacts/0', title: 'Где находится?' },
+  ];
   console.log(session)
+  let opt=session?{ url: '/logout', title: 'Выйти' }:{ url: '/login', title: 'Регистрация' }
+  navbarLinks.push(opt);
+  navbarLinksAdmin.push(opt);
   return (
     <div>
       <Head>

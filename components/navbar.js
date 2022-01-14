@@ -16,7 +16,7 @@ const Navbar = ({ navbarLinks }) => {
     <nav className="navbar">
       <Link className="navbar__link" href={'/'}>
         <span className="navbar__logo">
-          <img src={'/images/logo.jpg'} alt="menu call" />
+          <img src={'/icons/logo light dark back.svg'} alt="call root" />
         </span>
       </Link>
       <ul
@@ -35,7 +35,7 @@ const Navbar = ({ navbarLinks }) => {
                 <div className="w-4">
                   <img src={'/icons/call.svg'} alt="menu call" />
                 </div>
-                +7(351)220-75-49
+                +7(951)258-3000
               </a>
             </Link>
           </li>
@@ -60,7 +60,7 @@ const Navbar = ({ navbarLinks }) => {
       <div className="navbar__right_span">
         {((session && session.user.status !== 'admin') || !session) && (
           <div className="navbar__menu_grid">
-            <Link href={'tel:+7(351)220-7549'}>
+            <Link href={'tel:+79512583000'}>
               <img className="object-fill" src={'/icons/call.svg'} alt="menu call" />
             </Link>
           </div>

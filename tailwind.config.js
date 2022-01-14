@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         'popup': '#121923',
         'main-bg':'#0C1118',
+
       },
       backgroundImage: {
         'aboutBG': "url('/images/machine.png')",

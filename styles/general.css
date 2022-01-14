@@ -9,6 +9,61 @@
   font-weight: 400;
   font-display: swap;
 }
+/* Animations */
+.animate_class {
+  stroke-width: 1;
+  stroke: black;
+  stroke-dasharray: 492;
+  stroke-dashoffset: 492;
+  animation-name: draw;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+  animation-direction:alternate;
+    animation-timing-function: linear;
+}
+.animate_pendulum {
+  
+  animation-name: pendulum;
+  transform-origin: 25% -1%;
+  
+  animation: pendulum  5s ease-in-out infinite;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pendulum {
+  0%, 100% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+}
+/* flame animations */
+.flame{
+	width:150px;
+	height:150px;
+	background:linear-gradient(-45deg, purple, rgb(221, 134, 221));
+	border-radius: 150px 150px 0px 150px;
+	transform:rotate(-135deg);
+	animation:.3s flame infinite;
+	filter:blur(10px);
+	position:relative;
+	box-shadow:17px 20px 90px rgb(49, 4, 80);
+	border:45px solid black;
+	border-left-width:25px;
+	border-top-width:25px;
+}
+@keyframes flame{
+  0% {height:150px; width:150px;}
+  50% {height:140px; width:140px;}
+  100% {height:150px; width:150px;}
+}
+
+
 
 .inner-wrap {
   -moz-box-sizing: border-box;
