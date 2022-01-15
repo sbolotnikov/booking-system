@@ -71,7 +71,8 @@
   background: linear-gradient(180deg, transparent 0, #0c1118 250px);
   height: 100%;
   min-height: 250px;
-  padding: 3em 20px;
+  padding: 5em 20px;
+  margin-top:-3rem;
   text-align: center;
 }
 .inner-wrap h2 {

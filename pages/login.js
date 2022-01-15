@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getSession } from 'next-auth/react';
 import Router from 'next/router';
-import { toast } from 'react-toastify';
 import BtnLogin from '../components/auth/BtnLogin';
 import AlertMenu from '../components/alertMenu';
 // import Email from '../components/auth/Email'

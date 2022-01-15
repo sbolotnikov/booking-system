@@ -1,12 +1,12 @@
 import GetPlayersAmount from './getPlayersAmount';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import GetLocation from './getLocation';
 import SendReservationForm from './sendReservationForm';
 import DayDisplay from './dayDisplay';
 import AlertMenu from './alertMenu';
 function RequestForm(props) {
   const [participants, setParticipants] = useState(0);
-  const [location, setLocation] = useState(-1);
+  const [location, setLocation] = useState(0);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [revealAlert, setRevealAlert] = useState(false);
@@ -17,6 +17,9 @@ function RequestForm(props) {
   const [times, setTimes] = useState([]);
   const [error, setError] = useState('');
 
+  useEffect(() => {
+    getAppointmentsTimes(0);
+  }, []);
 
   // function to add 1 hour for date to be a actual day
   const timeshift = (n) => {
@@ -48,6 +51,45 @@ function RequestForm(props) {
       day < 10 ? '0' : ''
     }${day}`;
   };
+  const getAppointmentsTimes=async (loc) => {
+    setLocation(loc);
+    let dt = new Date();
+    let dt1 = getDateString(dt);
+    let currentHour = dt.getHours();
+    dt.setDate(dt.getDate() + 9);
+    let dt2 = getDateString(dt);
+    setLastVisibleDate(dt2);
+    setTimes([]);
+    try {
+      setError('');
+      setLoading(true);
+
+      const res = await fetch('/api/reservation/getschedule', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          location: props.locs[loc],
+          game: props.gameIndex,
+          dt1,
+          dt2,
+        }),
+      });
+      const data = await res.json();
+      let apptTodayArray = data[0].appointments;
+      dt = new Date();
+      dt1 = getDateString(dt);
+      if (data[0].date.split('T')[0]== dt1)
+      for (let i = 0; i < apptTodayArray.length; i++)
+        if (apptTodayArray[i].reservationHour <= currentHour)
+          apptTodayArray[i].status = 'blue';
+      setTimes(data);
+    } catch {
+      setError('Failed to get times');
+    }
+    setLoading(false);
+  }
   return (
     <div className="w-full">
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
@@ -64,45 +106,7 @@ function RequestForm(props) {
       <GetLocation
         loc={location}
         list={props.locations}
-        onChange={async (loc) => {
-          setLocation(loc);
-          let dt = new Date();
-          let dt1 = getDateString(dt);
-          let currentHour = dt.getHours();
-          dt.setDate(dt.getDate() + 9);
-          let dt2 = getDateString(dt);
-          setLastVisibleDate(dt2);
-          setTimes([]);
-          try {
-            setError('');
-            setLoading(true);
-
-            const res = await fetch('/api/reservation/getschedule', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                location: props.locs[loc],
-                game: props.gameIndex,
-                dt1,
-                dt2,
-              }),
-            });
-            const data = await res.json();
-            let apptTodayArray = data[0].appointments;
-            dt = new Date();
-            dt1 = getDateString(dt);
-            if (data[0].date.split('T')[0]== dt1)
-            for (let i = 0; i < apptTodayArray.length; i++)
-              if (apptTodayArray[i].reservationHour <= currentHour)
-                apptTodayArray[i].status = 'blue';
-            setTimes(data);
-          } catch {
-            setError('Failed to get times');
-          }
-          setLoading(false);
-        }}
+        onChange={getAppointmentsTimes}
       />
       <h4
         className="flex flex-row justify-center items-center"

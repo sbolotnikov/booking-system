@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import Axios from 'axios'
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
