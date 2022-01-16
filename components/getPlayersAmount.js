@@ -4,7 +4,7 @@ function GetPlayersAmount(props) {
   const maxParticipants = props.maxP;
   const value = useContext(AppContext);
   let rules = value.rules;
-  const [numberOfParticipants, setNumberOfParticipants] = useState(props.num);
+  const [numberOfParticipants, setNumberOfParticipants] = useState(0);
   const [gameLength, setGameLength] = useState(0);
   const [instructions, setInstructions] = useState(0);
   const [rounds, setRounds] = useState(0);
@@ -67,6 +67,7 @@ function GetPlayersAmount(props) {
   return (
     <div className="w-full flex flex-col items-center justify-center max-w-md text-white bg-popup p-5">
       <h3 className="m-5 ">Укажите примерное количество игроков</h3>
+      <h4 className="m-5 ">От {props.minP} до {props.maxP} игроков</h4>
       <div className="w-full h-auto flex justify-center  flex-wrap max-w-md">
         {arrSkull.map((item, index) => {
           return (

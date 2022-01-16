@@ -10,7 +10,7 @@ function RequestForm(props) {
   const minPlayers = value.games[props.gameIndex].minParticipants;
   const maxPlayers = value.games[props.gameIndex].maxParticipants;
   const svgLink = value.games[props.gameIndex].img;
-  const [participants, setParticipants] = useState(minPlayers);
+  const [participants, setParticipants] = useState(0);
   const [location, setLocation] = useState(0);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -46,6 +46,7 @@ function RequestForm(props) {
   const onReturn = (decision1) => {
     //
     if (decision1 == 'Согласиться') setVisible(false);
+    if (decision1 == 'Подтвердить') setVisible(true);
     setRevealAlert(false);
   };
   const getDateString = (dt) => {
@@ -126,6 +127,7 @@ function RequestForm(props) {
       {visible && (
         <GetPlayersAmount
           num={participants}
+          minP={minPlayers}
           maxP={maxPlayers}
           svgLink={svgLink}
           onChange={(num) => {
@@ -173,7 +175,19 @@ function RequestForm(props) {
                       game: props.gameIndex,
                       location: props.locs[location],
                     });
-                  } else if (choice.status !== 'green') {
+                  } else if (participants === 0) {
+                    setAlertStyle({
+                      variantHead: 'info',
+                      heading: 'Сообщение',
+                      text: `Пожалуйста! Введите количество игроков.`,
+                      color1: 'success',
+                      button1: 'Подтвердить',
+                      color2: '',
+                      button2: '',
+                    });
+                    setRevealAlert(true);
+                  }
+                  else if (choice.status !== 'green') {
                     setAlertStyle({
                       variantHead: 'info',
                       heading: 'Сообщение',
