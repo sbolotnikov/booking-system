@@ -1,19 +1,20 @@
 import { useState, useContext } from 'react';
 import AppContext from '../appContext';
 import AlertMenu from './alertMenu';
-import Loading from './Loading'
+import Loading from './Loading';
 function SendReservationForm(props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [revealAlert, setRevealAlert] = useState(false);
   const [alertStyle, setAlertStyle] = useState({});
   const value = useContext(AppContext);
   const mainEmail = value.mainEmail;
   const monthDay = monthDayText(props.time.date.split('T')[0]);
+  const topElement = document.querySelector('#mainPage');
   function monthDayText(a) {
     const months = [
       'Января',
@@ -162,9 +163,12 @@ function SendReservationForm(props) {
     });
   };
   return (
-    <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
+    <div
+      className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center"
+      style={{ top: topElement.scrollTop }}
+    >
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
-      { loading && <Loading /> }
+      {loading && <Loading />}
       <form
         className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
@@ -276,6 +280,7 @@ function SendReservationForm(props) {
       </form>
     </div>
   );
+        
 }
 
 export default SendReservationForm;

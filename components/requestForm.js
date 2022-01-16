@@ -1,11 +1,16 @@
 import GetPlayersAmount from './getPlayersAmount';
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import GetLocation from './getLocation';
 import SendReservationForm from './sendReservationForm';
 import DayDisplay from './dayDisplay';
 import AlertMenu from './alertMenu';
+import AppContext from '../appContext';
 function RequestForm(props) {
-  const [participants, setParticipants] = useState(0);
+  const value = useContext(AppContext);
+  const minPlayers = value.games[props.gameIndex].minParticipants;
+  const maxPlayers = value.games[props.gameIndex].maxParticipants;
+  const svgLink = value.games[props.gameIndex].img;
+  const [participants, setParticipants] = useState(minPlayers);
   const [location, setLocation] = useState(0);
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -40,7 +45,7 @@ function RequestForm(props) {
   };
   const onReturn = (decision1) => {
     //
-
+    if (decision1 == 'Согласиться') setVisible(false);
     setRevealAlert(false);
   };
   const getDateString = (dt) => {
@@ -51,7 +56,7 @@ function RequestForm(props) {
       day < 10 ? '0' : ''
     }${day}`;
   };
-  const getAppointmentsTimes=async (loc) => {
+  const getAppointmentsTimes = async (loc) => {
     setLocation(loc);
     let dt = new Date();
     let dt1 = getDateString(dt);
@@ -80,18 +85,18 @@ function RequestForm(props) {
       let apptTodayArray = data[0].appointments;
       dt = new Date();
       dt1 = getDateString(dt);
-      if (data[0].date.split('T')[0]== dt1)
-      for (let i = 0; i < apptTodayArray.length; i++)
-        if (apptTodayArray[i].reservationHour <= currentHour)
-          apptTodayArray[i].status = 'blue';
+      if (data[0].date.split('T')[0] == dt1)
+        for (let i = 0; i < apptTodayArray.length; i++)
+          if (apptTodayArray[i].reservationHour <= currentHour)
+            apptTodayArray[i].status = 'blue';
       setTimes(data);
     } catch {
       setError('Failed to get times');
     }
     setLoading(false);
-  }
+  };
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       {revealForm && (
         <SendReservationForm
@@ -113,23 +118,34 @@ function RequestForm(props) {
         onClick={() => setVisible(true)}
       >
         <span>Количество игроков:{participants + ' x '}</span>
-        <svg
-          className="h-5 w-5 ml-1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 68.592 67.306"
-        >
-          <path
-            fill="white"
-            d="M69.35,38.555C68.569,17.9,56.939,2.151,32.837,1.992a44.471,44.471,0,0,0-9.046,1.059C13.513,5.58,7.923,10.181,4.067,18.145,1.9,22.612,1.325,27.048.912,32.519.722,35.05.83,37.989.83,37.989a19.237,19.237,0,0,0,.69,5.405A10.215,10.215,0,0,0,2.674,46.4c2.152,3.326,2.152,3.033,4.557,4.981,3.692,2.992,7.379,4.042,5.568,9.654-.659,2.042-.587,5.1,2.508,5.613,2.7.445,3.992-1.79,5.036-4.022,1.375-2.939,1.231-7.414,6.559-6.447,4.884.886,3.164,4.459,3.192,7.359.023,2.512.685,5.284,3.172,5.693,3.394.558,4.321-2.633,5.174-5.27.974-3.007-.783-7.317,4.779-7.94,5.627-.63,6.039,3.639,7.778,6.963,1.074,2.055,2.409,4.531,5.206,3.663,2.692-.835,2.933-3.475,2.236-5.83-1.117-3.775-1.5-6.724,3.427-8.12C69.007,50.678,69.588,44.857,69.35,38.555Zm-49.1,6.767c-3.437-.355-7.435-1.558-6.906-6.171.594-5.184,5.009-5.156,8.936-5.046,2.843.08,5.266.808,6.4,3.129a5.31,5.31,0,0,1-.816,5.709C26.041,45.105,23.218,45.629,20.253,45.322ZM49.9,44.292c-3.228.015-6.822-.4-6.986-4.321-.189-4.546,3.474-5.507,7.277-5.4,2.587.072,4.688.86,5.867,2.834a4.186,4.186,0,0,1-.019,4.329C54.744,43.793,52.464,44.28,49.9,44.292Z"
-          />
-        </svg>
+        <img
+              src={svgLink}
+              className="w-8 cursor-pointer"/>
+
       </h4>
       {visible && (
         <GetPlayersAmount
           num={participants}
+          maxP={maxPlayers}
+          svgLink={svgLink}
           onChange={(num) => {
-            setParticipants(num);
-            setVisible(false);
+            console.log(window.pageYOffset)
+            if (num > minPlayers) {
+              setParticipants(num);
+              setVisible(false);
+            } else {
+              setParticipants(minPlayers);
+              setAlertStyle({
+                variantHead: 'info',
+                heading: 'Ввод количества игроков меньше допустимого',
+                text: `Установим минимальное количеество игроков: ${minPlayers}?`,
+                color1: 'success',
+                button1: 'Согласиться',
+                color2: 'secondary',
+                button2: 'Вернуться  к выбору',
+              });
+              setRevealAlert(true);
+            }
           }}
         />
       )}
@@ -144,7 +160,9 @@ function RequestForm(props) {
                 times={item.appointments}
                 dayIndex={index}
                 onChoice={async (choice, dayIndex) => {
+                  console.log(window.pageYOffset)
                   if (participants > 0 && choice.status == 'green') {
+                    console.log(choice, participants);
                     setRevealForm(true);
                     setReservedTime({
                       _id: choice._id,
@@ -155,11 +173,11 @@ function RequestForm(props) {
                       game: props.gameIndex,
                       location: props.locs[location],
                     });
-                  } else if (participants === 0) {
+                  } else if (choice.status !== 'green') {
                     setAlertStyle({
                       variantHead: 'info',
                       heading: 'Сообщение',
-                      text: `Пожалуйста введите количество участников игры`,
+                      text: `Вывранное время уже зарезервировано.`,
                       color1: 'success',
                       button1: 'Согласиться',
                       color2: '',

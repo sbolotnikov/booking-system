@@ -33,7 +33,7 @@ export default function Layout({ children }) {
           
         /> */}
       </Head>
-      <main className="h-screen bg-main-bg containerFont text-white relative text-lg overflow-hidden overflow-y-scroll">
+      <main id="mainPage" className="h-screen bg-main-bg containerFont text-white relative text-lg overflow-hidden overflow-y-scroll">
         <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:navbarLinks} />
         {children}
         <Footer />

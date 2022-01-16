@@ -55,7 +55,7 @@ function Templates() {
     setCurrentEventsUp(location, game);
   }, []);
   return (
-    <div className="w-full flex flex-col justify-center items-center flex-wrap">
+    <div className="w-full flex flex-col justify-center items-center">
       <button
         className="flex flex-row"
         onClick={(e) => {

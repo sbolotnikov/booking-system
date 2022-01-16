@@ -144,7 +144,7 @@ function AboutComponent() {
     <div className="max-w-[1170px] w-full font-['SourceSansPro'] mx-auto mt-10">
       <h1 className="text-center  p-10 text-2xl font-extrabold">
         {' '}
-        Более 180 м<sup>2</sup> темноты, ловушки и десятки мест, где можно
+        Более 300 м<sup>2</sup> темноты, ловушки и десятки мест, где можно
         спрятаться
       </h1>
       <div className="flex flex-col tablet:flex-row w-full">
@@ -199,9 +199,7 @@ function AboutComponent() {
         <div className="hidden laptop:block laptop:w-[400px]"></div>
         <div className="my-auto">
           <h1 className="text-center text-2xl pt-10 font-extrabold">
-            Абсолютно новый формат
-            <br className=" hidden laptop:block" />
-            развлечений в Челябинске{' '}
+            Абсолютно новый формат <br className=" hidden laptop:block" /> развлечений в Челябинске{' '}
           </h1>
 
           <h3 className="text-center p-2 text-gray-400 ">

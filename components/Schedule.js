@@ -40,7 +40,7 @@ function Schedule({templates, eventsSet, game, location}) {
   return (
     <>
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
-      <div id="container" className="w-full max-w-[1000px]">
+      <div className="w-full max-w-[1000px]">
 {/* 
         {location && game && ( */}
           <div>

@@ -24,18 +24,19 @@ const Navbar = ({ navbarLinks }) => {
           menuClicked ? 'navbar__list navbar__list--active' : 'navbar__list'
         }
       >
-        {menuClicked && (
+      {/* {nav.width()} */}
+        { menuClicked && (
           <li className="navbar__item" key={'zeroitem'}>
-            <Link className="navbar__link" href={'tel:+7(351)220-7549'}>
+            <Link className="navbar__link" href={'tel:+73512583000'}>
               <a
                 onClick={() => {
-                  setMenuClicked(!menuClicked);
+                  setMenuClicked(false);
                 }}
               >
                 <div className="w-4">
                   <img src={'/icons/call.svg'} alt="menu call" />
                 </div>
-                +7(951)258-3000
+                +7(351)258-3000
               </a>
             </Link>
           </li>
@@ -46,7 +47,7 @@ const Navbar = ({ navbarLinks }) => {
               <Link className="navbar__link" href={item.url}>
                 <a
                   onClick={() => {
-                    setMenuClicked(!menuClicked);
+                    setMenuClicked(false);
                   }}
                 >
                   {item.title}
@@ -60,7 +61,7 @@ const Navbar = ({ navbarLinks }) => {
       <div className="navbar__right_span">
         {((session && session.user.status !== 'admin') || !session) && (
           <div className="navbar__menu_grid">
-            <Link href={'tel:+79512583000'}>
+            <Link href={'tel:+73512583000'}>
               <img className="object-fill" src={'/icons/call.svg'} alt="menu call" />
             </Link>
           </div>

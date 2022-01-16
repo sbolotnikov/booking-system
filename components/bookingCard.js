@@ -44,7 +44,7 @@ function BookingCard(props) {
           <span className="ml-1 text-white font-extrabold text-4xl">{props.item.price}</span>
           <span> ₽</span>
           <br />
-          <span>за участника</span>
+          {/* <span>за участника</span> */}
         </div>
         <Link href={'/game/' + props.item.id}>
           <button className="border-2 border-blue-400 text-blue-400 rounded-full p-1 mt-1 ml-1">

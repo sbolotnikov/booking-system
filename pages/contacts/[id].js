@@ -23,14 +23,12 @@ function contacts(props) {
             Организатор в Челябинске:
             <br />
             <br />
-            ИП Плешанова Ксения Павловна
+            ИП Бондаренко Николай Владимирович
             <br />
-            ОГРНИП: 316745600214898
-            <br />
-            ИНН: 745309853230
+            ИНН: 744842796410
           </h2>
         </div>
-        <div className="borderleft pl-6 ">
+        <div className="borderleft">
           <h2 className="font-extrabold">{locations[location].name}</h2>
           <p
             dangerouslySetInnerHTML={{ __html: locations[location].address }}
@@ -48,51 +46,55 @@ function contacts(props) {
               __html: locations[location].address_desc,
             }}
           ></p>
-          <div className="m-auto">
-        <YMaps>
-          <Map
-            state={{
-              center: [
-                locations[location].coordinates.x,
-                locations[location].coordinates.y,
-              ],
-              zoom: locations[location].coordinates.zoom,
-            }} 
-            style={{overflow: 'hidden',borderRadius: '0.5rem',width: '350px',height: '300px'}}
-          
-          >
-            <GeoObject
-              // The geometry description.
-              geometry={{
-                type: 'Point',
-                coordinates: [
-                  locations[location].coordinates.x,
-                  locations[location].coordinates.y,
-                ],
-              }}
-              // Properties.
-              properties={{
-                // The placemark content.
-                iconContent: locations[location].name,
-                hintContent: 'Ну давай уже тащи',
-              }}
-              // Options.
-              options={{
-                // The placemark's icon will stretch to fit its contents.
-                preset: 'islands#blackStretchyIcon',
-                // The placemark can be moved.
-                draggable: false,
-              }}
-            />
-          </Map>
-        </YMaps>
-        </div>
+          <div className="m-auto mt-2">
+            <YMaps>
+              <Map
+                state={{
+                  center: [
+                    locations[location].coordinates.x,
+                    locations[location].coordinates.y,
+                  ],
+                  zoom: locations[location].coordinates.zoom,
+                }}
+                style={{
+                  overflow: 'hidden',
+                  borderRadius: '0.5rem',
+                  width: '325px',
+                  height: '300px',
+                }}
+              >
+                <GeoObject
+                  // The geometry description.
+                  geometry={{
+                    type: 'Point',
+                    coordinates: [
+                      locations[location].coordinates.x,
+                      locations[location].coordinates.y,
+                    ],
+                  }}
+                  // Properties.
+                  properties={{
+                    // The placemark content.
+                    iconContent: locations[location].name,
+                    hintContent: 'Ну давай уже тащи',
+                  }}
+                  // Options.
+                  options={{
+                    // The placemark's icon will stretch to fit its contents.
+                    preset: 'islands#blackStretchyIcon',
+                    // The placemark can be moved.
+                    draggable: false,
+                  }}
+                />
+              </Map>
+            </YMaps>
+          </div>
         </div>
       </div>
       <div className="rounded w-full font-SourceSansPro bg-popup max-w-[1170px] my-3 mx-auto p-1">
         <span>&#9888;</span> Локации работают только по предварительной записи,
         если вы хотите посетить нас просто, чтобы осмотреться, пожалуйста,
-        позвоните предварительно по телефону +7 (351) 220-75-49. Будем рады вас
+        позвоните предварительно по телефону +7(351)258-3000. Будем рады вас
         видеть!
       </div>
     </div>

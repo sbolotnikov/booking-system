@@ -69,7 +69,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: linear-gradient(180deg, transparent 0, #0c1118 250px);
-  height: 100%;
+  
   min-height: 250px;
   padding: 5em 20px;
   margin-top:-3rem;
@@ -125,6 +125,7 @@
 .borderleft {
   border-color: rgba(55, 65, 81, 1);
   border-left-width: 2px;
+  padding-left: 1.5rem;
 }
 
 .btnBlue{
@@ -148,6 +149,7 @@
   }
   .borderleft {
     border-left-width: 0px;
+    padding-left: 0;
   }
   .containerContacts {
     display: block;
@@ -159,6 +161,7 @@
     font-size: 20px;
   }
 }
+
 
 @media screen and (min-width: 1200px) {
     html {
