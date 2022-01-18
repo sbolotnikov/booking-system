@@ -51,7 +51,7 @@ const Login = ({ session }) => {
         style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
       >
         <h2
-          className="text-center fw-bolder text-uppercase"
+          className="text-center font-bold uppercase"
           style={{ color: 'whitesmoke', letterSpacing: '1px' }}
         >
           Вход
@@ -97,13 +97,13 @@ const Login = ({ session }) => {
           bgColor="#22b05b"
           options={{ redirect: false, email: email2 }}
         >
-          <div className="flex flex-col items-center p-3 bg-white bottom-0">
+          <div className="flex flex-col items-center p-3 bg-main-bg bottom-0">
             <label htmlFor="email">Вход через ваш эл. адрес</label>
             <input
               type="email"
               id="email2"
               name="email2"
-              className="flex-1 outline-none border-none rounded-sm bg-gray-100 p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-sm bg-main-bg p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email2}

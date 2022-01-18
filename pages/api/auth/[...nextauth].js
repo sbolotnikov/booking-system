@@ -7,8 +7,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import EmailProvider from 'next-auth/providers/email';
 import { html, text } from '../../../utils/htmlEmail';
-import nodemailer from 'nodemailer';
-const { google } = require('googleapis');
+import { sendEmail } from '../../../utils/sendEmail';
 import Users from '../../../models/userModel';
 import bcrypt from 'bcryptjs';
 // const oAuth2Client = new google.auth.OAuth2(
@@ -91,10 +90,9 @@ export default async function auth(req, res) {
           provider: { server, from },
         }) {
           const { host } = new URL(url);
-          const transport = nodemailer.createTransport(server)
          
-          // const transport = nodemailer.createTransport('SMTP',server);
-          const sendEmailObj = await transport.sendMail({
+
+          const sendEmailObj = await sendEmail({
             to: email,
             from,
             subject: `Sign in to ${host}`,
