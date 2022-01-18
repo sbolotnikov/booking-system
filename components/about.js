@@ -4,7 +4,7 @@ import AccordionFAQ from './accordionFAQ';
 import Booking from './booking';
 import Slider from './Slider';
 
-function AboutComponent() {  
+function AboutComponent() {
   const listArrayLeft = [
     {
       imgLink: '/icons/lamp.svg',
@@ -199,7 +199,8 @@ function AboutComponent() {
         <div className="hidden laptop:block laptop:w-[400px]"></div>
         <div className="my-auto">
           <h1 className="text-center text-2xl pt-10 font-extrabold">
-            Абсолютно новый формат <br className=" hidden laptop:block" /> развлечений в Челябинске{' '}
+            Абсолютно новый формат <br className=" hidden laptop:block" />{' '}
+            развлечений в Челябинске{' '}
           </h1>
 
           <h3 className="text-center p-2 text-gray-400 ">
@@ -322,7 +323,7 @@ function AboutComponent() {
       <div className="m-7">
         <Booking />
       </div>
-      <Slider />
+        <Slider />
       <AccordionFAQ options={options} />
     </div>
   );
