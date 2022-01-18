@@ -9,7 +9,7 @@ import '../styles/rating.css';
 import Layout from '../components/layout';
 import AppContext from '../appContext';
 import dataObject from '../dataObject';
-import LazyLoadComponent from 'react-intersection-observer-lazy-load';
+// import LazyLoadComponent from 'react-intersection-observer-lazy-load';
 function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider
@@ -37,71 +37,71 @@ function MyApp({ Component, pageProps }) {
         <link
           rel="apple-touch-icon"
           sizes="57x57"
-          HREF="/apple-icon-57x57.png"
+          HREF="apple-icon-57x57.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="60x60"
-          HREF="/apple-icon-60x60.png"
+          HREF="apple-icon-60x60.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="72x72"
-          HREF="/apple-icon-72x72.png"
+          HREF="apple-icon-72x72.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
-          HREF="/apple-icon-76x76.png"
+          HREF="apple-icon-76x76.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="114x114"
-          HREF="/apple-icon-114x114.png"
+          HREF="apple-icon-114x114.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="120x120"
-          HREF="/apple-icon-120x120.png"
+          HREF="apple-icon-120x120.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="144x144"
-          HREF="/apple-icon-144x144.png"
+          HREF="apple-icon-144x144.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="152x152"
-          HREF="/apple-icon-152x152.png"
+          HREF="apple-icon-152x152.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          HREF="/apple-icon-180x180.png"
+          HREF="apple-icon-180x180.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="192x192"
-          HREF="/android-icon-192x192.png"
+          HREF="android-icon-192x192.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          HREF="/favicon-32x32.png"
+          HREF="favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="96x96"
-          HREF="/favicon-96x96.png"
+          HREF="favicon-96x96.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          HREF="/favicon-16x16.png"
+          HREF="favicon-16x16.png"
         />
         <link rel="manifest" HREF="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ffffff" />
@@ -113,9 +113,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <AppContext.Provider value={dataObject}>
         <Layout>
-        <LazyLoadComponent>
+        {/* <LazyLoadComponent> */}
           <Component {...pageProps} />
-          </LazyLoadComponent>
+          {/* </LazyLoadComponent> */}
         </Layout>
       </AppContext.Provider>
       <ToastContainer />
