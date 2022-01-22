@@ -15,7 +15,7 @@ function GetPlayersAmount(props) {
   }, []);
   const handleChoice = (numberClicked) => {
     for (let i = 0; i < maxParticipants; i++) {
-      document.getElementById(`skull-img-${i}`).style.filter= 'invert(1)';
+      document.getElementById(`skull-img-${i}`).style.filter= 'invert(0.75)';
     }
     for (let i = 0; i < numberClicked; i++) {
       document.getElementById(`skull-img-${i}`).style.filter= '';
