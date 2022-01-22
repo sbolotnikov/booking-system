@@ -19,7 +19,9 @@ const userSchema = new mongoose.Schema({
     default: 'https://res.cloudinary.com/sergeyb/image/upload/v1616530982/quizzes/defaultIcon_w0obug.png' 
   },
   status: { 
-    type: String 
+    type: String,
+    default: 'guest',
+    required: true 
   },
   phone: { 
     type: String 

@@ -19,10 +19,18 @@ export default function Layout({ children }) {
     { url: '/adm_location/0', title: 'Резервации' },
     { url: '/contacts/0', title: 'Где находится?' },
   ];
+  let navbarLinksSuper = [
+    { url: '/book', title: 'Забронировать' },
+    { url: '/admin', title: 'Расписание' },
+    { url: '/adm_location/0', title: 'Резервации' },
+    { url: '/contacts/0', title: 'Где находится?' },
+    { url: '/user_screen', title: 'Пользователи' },
+  ];
   console.log(session)
   let opt=session?{ url: '/logout', title: 'Выйти' }:{ url: '/login', title: 'Регистрация' }
   navbarLinks.push(opt);
   navbarLinksAdmin.push(opt);
+  navbarLinksSuper.push(opt);
   return (
     <div>
       <Head>
@@ -34,7 +42,7 @@ export default function Layout({ children }) {
         /> */}
       </Head>
       <main id="mainPage" className="h-screen bg-main-bg containerFont text-white relative text-lg overflow-hidden overflow-y-scroll">
-        <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:navbarLinks} />
+        <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:(session && session.user.status ==="super")?navbarLinksSuper:navbarLinks} />
         {children}
         <Footer />
       </main>
