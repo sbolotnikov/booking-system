@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   status: { 
     type: String,
-    default: 'guest',
+    default: 'user',
     required: true 
   },
   phone: { 

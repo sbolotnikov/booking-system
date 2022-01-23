@@ -13,7 +13,7 @@ function Card(props) {
 
       }, []);
     return (
-        <div id={`${props.id}card`} className="flex">
+        <div id={`${props.id}card`} className="flex mb-6">
             <img id={`${props.id}image`} src={props.item.imgLink} alt=""  />
             <div id={`${props.id}text`}>
               <h3 id={`${props.id}name`}>
