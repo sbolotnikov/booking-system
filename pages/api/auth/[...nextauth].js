@@ -99,7 +99,7 @@ export default async function auth(req, res) {
             text: text({ url, host }),
             html: html({ url, host, email }),
           });
-          console.log(sendMail);
+          console.log(sendEmailObj);
         },
       }),
     ],

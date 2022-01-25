@@ -2,23 +2,10 @@ import { useState, useEffect, useContext } from 'react';
 import AppContext from '../appContext';
 import AlertMenu from './alertMenu';
 import Loading from './Loading';
-import { useSession } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 function SendReservationForm(props) {
-  const {data:session, loadings} = useSession();
-  useEffect(() => {
-    if (session) {
-    if (session.user.name &&(session.user.name.length>0)){
-      document.getElementById("userName").value=session.user.name
-    }
-    if (session.user.email &&(session.user.email.length>0)){
-      document.getElementById("userEmail").value=session.user.email
-    }
-    if (session.user.phone &&(session.user.phone.length>0)){
-      document.getElementById("userPhone").value=session.user.phone
-    }
-  }
-}, []);
+  const { data: session, loadings } = useSession();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -31,6 +18,25 @@ function SendReservationForm(props) {
   const mainEmail = value.mainEmail;
   const monthDay = monthDayText(props.time.date.split('T')[0]);
   const topElement = document.querySelector('#mainPage');
+  useEffect(() => {
+    if (session) {
+      if (session.user.name && session.user.name.length > 0) {
+        document.getElementById('userName').value = session.user.name;
+        setName(session.user.name);
+      }
+      if (session.user.email && session.user.email.length > 0) {
+        document.getElementById('userEmail').value = session.user.email;
+        setEmail(session.user.email);
+      }
+      if (session.user.phone && session.user.phone.length > 0) {
+        document.getElementById('userPhone').value = session.user.phone;
+        setPhone(session.user.phone);
+      }
+    }
+  }, []);
+
+
+  console.log(props.time.perPerson);
   function monthDayText(a) {
     const months = [
       'Января',
@@ -50,6 +56,8 @@ function SendReservationForm(props) {
     let d = a.slice(-2);
     return `${d} ${months[m - 1]}`;
   }
+
+
   const onReturn = (decision1) => {
     //
     setName('');
@@ -84,9 +92,9 @@ function SendReservationForm(props) {
  <h3 style="width:100%"><strong>Количество игроков:</strong>${
    props.players + 'ч.'
  }</h3>
- <h3 style="width:100%"><strong>Стоимость игры — ${
-   props.time.price
- } руб.</strong> за участника. Если игроков меньше ***-ти, то стоимость игры для всей команды составляет **** руб.</h3>
+ <h3 style="width:100%"><strong>Стоимость игры для всей команды составляет— ${
+   props.time.perPerson ? props.time.price * props.players : props.time.price
+ } руб.</strong>  Дополнительные скидки можно получиить после разговора с нашим оператором.</h3>
  <h3 style="width:100%"><strong>Специальные пожелания:</strong>${message}</h3>
  `;
     let reg_message = `Время проведения: ${monthDay} -${' '} ${`${
@@ -95,10 +103,10 @@ function SendReservationForm(props) {
 Адрес:${value.locations[props.time.location].address},\n
 Вы выбрали игру ${value.games[props.time.game].name}.\n
 Количество игроков:${props.players + 'ч.'}\n
-Стоимость игры — ${
+Стоимость игры для всей команды составляет— ${
       props.time.price
-    } руб. за участника. Если игроков меньше ***-ти, то \n
- стоимость игры для всей команды составляет **** руб.\n\n
+    } руб.   Дополнительные скидки можно получиить  \n
+    после разговора с нашим оператором.\n\n
 Специальные пожелания:\n ${message}
  `;
     let data_mail = {
@@ -178,129 +186,133 @@ function SendReservationForm(props) {
       }
     });
   };
+  
   return (
-    <div
-      className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center"
-      style={{ top: topElement.scrollTop }}
-    >
+    <div>
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
-      {loading && <Loading />}
-      <form
-        className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
-        style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
-        onSubmit={handleSubmit}
+      <div
+        className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center"
+        style={{ top: topElement.scrollTop }}
       >
-        <button
-          className="relative w-full"
-          onClick={() => {
-            props.onChange(true);
-          }}
+        {loading && <Loading />}
+        <form
+          className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
+          style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
+          onSubmit={handleSubmit}
         >
-          <div className="absolute  -top-7 -right-7  p-2  bg-black rounded-full  flex justify-center  items-center">
-            <img className="h-2" src={'/icons/close.svg'} alt="menu close" />
+          <button
+            className="relative w-full"
+            onClick={() => {
+              props.onChange(true);
+            }}
+          >
+            <div className="absolute  -top-7 -right-7  p-2  bg-black rounded-full  flex justify-center  items-center">
+              <img className="h-2" src={'/icons/close.svg'} alt="menu close" />
+            </div>
+          </button>
+          <div className="w-full">
+            <h2 className="w-full text-center font-extrabold">
+              <span className="xs:hidden">Время проведения:</span> {monthDay} -{' '}
+              {`${props.time.hour}:${props.time.minutes < 10 ? '0' : ''}${
+                props.time.minutes
+              }`}
+            </h2>
+            <h3 className=" text-gray-400">
+              Адрес:{' '}
+              <span
+                className="xs:text-xs"
+                dangerouslySetInnerHTML={{
+                  __html: value.locations[props.time.location].address_short,
+                }}
+              />
+            </h3>
+            <h3 className="w-full text-gray-400">
+              {' '}
+              <span className="xs:hidden">Вы выбрали игру</span>{' '}
+              {value.games[props.time.game].name}.{' '}
+              <span className="xs:hidden">Количество игроков:</span>
+              {props.players}
+              {'ч.'}
+            </h3>
+            <h3 className="w-full text-gray-400 text-xs">
+              Стоимость игры для всей команды составляет—{' '}
+              <span className="text-white font-extrabold">
+                {props.time.perPerson
+                  ? props.time.price * props.players
+                  : props.time.price}{' '}
+                руб.
+              </span>{' '}
+              Дополнительные скидки можно получиить после разговора с нашим
+              оператором
+            </h3>
           </div>
-        </button>
-        <div className="w-full">
-          <h2 className="w-full text-center font-extrabold">
-            <span className="xs:hidden">Время проведения:</span> {monthDay} -{' '}
-            {`${props.time.hour}:${props.time.minutes < 10 ? '0' : ''}${
-              props.time.minutes
-            }`}
-          </h2>
-          <h3 className=" text-gray-400">
-            Адрес:{' '}
-            <span
-              className="xs:text-xs"
-              dangerouslySetInnerHTML={{
-                __html: value.locations[props.time.location].address_short,
-              }}
-            />
-          </h3>
           <h3 className="w-full text-gray-400">
-            {' '}
-            <span className="xs:hidden">Вы выбрали игру</span>{' '}
-            {value.games[props.time.game].name}.{' '}
-            <span className="xs:hidden">Количество игроков:</span>
-            {props.players}
-            {'ч.'}
+            <span className="xs:hidden">Пожалуйста, укажите ваши</span>{' '}
+            контактные данные:
           </h3>
-          <h3 className="w-full text-gray-400 text-xs">
-            Стоимость игры —{' '}
-            <span className="text-white font-extrabold">
-              {props.time.price} руб.
-            </span>{' '}
-            за участника. Если игроков меньше ***-ти, то стоимость игры для всей
-            команды составляет **** руб.
-          </h3>
-        </div>
-        <h3 className="w-full text-gray-400">
-          <span className="xs:hidden">Пожалуйста, укажите ваши</span> контактные
-          данные:
-        </h3>
-        <input
-          id="userName"
-          className="w-full rounded mb-1 bg-[#0C1118]"
-          type="text"
-          placeholder="Ваше имя"
-          required
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          
-          value={name}
-          minLength="3"
-        />
-        <div className="text-red-700 font-extrabold xs:text-xs">{error}</div>
-        <input
-          id="userPhone"
-          className="w-full rounded mb-1 bg-[#0C1118]"
-          type="tel"
-          placeholder="Телефон"
-          required
-          minLength={13}
-          maxLength={13}
-          onChange={(e) => {
-            setError('');
-            setPhone(e.target.value.slice(3));
-          }}
-          value={'+7 ' + phone}
-        />
-        <input
-          id="userEmail"
-          className="w-full rounded mb-1 bg-[#0C1118]"
-          type="email"
-          placeholder="E-mail"
-          required
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          value={email}
-        />
-        <textarea
-          className="w-full rounded mb-1 bg-[#0C1118]"
-          placeholder="Комментарий или пожелания, если есть"
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-          value={message}
-          minLength="5"
-          rows={4}
-        />
-        <button
-          type="submit"
-          className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around"
-        >
-          <span> Забронировать</span>
-          <img
-            className="ml-1 w-5 h-5"
-            src={'/icons/booking.svg'}
-            alt="booking"
+          <input
+            id="userName"
+            className="w-full rounded mb-1 bg-[#0C1118]"
+            type="text"
+            placeholder="Ваше имя"
+            required
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            value={name}
+            minLength="3"
           />
-        </button>
-      </form>
+          <div className="text-red-700 font-extrabold xs:text-xs">{error}</div>
+          <input
+            id="userPhone"
+            className="w-full rounded mb-1 bg-[#0C1118]"
+            type="tel"
+            placeholder="Телефон"
+            required
+            minLength={13}
+            maxLength={13}
+            onChange={(e) => {
+              setError('');
+              setPhone(e.target.value.slice(3));
+            }}
+            value={'+7 ' + phone}
+          />
+          <input
+            id="userEmail"
+            className="w-full rounded mb-1 bg-[#0C1118]"
+            type="email"
+            placeholder="E-mail"
+            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+          />
+          <textarea
+            className="w-full rounded mb-1 bg-[#0C1118]"
+            placeholder="Комментарий или пожелания, если есть"
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
+            value={message}
+            minLength="5"
+            rows={4}
+          />
+          <button
+            type="submit"
+            className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around"
+          >
+            <span> Забронировать</span>
+            <img
+              className="ml-1 w-5 h-5"
+              src={'/icons/booking.svg'}
+              alt="booking"
+            />
+          </button>
+        </form>
+      </div>
     </div>
   );
-        
 }
 
 export default SendReservationForm;

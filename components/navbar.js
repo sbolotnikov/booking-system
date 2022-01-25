@@ -3,7 +3,7 @@ import Emailform from './emailform';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 // import ContactMailIcon from '@mui/icons-material/ContactMail';
-const Navbar = ({ navbarLinks }) => {
+const Navbar = ({ navbarLinks, path }) => {
   // Determines if the "menu icon" was clicked or not. Note that this icon is only visible when the window width is small.
   const [menuClicked, setMenuClicked] = useState(false);
   const [emailFormVis, setEmailFormVis] = useState(false);
@@ -16,7 +16,8 @@ const Navbar = ({ navbarLinks }) => {
     <nav className="navbar">
       <Link className="navbar__link" href={'/'}>
         <span className="navbar__logo">
-          <img src={'/icons/logo light dark back.svg'} alt="call root" />
+          {path!=='/'?<img src={'/icons/logo light dark back.svg'} alt="call root" />:<div></div>}
+
         </span>
       </Link>
       <ul

@@ -131,7 +131,6 @@ function RequestForm(props) {
           maxP={maxPlayers}
           svgLink={svgLink}
           onChange={(num) => {
-            console.log(window.pageYOffset)
             if (num > minPlayers) {
               setParticipants(num);
               setVisible(false);
@@ -162,9 +161,7 @@ function RequestForm(props) {
                 times={item.appointments}
                 dayIndex={index}
                 onChoice={async (choice, dayIndex) => {
-                  console.log(window.pageYOffset)
                   if (participants > 0 && choice.status == 'green') {
-                    console.log(choice, participants);
                     setRevealForm(true);
                     setReservedTime({
                       _id: choice._id,
@@ -172,6 +169,7 @@ function RequestForm(props) {
                       hour: choice.reservationHour,
                       minutes: choice.reservationMin,
                       price: choice.price,
+                      perPerson: choice.perPerson,
                       game: props.gameIndex,
                       location: props.locs[location],
                     });

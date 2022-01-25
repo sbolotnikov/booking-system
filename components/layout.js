@@ -2,9 +2,10 @@ import Navbar from './navbar';
 import Footer from '../components/footer';
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-
+import { useRouter } from 'next/router';
 export default function Layout({ children }) {
   const {data:session, loading} = useSession();
+  const router = useRouter();
   let navbarLinks = [
     { url: '/about', title: 'Об игре' },
     { url: '/book', title: 'Забронировать' },
@@ -42,7 +43,7 @@ export default function Layout({ children }) {
         /> */}
       </Head>
       <main id="mainPage" className="h-screen bg-main-bg containerFont text-white relative text-lg overflow-hidden overflow-y-scroll">
-        <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:(session && session.user.status ==="super")?navbarLinksSuper:navbarLinks} />
+        <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:(session && session.user.status ==="super")?navbarLinksSuper:navbarLinks} path={router.asPath} />
         {children}
         <Footer />
       </main>
