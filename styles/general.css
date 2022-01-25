@@ -75,6 +75,14 @@
   margin-top:-3rem;
   text-align: center;
 }
+.noscroll { 
+  position: fixed; 
+  overflow-y:scroll;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}
 .inner-wrap h2 {
   font-family: Lumberjack;
 }

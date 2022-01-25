@@ -1,8 +1,24 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import AppContext from '../appContext';
 import AlertMenu from './alertMenu';
 import Loading from './Loading';
+import { useSession } from "next-auth/react";
+
 function SendReservationForm(props) {
+  const {data:session, loadings} = useSession();
+  useEffect(() => {
+    if (session) {
+    if (session.user.name &&(session.user.name.length>0)){
+      document.getElementById("userName").value=session.user.name
+    }
+    if (session.user.email &&(session.user.email.length>0)){
+      document.getElementById("userEmail").value=session.user.email
+    }
+    if (session.user.phone &&(session.user.phone.length>0)){
+      document.getElementById("userPhone").value=session.user.phone
+    }
+  }
+}, []);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -222,6 +238,7 @@ function SendReservationForm(props) {
           данные:
         </h3>
         <input
+          id="userName"
           className="w-full rounded mb-1 bg-[#0C1118]"
           type="text"
           placeholder="Ваше имя"
@@ -229,11 +246,13 @@ function SendReservationForm(props) {
           onChange={(e) => {
             setName(e.target.value);
           }}
+          
           value={name}
           minLength="3"
         />
         <div className="text-red-700 font-extrabold xs:text-xs">{error}</div>
         <input
+          id="userPhone"
           className="w-full rounded mb-1 bg-[#0C1118]"
           type="tel"
           placeholder="Телефон"
@@ -247,6 +266,7 @@ function SendReservationForm(props) {
           value={'+7 ' + phone}
         />
         <input
+          id="userEmail"
           className="w-full rounded mb-1 bg-[#0C1118]"
           type="email"
           placeholder="E-mail"

@@ -5,6 +5,7 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
     const [error, setError] = useState(false);
     const [color, setColor] = useState("");
     const [appointments, setAppointments] = useState([]);  
+    const topElement = document.querySelector('#mainPage');
       useEffect(() => {
         setTitle(choice[0].name);
         setColor(choice[0].color);
@@ -16,7 +17,7 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
 
       }, []);
     return(
-        <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
+        <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center" style={{ top: topElement.scrollTop }}>
         <div className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4">
           <h2>Новое расписание: {new Date(eventDay+'T23:00:00.000Z').toLocaleDateString('ru-ru', {
             weekday: 'long',
@@ -65,6 +66,7 @@ export const NewEventModal = ({choice, eventDay, onSave, onClose }) => {
                     <TimeDisplay
                       key={item.id}
                       price={item.price}
+                      perPerson={item.perPerson}
                       time={`${item.reservationHour}:${
                         item.reservationMin < 10 ? '0' : ''
                       }${item.reservationMin}`}

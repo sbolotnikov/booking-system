@@ -17,6 +17,7 @@ export const EditEventModal = ({
       onSave(appointments);
     }
   };
+  const topElement = document.querySelector('#mainPage');
   const pull_data = (appt) => {
     let apptArray = appointments;
     apptArray[appt.i] = appt.appt;
@@ -30,7 +31,7 @@ export const EditEventModal = ({
     setAppointments([...apptArray]);
   };
   return (
-    <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center">
+    <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center" style={{ top: topElement.scrollTop }}>
       <div className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4">
         <h2>Расписание: {new Date(eventDay+'T23:00:00.000Z').toLocaleDateString('ru-ru', {
             weekday: 'long',
@@ -60,6 +61,7 @@ export const EditEventModal = ({
                     <TimeDisplay
                       key={item.id}
                       price={item.price}
+                      perPerson={item.perPerson}
                       time={`${item.reservationHour}:${
                         item.reservationMin < 10 ? '0' : ''
                       }${item.reservationMin}`}

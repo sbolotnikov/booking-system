@@ -21,6 +21,10 @@ const ScheduleSchema = new Schema({
           type: String,
           required: true,
         },
+        perPerson: {
+          type: Boolean,
+          required: true,
+        },
       }],
 
     color: {

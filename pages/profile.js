@@ -55,7 +55,7 @@ const profile = ({ session }) => {
       setRevealAlert(true);
       return;
     }
-    if (passwordRef.current.value.length < 6) {
+    if ((passwordRef.current.value.length < 6)&&(passwordRef.current.value.length > 0)) {
       setAlertStyle({
         variantHead: 'info',
         heading: 'Сообщение',
@@ -150,7 +150,7 @@ const profile = ({ session }) => {
               type="text"
               ref={userNameRef}
               defaultValue={session.user.name}
-              placeholder="Leave blank to keep the same"
+              placeholder="Введите Имя"
             />
           </label>
           {revealCloud && (
@@ -192,7 +192,7 @@ const profile = ({ session }) => {
               id="password"
               type="password"
               ref={passwordRef}
-              placeholder="Leave blank to keep the same"
+              placeholder="Не нужен пароль, оставьте бланк"
             />
           </label>
           <label className="flex flex-col items-center p-3 bg-popup rounded-t-md bottom-0">
@@ -202,7 +202,7 @@ const profile = ({ session }) => {
               id="password-confirm"
               type="password"
               ref={passwordConfirmRef}
-              placeholder="Leave blank to keep the same"
+              placeholder="Не нужен пароль, оставьте бланк"
             />
           </label>
           <label className="flex flex-col items-center p-3 bg-popup rounded-t-md bottom-0">

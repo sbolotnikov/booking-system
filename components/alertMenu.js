@@ -36,8 +36,8 @@ export default function AlertMenu(props) {
   const [button2Color, setbutton2Color]=useState('');
   function StopScroll(){
     // prevent scrolling
-    var x=window.scrollX;
-    var y=window.scrollY;
+    var x=0;
+    var y=el.scrollTop;
     window.onscroll=function(){window.scrollTo(x, y);};
        
 }
@@ -54,7 +54,7 @@ function AllowScroll(){
   return (
 
     <div className="w-[100vw] h-[100vh] absolute flex justify-center items-center bg-slate-500/70 left-0 z-[1000] backdrop-blur-md" style={{ top: el.scrollTop }} >
-      <div className='m-auto max-w-[600px] bg-gray-700 border-2 border-solid border-gray-400 rounded-md w-[97%] p-2 flex flex-col content-evenly'>
+      <div className='m-auto  max-w-[600px] bg-gray-700 border-2 border-solid border-gray-400 rounded-md w-[97%] p-2 flex flex-col content-evenly'>
         <label className='px-1 py-2 border-2 border-solid border-transparent rounded-sm w-full m-1 text-center' style={Object.values(variant)[Object.keys(variant).indexOf(props.styling.variantHead)]}>{props.styling.heading}</label>
         <h5 className="px-1 py-2 border-2 border-solid border-transparent rounded-sm w-full m-1 text-center"  dangerouslySetInnerHTML={{ __html:props.styling.text}}/>
         {props.styling.inputField && <input id="inputField" className="w-full mb-2 rounded-md text-gray-700" defaultValue={props.inputValue} />}

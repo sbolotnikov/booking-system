@@ -15,9 +15,9 @@ function DayDisplay(props) {
               }}
             >
               <TimeDisplay
-                key={'time' + index}
-                
+                key={'time' + index}               
                 price={item.price}
+                perPerson={item.perPerson}
                 time={`${item.reservationHour}:${
                   item.reservationMin < 10 ? '0' : ''
                 }${item.reservationMin}`}

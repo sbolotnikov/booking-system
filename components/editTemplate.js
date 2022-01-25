@@ -12,11 +12,13 @@ function EditTemplate({templates}) {
         (a, b) => a.reservationHour - b.reservationHour
       )
     );
+    console.log(templates)
   }, []);
 
   const pull_data = (appt) => {
     let apptArray = appointments;
     apptArray[appt.i] = appt.appt;
+    console.log(apptArray);
     setAppointments([...apptArray]);
     // Use spread operator to set up state otherwise children DO NOT RENDER
   };
@@ -28,6 +30,7 @@ function EditTemplate({templates}) {
   };
   const handleUpdateTemplate = async (e) => {
     e.preventDefault();
+    console.log(appointments)
     const res = await fetch('/api/admin/add_update_template', {
       method: 'POST',
       headers: {
@@ -36,6 +39,7 @@ function EditTemplate({templates}) {
       body: JSON.stringify({ name,color, appointments }),
     });
     const data = await res.json();
+    console.log(data)
     window.location.reload(false);
   };
   return (
@@ -97,7 +101,7 @@ function EditTemplate({templates}) {
         onClick={(e) => {
           e.preventDefault();
           setAppointments([
-            ...[{ reservationHour: 0, reservationMin: 0, price: 0, status:"green" }],
+            ...[{ reservationHour: 0, reservationMin: 0, price: 0, status:"green",perPerson:false }],
           ]);
           setName('');
         }}
@@ -141,7 +145,7 @@ function EditTemplate({templates}) {
             e.preventDefault();
             setAppointments([
               ...appointments,
-              { reservationHour: 0, reservationMin: 0, price: 0, status:"green" },
+              { reservationHour: 0, reservationMin: 0, price: 0, status:"green",perPerson:false },
             ]);
           }}
         >
