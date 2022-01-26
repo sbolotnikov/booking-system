@@ -4,7 +4,32 @@ export default function Footer() {
   return (
     <footer>
       <hr />
-      <ul className="navbar_list">
+      <a
+              id="instagram"
+              href="https://www.instagram.com/pereulokquest74"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Мы в Instagram"
+              className='flex flex-row justify-center items-center'
+            >
+              <span className="w-6 h-6 mr-2">
+              <img src={'/icons/instagram.svg'} alt="menu call" />
+              </span> <span>pereulokquest74</span>
+            </a> 
+            <a
+              id="vk"
+              href="https://vk.com/chexit"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Мы в vkontakte"
+              className='flex flex-row justify-center items-center'
+            >
+              <span className="w-6 h-6 mr-2">
+              <img src={'/icons/vk_logo.svg'} alt="menu call" />
+              </span>
+              <span>vk.com/chexit</span>
+            </a>
+      {/* <ul className="navbar_list">
         <li className="navbar__link">     
             <a
               id="facebook"
@@ -18,19 +43,9 @@ export default function Footer() {
               </span>
             </a>     
         </li>
-        <li className="navbar__link">
-        <a
-              id="instagram"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Follow on Instagram"
-            >
-              <span className="w-5 h-5">
-              <img src={'/icons/instagram.svg'} alt="menu call" />
-              </span>
-            </a> 
-        </li>
+        
+
+  
         <li className="navbar__link">
         <a
               id="youtube"
@@ -44,7 +59,7 @@ export default function Footer() {
               </span>
             </a> 
         </li>
-      </ul>
+      </ul> */}
     </footer>
   );
 }
