@@ -94,7 +94,7 @@ export default async function auth(req, res) {
 
           const sendEmailObj = await sendEmail({
             to: email,
-            from,
+            from: `Таинственный переулок<${process.env.EMAIL_SERVER_USER}>`,
             subject: `Sign in to ${host}`,
             text: text({ url, host }),
             html: html({ url, host, email }),

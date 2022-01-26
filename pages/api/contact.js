@@ -9,7 +9,7 @@ handler.post(async(req, res) =>{
 
     
     const result = await sendEmail({
-      from: req.body.email,
+      from: req.body.mainEmail,
       to: req.body.mainEmail,
       subject: `Message From ${req.body.name}`,
       text: req.body.message + " | Sent from: " + req.body.email,

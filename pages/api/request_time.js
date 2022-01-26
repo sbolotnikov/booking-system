@@ -8,7 +8,7 @@ handler.post(async(req, res) =>{
 
 
   const result = await sendEmail({
-      from: req.body.email,
+      from: req.body.mainEmail,
       to: req.body.mainEmail,
       subject: `Запрос на регистрацию от ${req.body.name}`,
       text: "\n\n Послание от: " + req.body.email + "\n Телефон для подтверждения:"+req.body.phone+"\n\n"+req.body.reg_message,

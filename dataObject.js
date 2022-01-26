@@ -1,5 +1,5 @@
 let dataObject = {
-    mainEmail:'serge.bolotnikov@gmail.com',
+    mainEmail:'Таинственный переулок<pereulok_74@mail.ru>',
     games : [
         {
           name: `Квест "Тайны Гудини"` ,
@@ -54,7 +54,7 @@ let dataObject = {
           maxParticipants:14
         },
         {
-          name: `Экшн-игра:Прятки во тьме маленькие` ,
+          name: `Экшн-игра:Прятки во тьме. Малый лабиринт.` ,
           id: 'hide_seek_sm',
           bgImage: '/images/pryatki_photo1.jpg',
           img:'/icons/hide_seek.svg',
@@ -71,7 +71,7 @@ let dataObject = {
           maxParticipants:10
         },
         {
-          name: `Экшн-игра:Прятки во тьме средние` ,
+          name: `Экшн-игра:Прятки во тьме. Средний лабиринт.` ,
           id: 'hide_seek_md',
           bgImage: '/images/pryatki_photo1.jpg',
           img:'/icons/hide_seek.svg',
@@ -88,7 +88,7 @@ let dataObject = {
           maxParticipants:15
         },  
         {
-          name: `Экшн-игра:Прятки во тьме Гранд` ,
+          name: `Экшн-игра:Прятки во тьме. Большой лабиринт.` ,
           id: 'hide_seek_lg',
           bgImage: '/images/pryatki_photo1.jpg',
           img:'/icons/hide_seek.svg',
@@ -117,7 +117,7 @@ let dataObject = {
             email: "chel@strashnotemno.ru",
             address_desc:`500 метров от остановки «Ткацкая фабрика»</br>
             Есть бесплатная парковка<br>
-            Зал ожидания: есть гостевая зона, есть две зоны для проведения праздника,</br> рассчитаны на 8 и 30 человек`,
+            Зал ожидания: есть гостевая зона, есть две зоны для проведения праздника,</br> рассчитаны на 2 и 30 человек`,
             coordinates:{x:55.2038,y:61.3264,zoom:15.73}
         },
       ], 

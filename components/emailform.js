@@ -1,11 +1,26 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import AppContext from '../appContext';
+import { useSession } from 'next-auth/react';
 function Emailform(props) {
+    const { data: session, loadings } = useSession();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage]= useState("");
     const value = useContext(AppContext);
     const mainEmail = value.mainEmail;
+    useEffect(() => {
+      if (session) {
+        if (session.user.name && session.user.name.length > 0) {
+          document.getElementById('userName1').value = session.user.name;
+          setName(session.user.name);
+        }
+        if (session.user.email && session.user.email.length > 0) {
+          document.getElementById('userEmail1').value = session.user.email;
+          setEmail(session.user.email);
+        }
+
+      }
+    }, []);
     const handleSubmit=(e)=>{
         e.preventDefault();
         let data = {
@@ -55,10 +70,11 @@ function Emailform(props) {
             <h2 className="w-full text-center font-extrabold">Есть вопросы?</h2>
             <p className="w-full text-gray-400">
               Мы с удовольствием ответим! Если вопрос срочный, лучше позвонить{' '}
-              <strong>+7 (351) 220-75-49</strong>.
+              <strong>+7(351) 258-30-00</strong>.
             </p>
 
             <input
+              id="userName1"
               className="w-full rounded bg-[#0C1118]"
               type="text"
               placeholder="Ваше имя"
@@ -69,6 +85,7 @@ function Emailform(props) {
             />
 
             <input
+              id="userEmail1"
               className="w-full rounded bg-[#0C1118]"
               type="email" 
               placeholder="E-mail"
