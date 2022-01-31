@@ -9,16 +9,16 @@ export const useDate = (events, nav) => {
     // const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     // for english need to change weekdays array and change locale in 2 places to 'en-us'
     const weekdays = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
-    const dt = new Date();
-
+    let dt = new Date();
+    const day = dt.getDate();
+    const monthCur = dt.getMonth();
+    const year = dt.getFullYear();
+    dt= new Date(year, monthCur, 1)
     if (nav !== 0) {
       dt.setMonth(new Date().getMonth() + nav);
     }
-
-    const day = dt.getDate();
-    const month = dt.getMonth();
-    const year = dt.getFullYear();
-
+    const month=dt.getMonth();
+    console.log(nav,dt,day, month, year)
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const dateString = firstDayOfMonth.toLocaleDateString('ru-ru', {

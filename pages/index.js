@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -6,11 +7,31 @@ import AboutComponent from '../components/about';
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const [scrollDown, setScrollDown] = useState(false);
   const router = useRouter();
+  
+  const onScroll = (e) => {
+    console.log("scroll")
+    setScrollDown(true);
+  };
+
+  // useEffect(() => {
+  //   window.addEventListener("onscroll", (e) => setScrollDown(true));
+  // }, []);
+//   useEffect(() => {
+//     const onScroll = () => {if (window.pageYOffset>0) setScrollDown(true)}
+//     // clean up code
+//     window.removeEventListener('scroll', onScroll);
+//     window.addEventListener('scroll', onScroll, { passive: true });
+//     return () => window.removeEventListener('scroll', onScroll);
+// }, []);
   return (
     <>
       <Head></Head>
-      <div className="w-full flex flex-col justify-center  items-center">
+      <div className="w-full flex flex-col justify-center  items-center" onScroll={(e)=>{
+        e.preventDefault();
+        console.log("scrolling")
+        setScrollDown(true)}}>
         <div className="w-full grid xs:grid-cols-1 sm:grid-cols-1 phone:grid-cols-2 max-w-[1170px]">
           <div className="relative w-80 ">
 <div className="absolute  top-[5rem] right-[4.5rem]">            
@@ -56,9 +77,9 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <AboutComponent />
+        {scrollDown && <AboutComponent />}
       </div>
-      <div className="w-[50vw] ">
+      {/* <div className="w-[50vw] ">
         <img
           className="w-full h-[65vh]"
           style={{ filter: 'drop-shadow(10px 5px 4px #4444dd)' }}
@@ -67,7 +88,7 @@ export default function Home() {
         />
 
         <img className="w-[75vw] h-[65vh]" style={{filter: 'drop-shadow(10px 5px 4px #4444dd)'}} src={"/icons/houses_cloud.svg"}  alt="hero"  />
-      </div>
+      </div> */}
       
     </>
   );

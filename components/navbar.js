@@ -28,7 +28,7 @@ const Navbar = ({ navbarLinks, path }) => {
       {/* {nav.width()} */}
         { menuClicked && (
           <li className="navbar__item" key={'zeroitem'}>
-            <Link className="navbar__link" href={'tel:+73512583000'}>
+            <Link className="navbar__link bg-main-bg" href={'tel:+73512583000'}>
               <a
                 onClick={() => {
                   setMenuClicked(false);

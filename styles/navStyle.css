@@ -46,7 +46,9 @@
     white-space: nowrap;
     margin: 0.5rem;
   }
-  
+  .navbar__item a {
+    background-color: #0C1118;
+  }
   /*
       The anchor tag ( <a> ) for the navbar links
       */
@@ -59,6 +61,7 @@
     border-width: 0px 0px 1px 0px;
     border-color: transparent;
     transition: 250ms;
+    background-color: #0C1118;
   }
   
   .navbar__link:hover {

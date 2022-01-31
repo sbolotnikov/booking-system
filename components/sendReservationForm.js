@@ -153,7 +153,28 @@ function SendReservationForm(props) {
         location: props.time.location,
       }),
     });
+    const confirm_code1 = await res1.json();
+    console.log("block appointment ",confirm_code1);
+//  2- amongUs 3-5 games
+    if ((props.time.game>1)&&(props.time.game<6)){
 
+        const res2 = await fetch('/api/reservation/make_busy_add', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            date: props.time.date,
+            schedule_id: props.time._id,
+            game:  props.time.game,
+            location: props.time.location,
+            hours: props.time.hour,
+            minutes: props.time.minutes
+          }),
+        });
+        const confirm_code2 = await res2.json();
+        console.log(confirm_code2);   
+    }
     data_mail.html_message =
       `
       <h2 style="width: 100%;text-align:left; color:red">
