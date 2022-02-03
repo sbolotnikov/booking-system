@@ -76,8 +76,7 @@ export default function Home() {
               центр квестов и пряток в{' '}
               <Link href="/contacts/0">
                 <div
-                  style={{ textDecorationStyle: 'dotted' }}
-                  className="underline"
+                  className="text-[#7D8800] cursor-pointer"
                 >
                   Челябинске.
                 </div>
