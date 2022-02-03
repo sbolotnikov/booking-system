@@ -16,7 +16,7 @@ const Navbar = ({ navbarLinks, path }) => {
     <nav className="navbar">
       <Link className="navbar__link" href={'/'}>
         <span className="navbar__logo">
-          {path!=='/'?<img src={'/icons/logo light dark back.svg'} alt="call root" />:<div></div>}
+          {path!=='/'?<img src={'/icons/logo light dark back_olive.svg'} alt="call root" />:<div></div>}
 
         </span>
       </Link>
