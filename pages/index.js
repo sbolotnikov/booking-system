@@ -39,13 +39,13 @@ export default function Home() {
 </div>
             <img
               className="w-64 "
-              style={{ filter: 'drop-shadow(10px 5px 4px #CCFF66)' }} //#4444dd
+              style={{ filter: 'drop-shadow(10px 5px 4px #E8FFBB)' }} //#4444dd  shadow change
               src={'/icons/svg/light.svg'}
               alt="hero"
             />
             <img
               className="animate_pendulum absolute w-60 max-w-[300px]  -bottom-10 right-12 origin-top-center rotate-12"
-              style={{ filter: 'drop-shadow(10px 5px 4px #CCFF66)' }} //#4444dd
+              style={{ filter: 'drop-shadow(10px 5px 4px #FCFCB4)' }} //#4444dd  shadow change
               src={'/icons/svg/sign.svg'}
               alt="hero"
             />

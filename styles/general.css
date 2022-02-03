@@ -51,11 +51,11 @@
     transform: rotate(-4deg);
   }
 }
-/* flame animations */
+/* flame animations            shadow change    */
 .flame{
 	width:150px;
 	height:150px;
-	background:linear-gradient(-45deg, #CCFF66, #F8FFEA );
+	background:linear-gradient(-45deg, #FCFCB4, #FFFFE8 ); 
 	border-radius: 150px 150px 0px 150px;
 	transform:rotate(-135deg);
 	animation:.3s flame infinite;
