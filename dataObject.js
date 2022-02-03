@@ -110,7 +110,7 @@ let dataObject = {
         {
             name: 'Таинственный переулок',
             description: 'центр квестов и пряток в Челябинске.',
-            symbol: '/icons/teplichnaya.svg',
+            symbol: '/icons/logo.svg',
             address: "г. Челябинск,<br> улица Молодогвардейцев, 7",
             address_short:"улица Молодогвардейцев, 7, Челябинск",
             telephone: "+7 (951) 258-30-00",

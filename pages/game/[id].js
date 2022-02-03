@@ -74,7 +74,7 @@ function Game(gameId) {
         </div>
         <div className="hideOnSmall">
           <h3 className="font-bold mt-5 mb-2"> Хотите сделать подарок?</h3>
-          <button className="rounded border-[#74b9ff] text-[#74b9ff] border-2 p-2">
+          <button className="btnBlue">
             Подарите сертификат
           </button>
         </div>

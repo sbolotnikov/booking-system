@@ -29,7 +29,7 @@ const Navbar = ({ navbarLinks, path }) => {
         { menuClicked && (
           <li className="navbar__item" key={'zeroitem'}>
             <Link className="navbar__link bg-main-bg" href={'tel:+73512583000'}>
-              <a
+              <a className="flex flex-row justify-center items-center"
                 onClick={() => {
                   setMenuClicked(false);
                 }}
@@ -37,7 +37,7 @@ const Navbar = ({ navbarLinks, path }) => {
                 <div className="w-4">
                   <img src={'/icons/call.svg'} alt="menu call" />
                 </div>
-                +7(351)258-3000
+               <span>+7(351)258-3000</span>
               </a>
             </Link>
           </li>

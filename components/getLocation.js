@@ -3,12 +3,12 @@ function GetLocation(props) {
   const locationsList = props.list;
   useEffect(() => {
     if (props.loc > -1) {
-      document
-        .getElementById('loc-' + props.loc)
-        .classList.add('border-l-4');
-      document
-        .getElementById('loc-' + props.loc)
-        .classList.add('border-l-blue-400');
+      // document
+      //   .getElementById('loc-' + props.loc)
+      //   .classList.add('border-l-4');
+      // document
+      //   .getElementById('loc-' + props.loc)
+      //   .classList.add('border-l-blue-400');
       document.getElementById('loc-' + props.loc).classList.add('rounded');
     }
   }, []);
@@ -17,16 +17,16 @@ function GetLocation(props) {
     let num = e.target.getAttribute('value');
     let choice = 'loc-' + num;
     if (num != props.loc) {
-      document.getElementById(choice).classList.add('border-l-4');
-      document.getElementById(choice).classList.add('border-l-blue-400');
+      // document.getElementById(choice).classList.add('border-l-4');
+      // document.getElementById(choice).classList.add('border-l-blue-400');
       document.getElementById(choice).classList.add('rounded');
       if (props.loc > -1) {
-        document
-          .getElementById('loc-' + props.loc)
-          .classList.remove('border-l-4');
-        document
-          .getElementById('loc-' + props.loc)
-          .classList.remove('border-l-blue-400');
+        // document
+        //   .getElementById('loc-' + props.loc)
+        //   .classList.remove('border-l-4');
+        // document
+        //   .getElementById('loc-' + props.loc)
+        //   .classList.remove('border-l-blue-400');
         document.getElementById('loc-' + props.loc).classList.remove('rounded');
       }
       props.onChange(num);

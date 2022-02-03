@@ -1,151 +1,158 @@
 .navbar {
-    position: sticky;
-    top: 0px;
-    height: 3rem;
-    background-color: transparent;
+  position: sticky;
+  top: 0px;
+  height: 3rem;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .5rem 0 0;
+  /* margin:1rem; */
+  z-index: 5;
+}
+
+.navbar__logo {
+  /* color: white;
+  font-family: 'MonteCarlo', cursive;
+  font-size: 0.85rem; */
+  width:7rem;
+  margin: .5rem 0 0 .5rem;
+  border:0;
+  object-fit: fill;
+  cursor: pointer;
+}
+.navbar__right_span {
+    margin-right: .5rem;
+    height: 2rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 .5rem 0 0;
-    /* margin:1rem; */
-    z-index: 5;
+    justify-content: center;
+ 
   }
+/*
+    This is the container for all the navbar links ( <ul> )
+    */
+.navbar__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+/*
+    This is a single item ( <li> ) in the list
+    */
+.navbar__item {
+  white-space: nowrap;
   
-  .navbar__logo {
-    /* color: white;
-    font-family: 'MonteCarlo', cursive;
-    font-size: 0.85rem; */
-    width:7rem;
-    margin: .5rem 0 0 .5rem;
-    border:0;
-    object-fit: fill;
-    cursor: pointer;
-  }
-  .navbar__right_span {
-      margin-right: .5rem;
-      height: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-   
-    }
-  /*
-      This is the container for all the navbar links ( <ul> )
-      */
-  .navbar__list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-  }
-  
-  /*
-      This is a single item ( <li> ) in the list
-      */
-  .navbar__item {
-    white-space: nowrap;
-    margin: 0.5rem;
-  }
-  .navbar__item a {
-    background-color: #0C1118;
-  }
-  /*
-      The anchor tag ( <a> ) for the navbar links
-      */
-  .navbar__link {
-    font-size: 0.85rem;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    text-align: left;
-    border-style: solid;
-    border-width: 0px 0px 1px 0px;
-    border-color: transparent;
-    transition: 250ms;
-    background-color: #0C1118;
-  }
-  
-  .navbar__link:hover {
-    border-color: white;
-    transition: 250ms;
-  }
-  
-  .navbar__menu {
-    display: none;
+}
+.navbar__item a {
+  background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
+  border: none;
+  border-radius: 0.5rem;
+  margin-left: .25rem;
+}
+/*
+    The anchor tag ( <a> ) for the navbar links
+    */
+.navbar__link {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: transparent;
+  transition: 250ms;
+  background-color: #0C1118;
+}
+
+.navbar__link:hover {
+  border-color: white;
+  transition: 250ms;
+}
+
+.navbar__menu {
+  display: none;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 2rem;
+}
+.navbar__menu_grid {
+    margin:0 .25rem 0 .25rem;
     cursor: pointer;
     height: 1.5rem;
-    width: 2rem;
+    width: 1.5rem;
   }
-  .navbar__menu_grid {
-      margin:0 .25rem 0 .25rem;
-      cursor: pointer;
-      height: 1.5rem;
-      width: 1.5rem;
-    }
-  @supports (backdrop-filter: blur(1rem)) {
-      .navbar__list {
-        background: hsl(0 0% 100% / 0.1);
-        backdrop-filter: blur(1rem);
-      }
-    }
-  
-  @media screen and (max-width: 1070px) {
+@supports (backdrop-filter: blur(1rem)) {
     .navbar__list {
-      --gap: 4rem;  
-      flex-direction: column;
-      /* inset: 0 0 0 30%; */
-      padding: min(40vh, 10rem) 2em;
-      width: 70%;
-      height: 100vh;
-      right:-100%;
-      top:0;
-      z-index: 100;
-      position: absolute;
       background: hsl(0 0% 100% / 0.1);
       backdrop-filter: blur(1rem);
-      transition: all 0.5s ease;
-    }
-   
-    .navbar__list--active {
-      right: 0;
-    }
-  
-    .navbar__menu {
-      display: block;
-      z-index: 1000;
-    }
-  
-    .navbar__item {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0;
-      flex: 1;
-    }
-  
-    .navbar__link {
-      display: flex;
-      font-size: 1.5rem;
-      height: 100%;
-      width: 100%;
-      justify-content: left;
-      align-items: center;
-      margin: 0px;
-      border-width: 0px;
-      opacity: 0.75;
-    }
-  
-    .navbar__link:hover {
-      border-width: 0px;
-      opacity: 0.9;
     }
   }
-  @media screen and (max-width: 420px) {
-    .navbar__link {
-      font-size: 1.1rem;
-    }
-    .navbar__item {
-      white-space: nowrap;
-      margin: 0.1rem;
+
+@media screen and (max-width: 1070px) {
+  .navbar__list {
+    --gap: 4rem;  
+    flex-direction: column;
+    /* inset: 0 0 0 30%; */
+    padding: min(40vh, 10rem) 2em;
+    width: 70%;
+    height: 100vh;
+    right:-100%;
+    top:0;
+    z-index: 100;
+    position: absolute;
+    background: hsl(0 0% 100% / 0.1);
+    backdrop-filter: blur(1rem);
+    transition: all 0.5s ease;
   }
+ 
+  .navbar__list--active {
+    right: 0;
   }
+
+  .navbar__menu {
+    display: block;
+    z-index: 1000;
+  }
+
+  .navbar__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  .navbar__item a {
+    background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  .navbar__link {
+    display: flex;
+    font-size: 1.5rem;
+    height: 100%;
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    margin: 0px;
+    border-width: 0px;
+    opacity: 0.75;
+  }
+
+  .navbar__link:hover {
+    border-width: 0px;
+    opacity: 0.9;
+  }
+}
+@media screen and (max-width: 420px) {
+  .navbar__link {
+    font-size: 1.1rem;
+  }
+  .navbar__item {
+    white-space: nowrap;
+    margin: 0.1rem;
+}
+}
