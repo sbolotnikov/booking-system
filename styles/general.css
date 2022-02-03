@@ -2,6 +2,15 @@
   font-family: Lumberjack;
   src: url('/fonts/lumberjack.inline-rough.otf') format('opentype');
 }
+
+@font-face {
+  font-family: ComicSansMS;
+  src: url('/fonts/Comic Sans MS.ttf');
+}
+@font-face {
+  font-family: SegoePrint;
+  src: url('/fonts/segoeprint.ttf');
+}
 @font-face {
   font-family: SourceSansPro;
   src: url('/fonts/SourceSansPro-ExtraLight.ttf');

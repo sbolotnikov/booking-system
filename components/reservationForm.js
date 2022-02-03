@@ -106,10 +106,15 @@ function ReservationForm({ prevDate, reservation }) {
         <span className={styleName}>Имя:{reservation.name}</span>
         <span className={styleName}>Тел.:{reservation.phone}</span>
         <span className="m-1">Емейл: {reservation.email}</span>
+        <span className="m-1">Админ: {reservation.adminID}</span>
       </div>
       <h4 className="w-full flex flex-row justify-start  items-start">
         Доп.сообщение:
         <textarea className="m-2 w-full rounded-md border border-gray-500 bg-main-bg" readOnly defaultValue={reservation.message}/>
+      </h4>
+      <h4 className="w-full flex flex-row justify-start  items-start">
+      Для служебного использования:
+        <textarea className="m-2 w-full rounded-md border border-gray-500 bg-main-bg" defaultValue={reservation.specialNote}/>
       </h4>
       <h4 className="w-full flex flex-row justify-start flex-wrap items-center">
         <span className="m-1">Емейл: {reservation.email}</span>

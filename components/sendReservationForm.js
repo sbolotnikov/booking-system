@@ -12,6 +12,7 @@ function SendReservationForm(props) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [specialNote, setSpecialNote] = useState('');
   const [revealAlert, setRevealAlert] = useState(false);
   const [alertStyle, setAlertStyle] = useState({});
   const value = useContext(AppContext);
@@ -129,6 +130,8 @@ function SendReservationForm(props) {
       reservationHour: props.time.hour,
       reservationMin: props.time.minutes,
       schedule_id: props.time._id,
+      adminID: props.time.adminID,
+      specialNote
     };
     // Create new reservation Request
     const res = await fetch('/api/reservation/grab', {
@@ -317,8 +320,19 @@ function SendReservationForm(props) {
             }}
             value={message}
             minLength="5"
-            rows={4}
+            rows={3}
           />
+            {props.time.adminID.length>0 && <textarea
+            className="w-full rounded mb-1 bg-[#0C1118]"
+            placeholder="Комментарий для служебного использования  если есть"
+            onChange={(e) => {
+              setSpecialNote(e.target.value);
+            }}
+            value={specialNote}
+            minLength="5"
+            rows={2}
+          />
+            }
           <button
             type="submit"
             className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around"

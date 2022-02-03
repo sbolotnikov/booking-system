@@ -35,6 +35,12 @@ const RequestSchema = new Schema({
   message: {
     type: String,
   },
+  adminID:  {
+    type: String,
+  },
+  specialNote: {
+    type: String,
+  },
   reservationConfirmDate: {
     type: Date
   },

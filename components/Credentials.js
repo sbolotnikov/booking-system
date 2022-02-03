@@ -2,6 +2,17 @@ import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router"
 import { signIn, getSession } from 'next-auth/client';
 import { toast } from 'react-toastify'
+
+
+
+
+//  not used here
+
+
+
+
+
+
 function Credentials() {
   const emailRef = useRef();
   const passwordRef = useRef();

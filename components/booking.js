@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import BookingCard from './bookingCard'
 import AppContext from '../appContext';
 function Booking() {

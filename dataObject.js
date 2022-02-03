@@ -23,7 +23,7 @@ let dataObject = {
           name: `Квест "В поисках крестража"` ,
           id: 'horcrux',
           bgImage: '/images/krestrage1.jpg',
-          img:'/icons/deadly_hollow.svg',
+          img:'/icons/crestrazh.svg',
           short:'В районе гостиной Гриффиндора хранится крестраж, в котором заключена частичка души тёмного лорда',
           toWhom:'возрастное ограничение 12+ (с 8-ми лет в сопровождении взрослого)',
           price:2000,

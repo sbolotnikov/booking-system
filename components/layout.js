@@ -9,7 +9,7 @@ export default function Layout({ children }) {
   let navbarLinks = [
     { url: '/about', title: 'Об игре' },
     { url: '/book', title: 'Забронировать' },
-    { url: '#', title: 'День Рождения' },
+    { url: '/birthday', title: 'День Рождения' },
     { url: '#', title: 'Корпоратив' },
     { url: '#', title: 'Сертификат' },,
     { url: '/contacts/0', title: 'Где находится?' },
