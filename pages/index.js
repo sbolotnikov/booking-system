@@ -71,7 +71,7 @@ export default function Home() {
 
           </div>
           <div className="w-full inner-wrap flex flex-col justify-center  items-center">
-            <h2 className="text-4xl">Таинственный переулок</h2>
+            <h2 className="text-4xl mt-6">Таинственный переулок</h2>
             <h3 className="font-bold text-2xl mt-5">
               центр квестов и пряток в{' '}
               <Link href="/contacts/0">

@@ -53,6 +53,7 @@
   margin-left: .25rem;
   padding: 0 .5rem 0 .5rem ;
   font-size: 0.88rem;
+  filter: drop-shadow(10px 5px 4px #7D8800);
 }
 /*
     The anchor tag ( <a> ) for the navbar links

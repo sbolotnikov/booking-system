@@ -281,9 +281,9 @@ function BirthdaySign(props) {
 <text id="line2" transform="translate(823.999 484.111) rotate(-4.69817)" x="0" y="30.0293" fill={signColor} fontFamily="Segoe Print" fontSize="24" letterSpacing="0em">{props.lines.line2}</text>
 <text id="line3" transform="translate(824.999 527.111) rotate(-4.69817)" x="0" y="30.0293" fill={signColor} fontFamily="Segoe Print" fontSize="24" letterSpacing="0em">{props.lines.line3}</text>
 <path id="price1back" d="M646 572.445L1052.71 540L1058.27 609.778L651.567 642.223L646 572.445Z" fill="url(#paint9_radial_270_320)"/>
-<text id="price1" transform="translate(743.999 573.148) rotate(-5.74426)"  x="0" y="44.1677" fill={signColor}  fontFamily="Segoe Print" fontSize="35" letterSpacing="0em" textDecoration="underline">{props.lines.price1}</text>
+<text id="price1" transform="translate(743.999 573.148) rotate(-5.74426)"  x="0" y="44.1677" fill={signColor} style={{ filter: 'drop-shadow(10px 5px 4px #181818)' }} fontFamily="Segoe Print" fontSize="35" letterSpacing="0em" textDecoration="underline">{props.lines.price1}</text>
 <path id="price2back" fillRule="evenodd" clipRule="evenodd" d="M896.526 573.536L1384.58 542.886L1387.42 634.446L899.37 665.097L896.526 573.536Z" fill="url(#paint8_radial_270_320)"/>
-<text id="price2" transform="translate(1011 586.624) rotate(-7.6001)" x="0" y="44.1677" fill={signColor}  fontFamily="Segoe Print" fontSize="35" letterSpacing="0em" textDecoration="underline">{props.lines.price2}</text>
+<text id="price2" transform="translate(1011 586.624) rotate(-7.6001)" x="0" y="44.1677" fill={signColor} style={{ filter: 'drop-shadow(10px 5px 4px #181818)' }} fontFamily="Segoe Print" fontSize="35" letterSpacing="0em" textDecoration="underline">{props.lines.price2}</text>
 </g>
 <defs>
 <linearGradient id="paint0_linear_275_626" x1="290" y1="879" x2="1184" y2="879" gradientUnits="userSpaceOnUse">
