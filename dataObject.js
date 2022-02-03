@@ -51,7 +51,7 @@ let dataObject = {
             'Игра длится 60 минут',
           locs: [0],
           minParticipants:4,
-          maxParticipants:14
+          maxParticipants:12
         },
         {
           name: `Экшн-игра:Прятки во тьме. Малый лабиринт.` ,
@@ -102,7 +102,7 @@ let dataObject = {
             'Игра длится 60 минут',
           locs: [0],
           minParticipants:16,
-          maxParticipants:35
+          maxParticipants:32
         },   
       ],
       locations: [

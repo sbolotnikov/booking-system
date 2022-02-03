@@ -51,12 +51,14 @@
   border: none;
   border-radius: 0.5rem;
   margin-left: .25rem;
+  padding: 0 .5rem 0 .5rem ;
+  font-size: 0.88rem;
 }
 /*
     The anchor tag ( <a> ) for the navbar links
     */
 .navbar__link {
-  font-size: 0.85rem;
+  
   text-decoration: none;
   color: rgb(255, 255, 255);
   text-align: left;
@@ -129,13 +131,13 @@
     border: none;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    font-size: 2rem;
   }
   .navbar__link {
     display: flex;
-    font-size: 1.5rem;
     height: 100%;
     width: 100%;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     margin: 0px;
     border-width: 0px;
@@ -148,11 +150,27 @@
   }
 }
 @media screen and (max-width: 420px) {
+  .navbar__list {
+    padding: 20vh 2em;
+  }
   .navbar__link {
-    font-size: 1.1rem;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    margin: 0px;
+    border-width: 0px;
   }
   .navbar__item {
     white-space: nowrap;
     margin: 0.1rem;
+}
+.navbar__item a {
+  background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.3rem;
 }
 }

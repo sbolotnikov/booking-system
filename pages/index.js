@@ -7,14 +7,36 @@ import AboutComponent from '../components/about';
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const [scrollDown, setScrollDown] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
   const router = useRouter();
-  
-  const onScroll = (e) => {
-    console.log("scroll")
-    setScrollDown(true);
-  };
 
+  // useEffect(() => {
+  //   const onScroll = e => {
+  //     setScrollTop(e.target.documentElement.scrollTop);
+  //     setScrolling(e.target.documentElement.scrollTop > scrollTop);
+  //     console.log("scrolling")
+  //   };
+  //   window.addEventListener("scroll", onScroll);
+
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, [scrollTop]);
+  useEffect(() => {
+    function onScroll() {
+      let currentPosition = window.pageYOffset; // or use document.documentElement.scrollTop;
+      if (currentPosition > scrollTop) {
+        // downscroll code
+        setScrolling(false);
+      } else {
+        // upscroll code
+        setScrolling(true);
+      }
+      setScrollTop(currentPosition <= 0 ? 0 : currentPosition);
+    }
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollTop]);
   // useEffect(() => {
   //   window.addEventListener("onscroll", (e) => setScrollDown(true));
   // }, []);
@@ -28,10 +50,7 @@ export default function Home() {
   return (
     <>
       <Head></Head>
-      <div className="w-full flex flex-col justify-center  items-center" onScroll={(e)=>{
-        e.preventDefault();
-        console.log("scrolling")
-        setScrollDown(true)}}>
+      <div className="w-full flex flex-col justify-center  items-center">
         <div className="w-full grid xs:grid-cols-1 sm:grid-cols-1 phone:grid-cols-2 max-w-[1170px]">
           <div className="relative w-80 ">
 <div className="absolute  top-[5rem] right-[4.5rem]">            
@@ -77,7 +96,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        {scrollDown && <AboutComponent />}
+        {scrolling && <AboutComponent />}
       </div>
       {/* <div className="w-[50vw] ">
         <img
