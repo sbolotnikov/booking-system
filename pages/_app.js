@@ -80,13 +80,13 @@ function MyApp({ Component, pageProps, router }) {
           sizes="180x180"
           HREF="apple-icon-180x180.png"
         />
-        <link
+        {/*<link
           rel="icon"
           type="image/png"
           sizes="192x192"
           HREF="android-icon-192x192.png"
         />
-        <link
+         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
@@ -103,7 +103,7 @@ function MyApp({ Component, pageProps, router }) {
           type="image/png"
           sizes="16x16"
           HREF="favicon-16x16.png"
-        />
+        /> */}
         <link rel="manifest" HREF="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />

@@ -8,35 +8,35 @@ function AboutComponent() {
   const listArrayLeft = [
     {
       imgLink: '/icons/lamp.svg',
-      name: 'Вездесущая темнота',
+      name: 'Двухуровневый темный лабиринт 300 кв м',
       desc: 'Густая темнота, собранная из подвалов заброшенных скрипучих домов.',
     },
     {
       imgLink: '/icons/shkaff.svg',
-      name: 'Десятки мест',
+      name: 'Квесты с оригинальными механизмами',
       desc: 'Чтобы надежно спрятаться от всех, кто попробует вас найти.',
     },
     {
       imgLink: '/icons/basket.svg',
-      name: 'Тайные комнаты',
+      name: 'Интерактивная комната',
       desc: 'Комнаты, вход в которые уже давно потерян.',
     },
   ];
   const listArrayRight = [
     {
       imgLink: '/icons/ulitka.svg',
-      name: 'Множество ловушек',
+      name: 'Уютные банкетные комнаты с авторским дизайном',
       desc: 'Звуковые и световые ловушки, которые работают против вас.',
     },
     {
       imgLink: '/icons/hat.svg',
-      name: 'Необычные предметы',
+      name: 'Гардероб ',
       desc: 'Темнота скрывает вещи, которые не так просты, как кажутся.',
     },
     {
       imgLink: '/icons/eight.svg',
-      name: 'Бесконечный лабиринт',
-      desc: 'Спрятавшись, не забывайте, что нужно вернуться обратно.',
+      name: 'Удобства',
+      desc: 'Доступны кулер с водой,стаканчики, чай, сахар, микроволновка.',
     },
   ];
   const listArrayRunes = [
@@ -144,8 +144,7 @@ function AboutComponent() {
     <div className="max-w-[1170px] w-full font-['SourceSansPro'] mx-auto mt-10">
       <h1 className="text-center  p-10 text-2xl font-extrabold">
         {' '}
-        Более 300 м<sup>2</sup> темноты, ловушки и десятки мест, где можно
-        спрятаться
+        Более 1000 м<sup>2</sup> развлечений, квестов, лабиринтов и мастер-классов
       </h1>
       <div className="flex flex-col tablet:flex-row w-full">
         <div className="w-full m-auto">

@@ -1,7 +1,7 @@
 import GetLocation from '../../components/getLocation';
 import { useState, useContext } from 'react';
 import AppContext from '../../appContext';
-import { YMaps, Map, GeoObject, Placemark } from 'react-yandex-maps';
+import { YMaps, Map, GeoObject } from 'react-yandex-maps';
 
 function contacts(props) {
   const [location, setLocation] = useState(props.id);
@@ -34,11 +34,11 @@ function contacts(props) {
             dangerouslySetInnerHTML={{ __html: locations[location].address }}
           ></p>
           <p>
-            <span className="text-red-600 text-lg font-black">&#128222;</span>
-            {locations[location].telephone}
+            <span className="text-white text-lg font-black flex flex-row"><img className="object-fill w-5 mr-2" src={'/icons/call.svg'} alt="menu call" />
+            {locations[location].telephone}</span>
           </p>
           <p>
-            <span className="text-red-600 text-xl font-black mr-2">@</span>
+            <span className="text-white text-xl font-black mr-2">@</span>
             {locations[location].email}
           </p>
           <p
@@ -76,14 +76,14 @@ function contacts(props) {
                   properties={{
                     // The placemark content.
                     iconContent: locations[location].name,
-                    hintContent: 'Ну давай уже тащи',
+                    hintContent: '',
                   }}
                   // Options.
                   options={{
                     iconLayout: 'default#image',
-          iconImageHref: '/icons/logo light dark back.svg',
-          iconImageSize: [60, 84],
-          iconImageOffset: [-26, -44],
+                    iconImageHref: '/icons/logo light dark back.svg',
+                    iconImageSize: [60, 84],
+                    iconImageOffset: [-26, -44],
                     // The placemark's icon will stretch to fit its contents.
                     // preset: 'islands#blackStretchyIcon',
                     // The placemark can be moved.
@@ -108,8 +108,8 @@ function contacts(props) {
                   // Options.
                   options={{
                     iconLayout: 'default#image',
-          iconImageHref: '/icons/svg/arrow.svg',
-          iconImageSize: [60, 84],
+                    iconImageHref: '/icons/svg/arrow.svg',
+                    iconImageSize: [60, 84],
                     // The placemark can be moved.
                     draggable: false,
                   }}
