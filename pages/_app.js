@@ -9,8 +9,9 @@ import '../styles/rating.css';
 import Layout from '../components/layout';
 import AppContext from '../appContext';
 import dataObject from '../dataObject';
+import {motion} from "framer-motion"
 // import LazyLoadComponent from 'react-intersection-observer-lazy-load';
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <SessionProvider
       session={pageProps.session}
@@ -114,7 +115,12 @@ function MyApp({ Component, pageProps }) {
       <AppContext.Provider value={dataObject}>
         <Layout>
         {/* <LazyLoadComponent> */}
+         <motion.div key={router.route} initial='pageInitial' animate='pageAnimate' variants={{
+            pageInitial: {opacity: 0},
+            pageAnimate: {opacity:1},
+         }}>
           <Component {...pageProps} />
+          </motion.div>
           {/* </LazyLoadComponent> */}
         </Layout>
       </AppContext.Provider>

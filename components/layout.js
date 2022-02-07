@@ -42,7 +42,9 @@ export default function Layout({ children }) {
           
         /> */}
       </Head>
-      <main id="mainPage" className="h-screen bg-main-bg containerFont text-white relative text-lg overflow-hidden overflow-y-scroll">
+      {/* bg-main-bg  */}
+
+      <main id="mainPage" className="h-screen bg-repeat containerFont text-white relative text-lg overflow-hidden overflow-y-scroll" style={{backgroundImage:"url('/images/fon1.jpg')"}}>
         <Navbar navbarLinks={(session && session.user.status ==="admin")?navbarLinksAdmin:(session && session.user.status ==="super")?navbarLinksSuper:navbarLinks} path={router.asPath} />
         {children}
         <Footer />

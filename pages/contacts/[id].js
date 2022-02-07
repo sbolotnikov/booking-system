@@ -1,7 +1,7 @@
 import GetLocation from '../../components/getLocation';
 import { useState, useContext } from 'react';
 import AppContext from '../../appContext';
-import { YMaps, Map, GeoObject } from 'react-yandex-maps';
+import { YMaps, Map, GeoObject, Placemark } from 'react-yandex-maps';
 
 function contacts(props) {
   const [location, setLocation] = useState(props.id);
@@ -80,12 +80,40 @@ function contacts(props) {
                   }}
                   // Options.
                   options={{
+                    iconLayout: 'default#image',
+          iconImageHref: '/icons/logo light dark back.svg',
+          iconImageSize: [60, 84],
+          iconImageOffset: [-26, -44],
                     // The placemark's icon will stretch to fit its contents.
-                    preset: 'islands#blackStretchyIcon',
+                    // preset: 'islands#blackStretchyIcon',
                     // The placemark can be moved.
                     draggable: false,
                   }}
                 />
+                <GeoObject
+                  // The geometry description.
+                  geometry={{
+                    type: 'Point',
+                    coordinates: [
+                      locations[location].coordinates1.x,
+                      locations[location].coordinates1.y,
+                    ],
+                  }}
+                  // Properties.
+                  properties={{
+                    // The placemark content.
+                    iconContent: locations[location].coordinates1.text,
+                    hintContent: '',
+                  }}
+                  // Options.
+                  options={{
+                    iconLayout: 'default#image',
+          iconImageHref: '/icons/svg/arrow.svg',
+          iconImageSize: [60, 84],
+                    // The placemark can be moved.
+                    draggable: false,
+                  }}
+                  />
               </Map>
             </YMaps>
           </div>
