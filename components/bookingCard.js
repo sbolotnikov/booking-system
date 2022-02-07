@@ -22,16 +22,16 @@ function BookingCard(props) {
   }, []);
   return (
     <div
-      className=" bg-no-repeat bg-contain bg-left-top max-w-[350px] min-w-[300px] rounded-md bg-[#0C1118]  m-2"
+      className="slide bg-no-repeat bg-contain bg-left-top  rounded-md bg-[#0C1118]  m-2"
       id={props.id + 'header'}
     >
       <div className="inner-wrap flex flex-col justify-center items-center">
         <img className="w-10 mb-2 " src={props.item.img} alt="" />
-        <h2>{props.item.name}</h2>
-        <h3>{props.item.short}</h3>
+        <h2 className="flex justify-center items-center">{props.item.name}</h2>
+        <h3 className="flex justify-center items-center h-64">{props.item.short}</h3>
         <div className="m-3 relative" id={1+'.'+props.id+'.links'} onClick={e => handleVisible(e)} >
               <div  className="w-full flex">            
-                <h3 className="cursor-pointer text-left ml-4">КОМУ ПОДОЙДЕТ?</h3>
+                <div className="cursor-pointer text-left ml-4">КОМУ ПОДОЙДЕТ?</div>
                 <img className="w-5 h-5" src={"/icons/caret.svg"}  alt="open" id={"img."+props.id} />
               </div>
              

@@ -7,34 +7,34 @@ import Slider from './Slider';
 function AboutComponent() {
   const listArrayLeft = [
     {
-      imgLink: '/icons/lamp.svg',
-      name: 'Двухуровневый темный лабиринт 300 кв м',
-      desc: 'Густая темнота, собранная из подвалов заброшенных скрипучих домов.',
+      imgLink: '/icons/eight.svg',
+      name: 'Двухуровневый лабиринт 300 кв м',
+      desc: 'Густая темнота, смесь лабиринтов и страха на огромных площадях.',
     },
     {
-      imgLink: '/icons/shkaff.svg',
+      imgLink: '/icons/key.svg',
       name: 'Квесты с оригинальными механизмами',
-      desc: 'Чтобы надежно спрятаться от всех, кто попробует вас найти.',
+      desc: 'Захватывающие и необычные квесты для искателей новых впечатлений.',
     },
     {
-      imgLink: '/icons/basket.svg',
+      imgLink: '/icons/firework.svg',
       name: 'Интерактивная комната',
-      desc: 'Комнаты, вход в которые уже давно потерян.',
+      desc: 'Вся стена – как огромный живой планшет.',
     },
   ];
   const listArrayRight = [
     {
-      imgLink: '/icons/ulitka.svg',
-      name: 'Уютные банкетные комнаты с авторским дизайном',
-      desc: 'Звуковые и световые ловушки, которые работают против вас.',
+      imgLink: '/icons/cake.svg',
+      name: 'Уютные банкетные комнаты',
+      desc: 'Авторский дизайн .',
     },
     {
-      imgLink: '/icons/hat.svg',
+      imgLink: '/icons/shkaff.svg',
       name: 'Гардероб ',
-      desc: 'Темнота скрывает вещи, которые не так просты, как кажутся.',
+      desc: 'С начала осени все верхние вещи гостей мы размещаем в гардеробе',
     },
     {
-      imgLink: '/icons/eight.svg',
+      imgLink: '/icons/water_cooler.svg',
       name: 'Удобства',
       desc: 'Доступны кулер с водой,стаканчики, чай, сахар, микроволновка.',
     },
@@ -194,7 +194,7 @@ function AboutComponent() {
           })}
         </div>
       </div>
-      <div className="flex w-full justify-between  bg-no-repeat bg-contain bg-left-bottom min-h-[100vh] bg-[#0C1118] laptop:bg-auto laptop:bg-aboutBG">
+      <div className="flex w-full justify-between  bg-no-repeat bg-contain bg-left-bottom min-h-[100vh] bg-[#0C1118] laptop:bg-contain laptop:bg-aboutBG">
         <div className="hidden laptop:block laptop:w-[400px]"></div>
         <div className="my-auto">
           <h1 className="text-center text-2xl pt-10 font-extrabold">
