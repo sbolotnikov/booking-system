@@ -73,7 +73,7 @@
 }
 
 /* variables */
-.vari{
+:root{
 --quests:7;
 }
 
@@ -87,7 +87,7 @@
   max-width:1200px;
   margin: auto;
   display:grid;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 
@@ -99,7 +99,7 @@
   height: 100%;
   position: absolute;
   width:15%;
-  z-index:300;
+  z-index:4;
 }
 .mediaScroller::before{
   left: 0;
@@ -112,15 +112,19 @@
 }
 .slideTrack{
   display: flex;
-  width: calc(320px*2*7);
+  width: calc(320px*2*var(--quests));
   animation: scroll 40s alternate linear infinite;
+  overflow-x:scroll;
+}
+.pauseAnim{
+  animation-play-state: paused;
 }
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-250px*7));
+    transform: translateX(calc(-250px*var(--quests)));
   }
 }
 

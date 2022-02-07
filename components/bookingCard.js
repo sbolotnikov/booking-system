@@ -3,6 +3,7 @@ import { useEffect,useState } from 'react';
 function BookingCard(props) {
   
   const [visible, setVisible] = useState(0);
+  const [stopping, setStopping] = useState(0);
   function handleVisible(e) {
       let n = parseInt(e.currentTarget.id);
 
@@ -23,7 +24,7 @@ function BookingCard(props) {
   return (
     <div
       className="slide bg-no-repeat bg-contain bg-left-top  rounded-md bg-[#0C1118]  m-2"
-      id={props.id + 'header'}
+      id={props.id + 'header'} onClick={e =>{stopping===0?setStopping(1):setStopping(0); props.onVisible(stopping);}}
     >
       <div className="inner-wrap flex flex-col justify-center items-center">
         <img className="w-10 mb-2 " src={props.item.img} alt="" />

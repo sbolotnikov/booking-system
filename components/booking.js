@@ -10,7 +10,7 @@ function Booking() {
         <div className="slideTrack">
         {games.map((item, j) => {
             return (
-          <BookingCard key={`package${j}`} id={`package${j}`} item={item}/>  
+          <BookingCard key={`package${j}`} id={`package${j}`} item={item} onVisible={e=>{ e==0?document.querySelector(".slideTrack").classList.add('pauseAnim'):document.querySelector(".slideTrack").classList.remove('pauseAnim');}}/>  
             )})
         }
 

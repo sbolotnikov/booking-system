@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer>
-      <hr />
+      {/* <hr /> */}
       <a
               id="instagram"
               href="https://www.instagram.com/pereulokquest74"

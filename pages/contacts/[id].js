@@ -9,43 +9,12 @@ function contacts(props) {
   let locations = value.locations;
   return (
     <div>
-      <h1 className="text-center p-10 font-extrabold">Где находится?</h1>
+      <h1 className="text-center p-6 font-extrabold">Где находится?</h1>
+      <h2 className="font-extrabold m-4 text-center text-xl">
+        {locations[location].name}
+      </h2>
       <div className="containerContacts">
-        <div>
-          <GetLocation
-            loc={location}
-            list={locations}
-            onChange={(loc) => {
-              setLocation(loc);
-            }}
-          />
-          <h2 className="hideOnSmall text-left mt-8 pt-8 border-t-2 border-gray-700">
-            Организатор в Челябинске:
-            <br />
-            <br />
-            ИП Бондаренко Николай Владимирович
-            <br />
-            ИНН: 744842796410
-          </h2>
-        </div>
-        <div className="borderleft">
-          <h2 className="font-extrabold">{locations[location].name}</h2>
-          <p
-            dangerouslySetInnerHTML={{ __html: locations[location].address }}
-          ></p>
-          <p>
-            <span className="text-white text-lg font-black flex flex-row"><img className="object-fill w-5 mr-2" src={'/icons/call.svg'} alt="menu call" />
-            {locations[location].telephone}</span>
-          </p>
-          <p>
-            <span className="text-white text-xl font-black mr-2">@</span>
-            {locations[location].email}
-          </p>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: locations[location].address_desc,
-            }}
-          ></p>
+        <div className="flex flex-col justify-center items-center">
           <div className="m-auto mt-2">
             <YMaps>
               <Map
@@ -81,7 +50,7 @@ function contacts(props) {
                   // Options.
                   options={{
                     iconLayout: 'default#image',
-                    iconImageHref: '/icons/logo light dark back.svg',
+                    iconImageHref: '/icons/logoBlack.svg',
                     iconImageSize: [60, 84],
                     iconImageOffset: [-26, -44],
                     // The placemark's icon will stretch to fit its contents.
@@ -113,10 +82,45 @@ function contacts(props) {
                     // The placemark can be moved.
                     draggable: false,
                   }}
-                  />
+                />
               </Map>
             </YMaps>
           </div>
+
+          <h2 className="hideOnSmall text-left mt-8 pt-8 border-t-2 border-gray-700">
+            Организатор в Челябинске:
+            <br />
+            <br />
+            ИП Бондаренко Николай Владимирович
+            <br />
+            ИНН: 744842796410
+          </h2>
+        </div>
+        <div className="borderleft">
+          <p
+            className="m-4"
+            dangerouslySetInnerHTML={{ __html: locations[location].address }}
+          ></p>
+          <p>
+            <span className="text-white text-lg font-black flex flex-row">
+              <img
+                className="object-fill w-5 mr-2"
+                src={'/icons/call.svg'}
+                alt="menu call"
+              />
+              {locations[location].telephone}
+            </span>
+          </p>
+          <p>
+            <span className="text-white text-xl font-black mr-2">@</span>
+            {locations[location].email}
+          </p>
+          <p
+            className="m-4"
+            dangerouslySetInnerHTML={{
+              __html: locations[location].address_desc,
+            }}
+          ></p>
         </div>
       </div>
       <div className="rounded w-full font-SourceSansPro bg-popup max-w-[1170px] my-3 mx-auto p-1">

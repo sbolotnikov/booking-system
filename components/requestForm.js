@@ -135,7 +135,7 @@ function RequestForm(props) {
     setLoading(false);
   };
   return (
-    <div className="w-full ">
+    <div className="w-full flex flex-col justify-center items-center">
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       {revealForm && (
         <SendReservationForm
@@ -147,11 +147,11 @@ function RequestForm(props) {
           }}
         />
       )}
-      <GetLocation
+      {/* <GetLocation
         loc={location}
         list={props.locations}
         onChange={getAppointmentsTimes}
-      />
+      /> */}
       <h4
         className="flex flex-row justify-center items-center"
         onClick={() => setVisible(true)}
@@ -160,7 +160,7 @@ function RequestForm(props) {
         <img src={svgLink} className="w-8 cursor-pointer" />
       </h4>
       {visible && (
-        <GetPlayersAmount
+        <GetPlayersAmount 
           num={participants}
           minP={minPlayers}
           maxP={maxPlayers}
