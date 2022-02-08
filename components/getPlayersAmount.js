@@ -29,13 +29,13 @@ function GetPlayersAmount(props) {
     setInstructions(rules[i].instructions);
     setRounds(rules[i].additionalRounds);
     setRoomAvailability(rules[i].roomForRestAvailability);
-    document.getElementById('btn-max').classList.remove('bg-indigo-900');
+    document.getElementById('btn-max').classList.remove('bg-[#7D8800]');
   };
   const handleMaxParticipants = (e) => {
     e.preventDefault();
     handleChoice(maxParticipants);
     setNumberOfParticipants(maxParticipants + 1);
-    document.getElementById('btn-max').classList.add('bg-indigo-900');
+    document.getElementById('btn-max').classList.add('bg-[#7D8800]');
   };
   const handleClick = (e) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ function GetPlayersAmount(props) {
         : '';
   };
   return (
-    <div className="w-full flex flex-col items-center justify-center max-w-md text-white bg-popup p-5">
+    <div className="w-full flex flex-col rounded-lg items-center justify-center max-w-md text-white bg-popup/80 p-5">
       <h3 className="m-5 ">Укажите примерное количество игроков</h3>
       <h4 className="m-5 ">От {props.minP} до {props.maxP} игроков</h4>
       <div className="w-full h-auto flex justify-center  flex-wrap max-w-md">
@@ -138,7 +138,7 @@ function GetPlayersAmount(props) {
         )}
       </div> */}
       <button
-        className="w-full m-auto p-3 text-sm border rounded-xl bg-indigo-900 border-gray-700"
+        className="btnBlue"
         id="btn-max"
         onClick={(e)=>{e.preventDefault(); props.onChange(numberOfParticipants)}}
       >Выбрать</button>

@@ -219,7 +219,7 @@
   padding-left: 1.5rem;
 }
 
-.btnBlue{
+.btnBlue1{
     border-width: 2px;
     border-color:#7D8800;
     color: #7D8800;
@@ -229,7 +229,34 @@
     margin-left: 0.5rem;
     cursor: pointer;
 }
+.btnBlue {
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 20px 40px;
+  border-radius: 8px;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: 0.4s;
 
+  color: #7D8800;
+  border: 3px solid #7D8800;
+  background-image: linear-gradient(to top, #7D8800 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: 0% 0%;
+}
+
+.btnBlue:hover {
+  color: #FFF;
+  background-position: 0% 100%;
+}
+
+.btnBlue:active {
+  color: #FFF;
+  background-position: 0% 100%;
+}
 @media screen and (max-width: 768px) {
     html {
         font-size: 15px;
