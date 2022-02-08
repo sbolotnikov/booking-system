@@ -25,18 +25,18 @@ function AboutComponent() {
   const listArrayRight = [
     {
       imgLink: '/icons/cake.svg',
-      name: 'Уютные банкетные комнаты',
-      desc: 'Авторский дизайн .',
+      name: 'Дни рождения под ключ',
+      desc: 'Оформление интерьера, программа, игры, меню.',
     },
     {
       imgLink: '/icons/shkaff.svg',
-      name: 'Гардероб ',
-      desc: 'С начала осени все верхние вещи гостей мы размещаем в гардеробе',
+      name: 'Дополнительные услуги',
+      desc: 'Анимация, шоу-программы, мастер-классы.',
     },
     {
       imgLink: '/icons/water_cooler.svg',
       name: 'Удобства',
-      desc: 'Доступны кулер с водой,стаканчики, чай, сахар, микроволновка.',
+      desc: 'С начала осени все верхние вещи гостей мы размещаем в гардеробе. Доступны кулер с водой,стаканчики, чай, сахар, микроволновка.',
     },
   ];
   const listArrayRunes = [
@@ -144,7 +144,7 @@ function AboutComponent() {
     <div className="max-w-[1170px] w-full font-['SourceSansPro'] mx-auto mt-10">
       <h1 className="text-center  p-10 text-2xl font-extrabold">
         {' '}
-        Более 1000 м<sup>2</sup> развлечений, квестов, лабиринтов и мастер-классов
+        Более 1000 м<sup>2</sup> развлечений
       </h1>
       <div className="flex flex-col tablet:flex-row w-full">
         <div className="w-full m-auto">

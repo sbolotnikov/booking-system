@@ -10,7 +10,7 @@ function contacts(props) {
   return (
     <div>
       <h1 className="text-center p-6 font-extrabold">Где находится?</h1>
-      <h2 className="font-extrabold m-4 text-center text-xl">
+      <h2 className=" font-extrabold m-4 text-center text-2xl" style={{ fontFamily: 'Lumberjack'}}>
         {locations[location].name}
       </h2>
       <div className="containerContacts">
@@ -97,6 +97,7 @@ function contacts(props) {
           </h2>
         </div>
         <div className="borderleft">
+        <div className="rounded bg-popup/60 p-3 m-2">
           <p
             className="m-4"
             dangerouslySetInnerHTML={{ __html: locations[location].address }}
@@ -121,12 +122,13 @@ function contacts(props) {
               __html: locations[location].address_desc,
             }}
           ></p>
+          </div>
         </div>
       </div>
-      <div className="rounded w-full font-SourceSansPro bg-popup max-w-[1170px] my-3 mx-auto p-1">
+      <div className="rounded w-full font-SourceSansPro bg-popup/60 max-w-[1170px] my-3 mx-auto p-1">
         <span>&#9888;</span> Локации работают только по предварительной записи,
         если вы хотите посетить нас просто, чтобы осмотреться, пожалуйста,
-        позвоните предварительно по телефону +7(351)258-3000. Будем рады вас
+        позвоните предварительно по телефону +7 (951) 258-30-00. Будем рады вас
         видеть!
       </div>
     </div>
