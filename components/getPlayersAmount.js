@@ -29,13 +29,13 @@ function GetPlayersAmount(props) {
     setInstructions(rules[i].instructions);
     setRounds(rules[i].additionalRounds);
     setRoomAvailability(rules[i].roomForRestAvailability);
-    document.getElementById('btn-max').classList.remove('bg-[#7D8800]');
+    document.getElementById('btn-max').classList.remove('bg-[#FFEC00]');
   };
   const handleMaxParticipants = (e) => {
     e.preventDefault();
     handleChoice(maxParticipants);
     setNumberOfParticipants(maxParticipants + 1);
-    document.getElementById('btn-max').classList.add('bg-[#7D8800]');
+    document.getElementById('btn-max').classList.add('bg-[#FFEC00]');
   };
   const handleClick = (e) => {
     e.preventDefault();

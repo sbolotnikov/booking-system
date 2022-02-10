@@ -221,7 +221,7 @@ function SendReservationForm(props) {
         {loading && <Loading />}
         <form
           className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
-          style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
+          style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)'}}
           onSubmit={handleSubmit}
         >
           <button
@@ -335,7 +335,7 @@ function SendReservationForm(props) {
             }
           <button
             type="submit"
-            className="w-full rounded bg-indigo-900 p-2 flex justify-center items-center content-around"
+            className="w-full rounded btnBlue p-2 flex justify-center items-center content-around"
           >
             <span> Забронировать</span>
             <img

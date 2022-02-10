@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className='xs:hidden sticky bottom-0  flex flex-row justify-end items-center z-5'>
       {/* <hr /> */}
       <a
               id="instagram"
@@ -10,7 +10,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               title="Мы в Instagram"
-              className='flex flex-row justify-center items-center'
+              className='flex flex-row justify-center items-center mx-2'
             >
               <span className="w-6 h-6 mr-2">
               <img src={'/icons/instagram.svg'} alt="menu call" />
@@ -22,7 +22,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               title="Мы в vkontakte"
-              className='flex flex-row justify-center items-center'
+              className='flex flex-row justify-center items-center mx-2'
             >
               <span className="w-6 h-6 mr-2">
               <img src={'/icons/vk_logo.svg'} alt="menu call" />

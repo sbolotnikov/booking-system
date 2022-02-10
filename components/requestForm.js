@@ -166,7 +166,7 @@ function RequestForm(props) {
           maxP={maxPlayers}
           svgLink={svgLink}
           onChange={(num) => {
-            if (num > minPlayers) {
+            if (num >= minPlayers) {
               setParticipants(num);
               setVisible(false);
             } else {

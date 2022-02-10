@@ -50,7 +50,7 @@ function Emailform(props) {
         <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center  items-center">
           <form
             className="w-[80%] h-[80%] max-w-[700px] max-h-[700px] bg-black rounded-md flex flex-col justify-between  items-center p-2"
-            style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
+            style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)'}}
             onSubmit={handleSubmit}
           >
             <button
@@ -102,7 +102,7 @@ function Emailform(props) {
               minLength="5"
             ></textarea>
             <div className="error alert alert-error"></div>
-            <button type="submit" className="w-full rounded bg-indigo-900">
+            <button type="submit" className="w-full rounded btnBlue">
               Отправить сообщение
             </button>
           </form>

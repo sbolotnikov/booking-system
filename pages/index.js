@@ -50,39 +50,40 @@ export default function Home() {
   return (
     <>
       <Head></Head>
-      <div className="w-full flex flex-col justify-center  items-center">
-        <div className="w-full grid xs:grid-cols-1 sm:grid-cols-1 phone:grid-cols-2 max-w-[1170px]">
-          <div className="relative w-80 h-full ">
-            <div className="absolute  top-[5rem] right-[4.5rem]">
+      <div className="w-full  max-w-[1170px] flex flex-col justify-start  items-start m-auto">
+      <h1 className="w-full text-4xl text-center font-['Lumberjack'] mt-6  xs:hidden sm:hidden phone:block">Таинственный переулок</h1>
+        <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center mx-auto">      
+          <div className="xs:w-52 xs:h-[20rem] w-64 h-[27rem] xs:mx-0 mx-auto">
+          <div className="relative xs:w-52 w-64 ">
+            <div className="absolute xs:top-[3.8rem] xs:left-[6rem] top-[3.9rem] left-[8rem]">
               <div className="flame"></div>
             </div>
             <img
-              className="w-64 "
-              style={{ filter: 'drop-shadow(10px 5px 4px #7D8800)' }} //#4444dd  shadow change
+              className="w-64 absolute top-0 left-0 "
+              style={{ filter: 'drop-shadow(10px 5px 4px #6a640d)' }} //#4444dd #FFEC00 #7D8800 shadow change
               src={'/icons/svg/light.svg'}
               alt="hero"
             />
               {/* className="animate_pendulum absolute w-60 max-w-[300px]  -bottom-10 right-12 origin-top-center rotate-12" */}
 
             <img
-              className="animate_pendulum absolute w-60 max-w-[300px]  top-[18.32rem] left-[2.85rem] origin-top-center rotate-12"
-              style={{ filter: 'drop-shadow(10px 5px 4px #7D8800)' }} //#4444dd  shadow change
+              className="animate_pendulum absolute w-60 xs:w-48  max-w-[300px]  xs:top-[15rem] xs:left-[2.2rem] top-[18.32rem] left-[2.85rem] origin-top-center rotate-12"
+              style={{ filter: 'drop-shadow(10px 5px 4px #6a640d)' }} //#4444dd  shadow change
               src={'/icons/svg/sign.svg'}
               alt="hero"
             />
           </div>
-          <div className="w-full inner-wrap_front flex  flex-col justify-center  items-center">
-            <h2 className="text-4xl mt-6">Таинственный переулок</h2>
-            <h3 className="font-bold text-2xl mt-5">
-              центр квестов и пряток в{' '}
+          </div>
+          <div className=" inner-wrap_front flex  flex-col justify-center  items-center">
+            
+            <h3 className="font-bold text-2xl mt-12">
+              центр квестов и пряток{' '}
               <Link href="/contacts/0">
-                <div className="text-[#7D8800] cursor-pointer">Челябинске.</div>
+                <div className="text-[#FFEC00] font-extrabold cursor-pointer">в Челябинске</div>
               </Link>
             </h3>
-            <p className="font-bold mb-2">квесты в реальности</p>
-            <p className="font-bold mb-2">прятки во тьме</p>
             <button
-              className="btnBlue"
+              className="xs:py-[20px] btnBlue"
               onClick={(e) => {
                 router.replace('/book');
               }}

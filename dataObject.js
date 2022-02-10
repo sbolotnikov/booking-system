@@ -108,7 +108,7 @@ let dataObject = {
           name: `Интерактивная стена <<Кидалки>>` ,
           id: 'kidalki',
           bgImage: '/images/pryatki_photo1.jpg',
-          img:'/icons/firework.svg',
+          img:'/icons/kidalki.svg',
           short:'Необычно и весело! Вся стена – как огромный живой планшет.',
           toWhom:'возрастное ограничение 5-16 лет',
           price:'300',

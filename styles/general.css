@@ -55,13 +55,13 @@
 .flame{
 	width:150px;
 	height:150px;
-	background:linear-gradient(-45deg, #7D8800, #4C5206 ); 
+	background:linear-gradient(-45deg, #FFEC00, #6a640d ); 
 	border-radius: 150px 150px 0px 150px;
 	transform:rotate(-135deg);
 	animation:.3s flame infinite;
 	filter:blur(10px);
 	position:relative;
-	box-shadow:17px 20px 90px rgb(49, 4, 80);
+	box-shadow:17px 20px 90px #363303;
 	border:45px solid black;
 	border-left-width:25px;
 	border-top-width:25px;
@@ -124,7 +124,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-250px*var(--quests)));
+    transform: translateX(calc(-320px*var(--quests)));
   }
 }
 
@@ -142,10 +142,8 @@
 .inner-wrap_front {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background: linear-gradient(180deg, transparent 0, rgba(12,17,24,0.7) 250px);
   min-height: 250px;
-  padding: 5em 20px;
-  margin-top:-3rem;
+  /* padding: 5em 20px; */
   text-align: center;
 }
 .inner-wrap_front h2 {
@@ -221,8 +219,8 @@
 
 .btnBlue1{
     border-width: 2px;
-    border-color:#7D8800;
-    color: #7D8800;
+    border-color:#FFEC00;
+    color: #FFEC00;
     border-radius: 0.5rem;
     padding: 0.25rem;
     margin-top: 0.5rem;
@@ -241,9 +239,9 @@
   cursor: pointer;
   transition: 0.4s;
 
-  color: #7D8800;
-  border: 3px solid #7D8800;
-  background-image: linear-gradient(to top, #7D8800 50%, transparent 50%);
+  color: #FFEC00;
+  border: 3px solid #FFEC00;
+  background-image: linear-gradient(to top, #FFEC00 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: 0% 0%;
 }

@@ -47,8 +47,8 @@ const Login = ({ session }) => {
     >
     {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <div
-        className="border-0 max-auto p-4 shadow max-w-[450px] w-full m-3"
-        style={{ boxShadow: '0 0 150px rgb(100 100 255 / 80%)' }}
+        className="border-0 rounded-md max-auto p-4 shadow max-w-[450px] w-full m-3"
+        style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)'}}
       >
         <h2
           className="text-center font-bold uppercase"

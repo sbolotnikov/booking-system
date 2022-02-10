@@ -46,14 +46,57 @@
   white-space: nowrap;
   
 }
+
+
+/* CSS */
+.navbar__item {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #FFEC00 0, #6a640d 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  margin:0 .25rem;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+}
+
+.navbar__item:focus {
+  box-shadow: #6a640d 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.navbar__item:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #6a640d 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.navbar__item:active {
+  box-shadow: #6a640d 0 3px 7px inset;
+  transform: translateY(2px);
+}
 .navbar__item a {
-  background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
+  
   border: none;
   border-radius: 0.5rem;
   margin-left: .25rem;
-  padding: 0 .5rem 0 .5rem ;
+  padding: 0.5rem;
+  /* padding: 0 .5rem 0 .5rem ; */
   font-size: 0.88rem;
-  filter: drop-shadow(10px 5px 4px #7D8800);
 }
 /*
     The anchor tag ( <a> ) for the navbar links
@@ -87,14 +130,15 @@
     height: 1.5rem;
     width: 1.5rem;
   }
-@supports (backdrop-filter: blur(1rem)) {
+
+
+@media screen and (max-width: 991px) {
+  @supports (backdrop-filter: blur(1rem)) {
     .navbar__list {
       background: hsl(0 0% 100% / 0.1);
       backdrop-filter: blur(1rem);
     }
   }
-
-@media screen and (max-width: 1070px) {
   .navbar__list {
     --gap: 4rem;  
     flex-direction: column;
@@ -126,13 +170,13 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+    margin:.25rem 0;
   }
   .navbar__item a {
-    background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
     border: none;
     border-radius: 0.5rem;
     padding: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .navbar__link {
     display: flex;
@@ -152,7 +196,7 @@
 }
 @media screen and (max-width: 420px) {
   .navbar__list {
-    padding: 20vh 2em;
+    padding: 20vh 1em;
   }
   .navbar__link {
     display: flex;
@@ -168,7 +212,6 @@
     margin: 0.1rem;
 }
 .navbar__item a {
-  background: radial-gradient(closest-side, #0C1118, hsl(0 0% 100% / 0.1));
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem;

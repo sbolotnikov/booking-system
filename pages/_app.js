@@ -1,7 +1,6 @@
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/general.css';
 import '../styles/navStyle.css';
@@ -113,18 +112,18 @@ function MyApp({ Component, pageProps, router }) {
         />
       </Head>
       <AppContext.Provider value={dataObject}>
+      <motion.div key={router.route} initial='pageInitial' animate='pageAnimate' variants={{
+            pageInitial: { opacity: 0, x: -200, y: 0 },
+            pageAnimate: { opacity: 1, x: 0, y: 0 },
+         }} exit={{ opacity: 0, x: 0, y: -100 }}
+      transition={{ duration: 0.5 }}>
         <Layout>
         {/* <LazyLoadComponent> */}
-         <motion.div key={router.route} initial='pageInitial' animate='pageAnimate' variants={{
-            pageInitial: {opacity: 0},
-            pageAnimate: {opacity:1},
-         }}>
-          <Component {...pageProps} />
-          </motion.div>
+        <Component {...pageProps} />
           {/* </LazyLoadComponent> */}
         </Layout>
+          </motion.div>
       </AppContext.Provider>
-      <ToastContainer />
     </SessionProvider>
   );
 }
