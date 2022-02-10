@@ -10,7 +10,7 @@ function contacts(props) {
   return (
     <div>
       <h1 className="text-center p-6 font-extrabold">Где находится?</h1>
-      <h2 className=" font-extrabold m-4 text-center text-2xl" style={{ fontFamily: 'Lumberjack'}}>
+      <h2 className=" font-extrabold m-4 text-center text-5xl" style={{ fontFamily: 'Lumberjack'}}>
         {locations[location].name}
       </h2>
       <div className="containerContacts">
