@@ -27,8 +27,8 @@ function Cloudinary(props) {
 
     return(
         <div className="w-full flex flex-col justify-center items-center " >
-            <input type='file' className='w-full border-0 mt-1 rounded-md' onChange={(event)=>setImageSelected(event.target.files[0])}/>
-            <div className="w-full m-1 p-1 text-sm border text-center rounded-lg bg-indigo-900 border-gray-700" onClick={(e)=>{pictureUpload(e)}}>Сохранить</div>
+            <input type='file' className='w-full border-0 m-2 rounded-md' onChange={(event)=>setImageSelected(event.target.files[0])}/>
+            <div className="w-full m-3 p-1 text-sm border text-center rounded-lg navbar__item" onClick={(e)=>{pictureUpload(e)}}>Сохранить</div>
         </div>
     )
 }

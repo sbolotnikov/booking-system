@@ -48,7 +48,7 @@ function BookingCard(props) {
           {/* <span>за участника</span> */}
         </div>
         <Link href={'/game/' + props.item.id}>
-          <button className="btnBlue">
+          <button className="navbar__item p-4">
             Выбрать
           </button>
         </Link>

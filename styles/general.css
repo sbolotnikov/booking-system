@@ -87,7 +87,7 @@
   max-width:1200px;
   margin: auto;
   display:grid;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 

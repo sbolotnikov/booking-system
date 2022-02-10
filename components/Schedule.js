@@ -49,7 +49,7 @@ function Schedule({templates, eventsSet, game, location}) {
               onNext={() => setNav(nav + 1)}
               onBack={() => setNav(nav - 1)}
             />
-            <div id="weekdays" className="w-full flex text-[#247BA0]">
+            <div id="weekdays" className="w-full flex text-[#FFEC00] bg-popup/80">
               <div className="w-[14.2857%] m-0 text-center truncate">
                 Понедельник
               </div>

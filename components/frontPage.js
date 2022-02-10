@@ -78,13 +78,11 @@ export default function FrontPage() {
               </Link>
             </h3>
             <button
-              className="xs:py-[20px] btnBlue"
+              className="navbar__item"
               onClick={(e) => {
                 router.replace('/book');
-              }}
-            >
-              Забронировать{' '}
-            </button>
+              }} style={{padding:'5px 0', margin: '10px 0'}}
+            >Забронировать</button>
           </div>
         </div>
         {scrolling && <AboutComponent />}
