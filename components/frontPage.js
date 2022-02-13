@@ -46,7 +46,6 @@ export default function FrontPage() {
   return (
     <>
       <div className="w-full  max-w-[1170px] flex flex-col justify-start  items-start m-auto" >
-      <h1 className="w-full text-6xl text-center mt-6  xs:hidden sm:hidden phone:block"  style={{ fontFamily: 'Lumberjack'}}>Таинственный переулок</h1>
         <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center mx-auto">      
           <div className="xs:w-52 xs:h-[20rem] w-64 h-[27rem] xs:mx-0 mx-auto">
           <div className="relative xs:w-52 w-64 ">
@@ -55,7 +54,7 @@ export default function FrontPage() {
             </div>
             <img
               className="w-64 absolute top-0 left-0 "
-              style={{ filter: 'drop-shadow(10px 5px 4px #6a640d)' }} //#4444dd #FFEC00 #7D8800 shadow change
+              style={{ filter: 'drop-shadow(10px 5px 4px #243908)' }} //#6a640d #4444dd #FFEC00 #7D8800 shadow change 936B2C
               src={'/icons/svg/light.svg'}
               alt="hero"
             />
@@ -63,14 +62,14 @@ export default function FrontPage() {
 
             <img
               className="animate_pendulum absolute w-60 xs:w-48  max-w-[300px]  xs:top-[15rem] xs:left-[2.2rem] top-[18.32rem] left-[2.85rem] origin-top-center rotate-12"
-              style={{ filter: 'drop-shadow(10px 5px 4px #6a640d)' }} //#4444dd  shadow change
+              style={{ filter: 'drop-shadow(10px 5px 4px #936B2C)' }} //#4444dd  shadow change
               src={'/icons/svg/sign.svg'}
               alt="hero"
             />
           </div>
           </div>
-          <div className=" inner-wrap_front flex  flex-col justify-center  items-center">
-            
+          <div className=" inner-wrap_front flex  flex-col justify-center  items-center phone:pl-3">
+          <h1 className="w-full text-6xl text-center mt-6  xs:hidden sm:hidden phone:block"  style={{ fontFamily: 'Lumberjack'}}>Таинственный <br/> переулок</h1>   
             <h3 className="font-bold text-2xl mt-12">
               центр квестов и пряток{' '}
               <Link href="/contacts/0">
@@ -78,10 +77,10 @@ export default function FrontPage() {
               </Link>
             </h3>
             <button
-              className="navbar__item"
+              className=" phone:p-3 navbar__item"
               onClick={(e) => {
                 router.replace('/book');
-              }} style={{padding:'5px 0', margin: '10px 0'}}
+              }} 
             >Забронировать</button>
           </div>
         </div>

@@ -66,6 +66,7 @@
   list-style: none;
   overflow: hidden;
   position: relative;
+  width: 100%;
   text-align: left;
   text-decoration: none;
   transition: box-shadow .15s,transform .15s;

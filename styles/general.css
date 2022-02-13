@@ -55,7 +55,7 @@
 .flame{
 	width:150px;
 	height:150px;
-	background:linear-gradient(-45deg, #FFEC00, #6a640d ); 
+	background:linear-gradient(-45deg, #FFEC00, #936B2C ); 
 	border-radius: 150px 150px 0px 150px;
 	transform:rotate(-135deg);
 	animation:.3s flame infinite;
