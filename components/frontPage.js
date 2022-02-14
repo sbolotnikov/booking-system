@@ -45,11 +45,11 @@ export default function FrontPage() {
 //   }, []);
   return (
     <>
-      <div className="w-full  max-w-[1170px] flex flex-col justify-start  items-start m-auto" >
-        <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center mx-auto">      
+      <div className="w-full h-full  max-w-[1170px] flex flex-col justify-start  items-start m-auto" >
+        <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center m-auto">      
           <div className="xs:w-52 xs:h-[20rem] w-64 h-[27rem] xs:mx-0 mx-auto">
           <div className="relative xs:w-52 w-64 ">
-            <div className="absolute xs:top-[3.8rem] xs:left-[6rem] top-[3.9rem] left-[8rem]">
+            <div className="absolute xs:top-[2.1rem] xs:left-[4rem] sm:top-[2.1rem] sm:left-[6.4rem] phone:top-[4.1rem] phone:left-[7.5rem]">
               <div className="flame"></div>
             </div>
             <img
@@ -68,16 +68,16 @@ export default function FrontPage() {
             />
           </div>
           </div>
-          <div className=" inner-wrap_front flex  flex-col justify-center  items-center phone:pl-3">
-          <h1 className="w-full text-6xl text-center mt-6  xs:hidden sm:hidden phone:block"  style={{ fontFamily: 'Lumberjack'}}>Таинственный <br/> переулок</h1>   
-            <h3 className="font-bold text-2xl mt-12">
+          <div className=" inner-wrap_front flex  flex-col justify-center  items-center sm:pt-10 phone:p-3">
+          <h1 className="w-full text-5xl text-center mt-6  xs:hidden sm:hidden phone:block"  style={{ fontFamily: 'Lumberjack'}}>Таинственный <br/> переулок</h1>   
+            <h3 className="font-bold text-2xl mt-12 xs:mt-20 sm:mt-20">
               центр квестов и пряток{' '}
               <Link href="/contacts/0">
                 <div className="text-[#FFEC00] font-extrabold cursor-pointer">в Челябинске</div>
               </Link>
             </h3>
-            <button
-              className=" phone:p-3 navbar__item"
+            <button id="topButton"
+              className=" navbar__item "
               onClick={(e) => {
                 router.replace('/book');
               }} 
