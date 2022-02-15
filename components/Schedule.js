@@ -13,6 +13,8 @@ function Schedule({templates, eventsSet, game, location}) {
   const [revealAlert, setRevealAlert] = useState(false);
   const [alertStyle, setAlertStyle] = useState({});
   const { days, dateDisplay } = useDate(events, nav);
+  const weekdayName=['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];
+  const monthSet=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
   useEffect(() => {
     setEvents(eventsSet);
   }, [eventsSet]);
@@ -37,7 +39,7 @@ function Schedule({templates, eventsSet, game, location}) {
     }
     setRevealAlert(false);
   };
-  return (
+   return (
     <>
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <div className="w-full max-w-[1000px]">
@@ -50,25 +52,14 @@ function Schedule({templates, eventsSet, game, location}) {
               onBack={() => setNav(nav - 1)}
             />
             <div id="weekdays" className="w-full flex text-[#FFEC00] bg-popup/80">
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Понедельник
+            {weekdayName.map((item,i)=>{
+              return(
+                <div key={`dayOfWeek${i}`} className="w-[14.2857%] m-0 text-center truncate">
+                {item.charAt(0).toUpperCase() + item.slice(1)}
               </div>
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Вторник
-              </div>
-              <div className="w-[14.2857%] m-0 text-center truncate">Среда</div>
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Четверг
-              </div>
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Пятница
-              </div>
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Суббота
-              </div>
-              <div className="w-[14.2857%] m-0 text-center truncate">
-                Воскресенье
-              </div>
+              )
+            })}
+
             </div>
 
             <div id="calendar" className="w-full m-auto flex flex-wrap">
@@ -90,7 +81,7 @@ function Schedule({templates, eventsSet, game, location}) {
       {clicked && !eventForDate(clicked) && (
         <NewEventModal
           choice={templates}
-          eventDay={clicked}
+          eventDay={`${weekdayName[days.findIndex((e)=>e.date===clicked) % 7]}, ${parseInt(clicked.split("-")[2])} ${monthSet[parseInt(clicked.split("-")[1])-1]}`}
           onClose={() => setClicked(null)}
           onSave={async (title, appointments, color) => {
             //  update ADD request
@@ -129,7 +120,7 @@ function Schedule({templates, eventsSet, game, location}) {
 
       {clicked && eventForDate(clicked) && (
         <EditEventModal
-          eventDay={clicked}
+          eventDay={`${weekdayName[days.findIndex((e)=>e.date===clicked) % 7]}, ${parseInt(clicked.split("-")[2])} ${monthSet[parseInt(clicked.split("-")[1])-1]}`}
           eventText={eventForDate(clicked).title}
           eventSchedule={eventForDate(clicked).appointments}
           onClose={() => setClicked(null)}

@@ -33,11 +33,7 @@ export const EditEventModal = ({
   return (
     <div className="absolute top-0 left-0 h-[100vh] w-[100vw] flex justify-center z-[600] items-center" style={{ top: topElement.scrollTop }}>
       <div className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4">
-        <h2>Расписание: {new Date(eventDay+'T23:00:00.000Z').toLocaleDateString('ru-ru', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long'
-          })}</h2>
+        <h2>Расписание: {eventDay}</h2>
 
         <p id="eventText">{eventText}</p>
         <div className="flex flex-row justify-center items-center flex-wrap">
