@@ -254,13 +254,14 @@
   color: #FFF;
   background-position: 0% 100%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     html {
         font-size: 15px;
       }
       #topButton{
         margin-top: .5rem;
-        width: 100%;
+        width: 95%;
+        font-size: 2rem;
       }
       .containerDescription {
         display: block;
@@ -285,6 +286,7 @@
     padding: 1.5rem;
     width: 70%;
     margin-top: 1.5rem;
+    font-size: 1.9rem;
   }
 }
 

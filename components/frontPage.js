@@ -17,71 +17,80 @@ export default function FrontPage() {
 
   //   return () => window.removeEventListener("scroll", onScroll);
   // }, [scrollTop]);
-//   useEffect(() => {
+  //   useEffect(() => {
 
+  //     window.addEventListener('scroll', onScroll);
+  //     return () => window.removeEventListener('scroll', onScroll);
+  //   }, [scrollTop]);
+  //   function onScroll() {
+  //     let currentPosition = 0; // or use document.documentElement.scrollTop;
+  //     console.log("wheel", WheelEvent.wheelDelta)
+  //     if (currentPosition >0) {
+  //       // downscroll code
+  //       setScrolling(true);
+  //     } else {
+  //       // upscroll code
+  //       setScrolling(false);
+  //     }
 
-//     window.addEventListener('scroll', onScroll);
-//     return () => window.removeEventListener('scroll', onScroll);
-//   }, [scrollTop]);
-//   function onScroll() {
-//     let currentPosition = 0; // or use document.documentElement.scrollTop;
-//     console.log("wheel", WheelEvent.wheelDelta)
-//     if (currentPosition >0) {
-//       // downscroll code
-//       setScrolling(true);
-//     } else {
-//       // upscroll code
-//       setScrolling(false);
-//     }
-    
-//   }
- 
-//     useEffect(() => {
-//       const onScroll = () => {if (window.pageYOffset>0) setScrollDown(true)}
-//       // clean up code
-//       window.removeEventListener('scroll', onScroll);
-//       window.addEventListener('scroll', onScroll, { passive: true });
-//       return () => window.removeEventListener('scroll', onScroll);
-//   }, []);
+  //   }
+
+  //     useEffect(() => {
+  //       const onScroll = () => {if (window.pageYOffset>0) setScrollDown(true)}
+  //       // clean up code
+  //       window.removeEventListener('scroll', onScroll);
+  //       window.addEventListener('scroll', onScroll, { passive: true });
+  //       return () => window.removeEventListener('scroll', onScroll);
+  //   }, []);
   return (
     <>
-      <div className="w-full h-full  max-w-[1170px] flex flex-col justify-start  items-start m-auto" >
-        <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center m-auto">      
-          <div className="xs:w-52 xs:h-[20rem] w-64 h-[27rem] xs:mx-0 mx-auto">
-          <div className="relative xs:w-52 w-64 ">
-            <div className="absolute xs:top-[2.1rem] xs:left-[4rem] sm:top-[2.1rem] sm:left-[6.4rem] phone:top-[4.1rem] phone:left-[7.5rem]">
-              <div className="flame"></div>
-            </div>
-            <img
-              className="w-64 absolute top-0 left-0 "
-              style={{ filter: 'drop-shadow(10px 5px 4px #243908)' }} //#6a640d #4444dd #FFEC00 #7D8800 shadow change 936B2C
-              src={'/icons/svg/light.svg'}
-              alt="hero"
-            />
+      <div className="w-full h-[90vh]  max-w-[1170px] flex flex-col justify-start  items-start m-auto overflow-auto">
+        <div className=" flex xs:flex-col sm:flex-col phone:flex-row justify-center items-center sm:m-fit phone:m-auto">
+          <div className="xs:w-60  sm:w-60 w-72 h-[30rem] ">
+            <div className="relative xs:w-60 w-72 ">
+              <div className="absolute xs:top-[2.8rem] xs:left-[5.6rem] sm:top-[2.8rem] sm:left-[5rem] phone:top-[6.1rem] phone:left-[6.3rem]">
+                <div className="flame"></div>
+              </div>
+              <img
+                className="xs:w-60 sm:w-60 w-72 absolute top-0 left-0 "
+                style={{ filter: 'drop-shadow(3px 5px 4px #FFEC00)' }} //#6a640d #4444dd #FFEC00 #7D8800 shadow change 936B2C
+                src={'/icons/svg/light.svg'}
+                alt="hero"
+              />
               {/* className="animate_pendulum absolute w-60 max-w-[300px]  -bottom-10 right-12 origin-top-center rotate-12" */}
 
-            <img
-              className="animate_pendulum absolute w-60 xs:w-48  max-w-[300px]  xs:top-[15rem] xs:left-[2.2rem] top-[18.32rem] left-[2.85rem] origin-top-center rotate-12"
-              style={{ filter: 'drop-shadow(10px 5px 4px #936B2C)' }} //#4444dd  shadow change
-              src={'/icons/svg/sign.svg'}
-              alt="hero"
-            />
+              <img
+                className="animate_pendulum absolute w-72 xs:w-60 sm:w-60  max-w-[300px]  top-[19.2rem] left-[1.5rem] origin-top-center rotate-12"
+                style={{ filter: 'drop-shadow(3px 5px 4px #FFEC00)' }} //#4444dd  shadow change
+                src={'/icons/svg/sign.svg'}
+                alt="hero"
+              />
+            </div>
           </div>
-          </div>
-          <div className=" inner-wrap_front flex  flex-col justify-center  items-center sm:pt-10 phone:p-3">
-          <h1 className="w-full text-5xl text-center mt-6  xs:hidden sm:hidden phone:block"  style={{ fontFamily: 'Lumberjack'}}>Таинственный <br/> переулок</h1>   
-            <h3 className="font-bold text-2xl mt-12 xs:mt-20 sm:mt-20">
-              центр квестов и пряток{' '}
-              <Link href="/contacts/0">
-                <div className="text-[#FFEC00] font-extrabold cursor-pointer">в Челябинске</div>
-              </Link>
-            </h3>
-            <button id="topButton"
-              className=" navbar__item "
+          <div className=" inner-wrap_front flex  flex-col justify-center  items-center xs:w-screen sm:w-screen phone:w-full xs:mt-2 phone:ml-8">
+            <h1
+              className="w-full phone:text-5xl text-center mt-6  xs:hidden sm:block sm:text-5xl phone:block"
+              style={{ fontFamily: 'Lumberjack' }}
+            >
+              Таинственный <br /> переулок
+            </h1>
+            <button
+              id="topButton"
+              className=" navbar__item xs:p-[1rem] sm:p-4 "
               onClick={(e) => {
                 router.replace('/book');
-              }} 
-            >Забронировать</button>
+              }}
+            >
+              Забронировать
+            </button>
+            <h3 className="font-bold text-2xl mt-12 xs:mt-24 sm:text-3xl">
+              центр квестов и пряток{' '}
+              <Link href="/contacts/0">
+                <div className="text-[#FFEC00] font-extrabold cursor-pointer">
+                  в Челябинске
+                </div>
+              </Link>
+            </h3>
           </div>
         </div>
         {scrolling && <AboutComponent />}
