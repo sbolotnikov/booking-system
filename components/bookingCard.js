@@ -36,7 +36,7 @@ function BookingCard(props) {
                 <img className="w-5 h-5" src={"/icons/caret.svg"}  alt="open" id={"img."+props.id} />
               </div>
              
-              {(visible>0) &&<p  className="absolute left-0 top-6 rounded-sm bg-[#FFEC00] cursor-pointer" 
+              {(visible>0) &&<p  className="absolute left-0 top-6 rounded-sm bg-popup cursor-pointer z-20" 
                     dangerouslySetInnerHTML={{ __html: props.item.toWhom}}/>
               }
             </div>

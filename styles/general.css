@@ -180,12 +180,15 @@
 .containerDescription {
   width: auto;
   max-width: 768px;
-  margin: auto;
+  margin: .25rem auto;
   padding: 0 1em;
   font-weight: 300;
   font-style: light;
   font-family: SourceSansPro;
   display: grid;
+  background-color: rgba(18, 25, 35,.8);
+  border-radius:.5rem;
+  padding:0.5rem;
   gap: 1em;
   grid-template-columns: 2fr 1fr;
 }
