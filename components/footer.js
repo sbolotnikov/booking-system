@@ -14,7 +14,8 @@ export default function Footer() {
             >
               <span className="w-6 h-6 mr-2">
               <img src={'/icons/instagram.svg'} alt="menu call" />
-              </span> <span>pereulokquest74</span>
+              </span> 
+              <span>pereulokquest74</span>
             </a> 
             <a
               id="vk"
