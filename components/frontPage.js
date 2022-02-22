@@ -125,16 +125,8 @@ export default function FrontPage() {
             >
               Таинственный переулок
             </h1>
-            <button
-              id="topButton"
-              className=" navbar__item xs:p-[1rem] sm:p-4 "
-              onClick={(e) => {
-                router.replace('/book');
-              }}
-            >
-              Забронировать
-            </button>
-            <h3 className="font-bold text-2xl mt-12 xs:mt-24 sm:text-3xl laptop:text-5xl">
+
+            <h3 className="font-bold text-2xl xs:mb-10 sm:text-3xl laptop:text-5xl">
               центр квестов и пряток{' '}
               <Link href="/contacts/0">
                 <div className="text-[#FFEC00] font-extrabold cursor-pointer">
@@ -142,6 +134,15 @@ export default function FrontPage() {
                 </div>
               </Link>
             </h3>
+            <button
+              id="topButton"
+              className=" navbar__item xs:p-[1rem] sm:p-4 order-2"
+              onClick={(e) => {
+                router.replace('/book');
+              }}
+            >
+              Забронировать
+            </button>
           </div>
         </div>
         {scrolling && <AboutComponent />}
