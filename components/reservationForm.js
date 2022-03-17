@@ -1,7 +1,7 @@
 import AlertMenu from './alertMenu';
 import AppContext from '../appContext';
-import { useState, useContext } from 'react';
-function ReservationForm({ prevDate, reservation }) {
+import { useState, useEffect, useContext } from 'react';
+function ReservationForm({ prevDate, reservation,onClose }) {
   const [revealAlert, setRevealAlert] = useState(false);
   const [alertStyle, setAlertStyle] = useState({});
   const [selectedId, setSelectedId] = useState('');
@@ -64,16 +64,48 @@ function ReservationForm({ prevDate, reservation }) {
     });
     setRevealAlert(true);
   };
+  const el = document.querySelector('#mainPage');
+  const [button1Color, setbutton1Color]=useState('');
+  const [button2Color, setbutton2Color]=useState('');
+  function StopScroll(){
+    // prevent scrolling
+    var x=0;
+    var y=el.scrollTop;
+    window.onscroll=function(){window.scrollTo(x, y);};
+       
+}
+function AllowScroll(){
+  // when done release scroll
+  window.onscroll=function(){};
+}
+  useEffect(() => {
+    StopScroll();
+}, []);
   let styleName =
     reservation.reservationConfirmDate == null
       ? 'm-1 text-3xl text-extrabold text-red-500'
       : 'm-1';
   return (
-    <div className="f-full flex flex-row flex-wrap mb-6 mx-2">
-      
+    
+    <div className="w-[100vw] h-[100vh] absolute flex justify-center items-center bg-slate-500/70 left-0 top-0 z-[1000] backdrop-blur-md" style={{ top: el.scrollTop }} >
+      <div className='m-auto  max-w-[600px] bg-gray-700 border-2 border-solid border-gray-400 rounded-md w-[97%] p-2 flex flex-col content-evenly'>
+      <button
+              className="relative w-full"
+              onClick={() => {
+                onClose(true);
+              }}
+            >
+              <div className="absolute  -top-5 -right-5  p-2  bg-black rounded-full  flex justify-center  items-center">
+                <img
+                  className="h-2"
+                  src={'/icons/close.svg'}
+                  alt="menu close"
+                />
+              </div>
+            </button>
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       {reservation.date !== prevDate && (
-        <h3 className="m-1 text-3xl text-extrabold text-red-500 w-full">
+        <h3 className="m-1 text-3xl text-extrabold text-red-500 w-full flex justify-between items-center">
           {new Date(
             `${reservation.date.split('T')[0]}T${reservation.reservationHour}:${
               reservation.reservationMin < 10 ? '0' : ''
@@ -84,22 +116,23 @@ function ReservationForm({ prevDate, reservation }) {
             month: 'short',
             day: 'numeric',
           })}
-        </h3>
-      )}
-      <div className="w-full flex flex-row justify-between items-center">
-        <div className="ml-1 text-xl text-extrabold text-blue-500">
+          <div className="ml-1 text-xl text-extrabold text-blue-500">
           Время:
           {`${reservation.reservationHour}:${
             reservation.reservationMin < 10 ? '0' : ''
           }${reservation.reservationMin}`}
         </div>
+        </h3>
+      )}
+      <div className="w-full flex flex-row justify-between items-center">
+
         <div className="mr-1 overflow-hidden">Игра:{games[reservation.game]}</div>
         <button
         id={reservation._id}
-        className=' p-2 h-4 bg-[#0C1118] rounded-full  flex justify-center  items-center'
+        className=' p-2 h-4 bg-red-600 rounded-full  flex justify-center  items-center'
         onClick={handleDelete}
       >
-       <img className="h-4" src={'/icons/close.svg'} alt="menu close" />
+       удалить
       </button>
       </div>
       <div className="w-full flex flex-row justify-between flex-wrap items-center">
@@ -145,6 +178,7 @@ function ReservationForm({ prevDate, reservation }) {
           </span>
         )}
       </h4>
+      </div>
     </div>
   );
 }
