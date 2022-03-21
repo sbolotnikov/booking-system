@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 function DaySchedule({ startTime, endTime, reservations, schedules, onReservationClick }) {
   var slots = [];
   let appt=[];
@@ -50,7 +50,7 @@ function DaySchedule({ startTime, endTime, reservations, schedules, onReservatio
       {reservations.map((item, index) => (
         <div key={`reserve${index}`} className="absolute bg-blue-400 rounded-md leading-4 h-[50px] flex-wrap p-1" style={{top: `${(item.reservationHour-startTime+item.reservationMin/60)*50}px`,left:'4px'}}>
         <div key={`reserve1${index}`} data-value={`${index}`} onClick={(e)=>{onReservationClick(reservations[e.target.dataset.value])}} dangerouslySetInnerHTML={{ __html:`${item.reservationHour}:${item.reservationMin}  ${getPrice(item.schedule_id)} ${item.name}`}}/>
-        <a href={`tel:${item.phone}`} key={`reserve2${index}`}>{item.phone}</a>
+        <Link href={`tel:${item.phone}`} key={`reserve2${index}`}>{item.phone}</Link>
         </div>
       ))}
     </div>
