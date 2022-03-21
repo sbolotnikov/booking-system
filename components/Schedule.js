@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { CalendarHeader } from './CalendarHeader';
 import { Day } from './Day';
 import { NewEventModal } from './NewEventModal';
@@ -6,8 +6,10 @@ import { EditEventModal } from './EditEventModal';
 import { useDate } from './hooks/useDate';
 import AlertMenu from './alertMenu';
 import CopyPasteModal from './CopyPasteModal';
+import AppContext from '../appContext';
 
 function Schedule({ templates, eventsSet, game, location }) {
+  const value = useContext(AppContext);
   const [nav, setNav] = useState(0);
   const [clicked, setClicked] = useState();
   const [visCopyPaste, setVisCopyPaste] = useState(false);
@@ -110,7 +112,7 @@ function Schedule({ templates, eventsSet, game, location }) {
           onClose={() => setVisCopyPaste(false)}
           onSave={async (dateSet, dateEnd, dateStart, dateFinish, delRange) => {
             //  update ADD request
-            console.log(dateSet, dateEnd, dateStart, dateFinish);
+            console.log(value.nav);
             let scheduleArr = [];
             if (!delRange) {
               const res = await fetch('/api/admin/get_schedules', {
