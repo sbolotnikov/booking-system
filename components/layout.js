@@ -16,13 +16,13 @@ export default function Layout({ children }) {
   ];
   let navbarLinksAdmin = [
     { url: '/book', title: 'Забронировать' },
-    { url: '/admin', title: 'Расписание' },
+    { url: '/admin/0/0', title: 'Расписание' },
     { url: '/adm_location/0', title: 'Резервации' },
     { url: '/contacts/0', title: 'Где находится?' },
   ];
   let navbarLinksSuper = [
     { url: '/book', title: 'Забронировать' },
-    { url: '/admin', title: 'Расписание' },
+    { url: '/admin/0/0', title: 'Расписание' },
     { url: '/adm_location/0', title: 'Резервации' },
     { url: '/contacts/0', title: 'Где находится?' },
     { url: '/user_screen', title: 'Пользователи' },

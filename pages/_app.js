@@ -6,11 +6,20 @@ import '../styles/general.css';
 import '../styles/navStyle.css';
 import '../styles/rating.css';
 import Layout from '../components/layout';
+// import { useState } from 'react';
+// import PageSetContext from '../PageSetContext';
 import AppContext from '../appContext';
 import dataObject from '../dataObject';
-import {motion} from "framer-motion"
+import { motion } from 'framer-motion';
 // import LazyLoadComponent from 'react-intersection-observer-lazy-load';
 function MyApp({ Component, pageProps, router }) {
+  // const [pageState, setPageState] = useState({
+  //   location: 0,
+  //   game: 0,
+  //   onReload: (location, game) => {
+  //     setPageState({ ...pageState, location, game });
+  //   },
+  // });
   return (
     <SessionProvider
       session={pageProps.session}
@@ -111,19 +120,27 @@ function MyApp({ Component, pageProps, router }) {
           content="Таинственный переулок, центр квестов и пряток в Челябинске. Квесты в реальности и прятки во тьме"
         />
       </Head>
-      <AppContext.Provider value={dataObject}>
-      <motion.div key={router.route} initial='pageInitial' animate='pageAnimate' variants={{
-            pageInitial: { opacity: 0, x: -200, y: 0 },
-            pageAnimate: { opacity: 1, x: 0, y: 0 },
-         }} exit={{ opacity: 0, x: 0, y: -100 }}
-      transition={{ duration: 0.5 }}>
-        <Layout>
-        {/* <LazyLoadComponent> */}
-        <Component {...pageProps} />
-          {/* </LazyLoadComponent> */}
-        </Layout>
+      {/* <PageSetContext.Provider value={pageState}> */}
+        <AppContext.Provider value={dataObject}>
+          <motion.div
+            key={router.route}
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={{
+              pageInitial: { opacity: 0, x: -200, y: 0 },
+              pageAnimate: { opacity: 1, x: 0, y: 0 },
+            }}
+            exit={{ opacity: 0, x: 0, y: -100 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Layout>
+              {/* <LazyLoadComponent> */}
+              <Component {...pageProps} />
+              {/* </LazyLoadComponent> */}
+            </Layout>
           </motion.div>
-      </AppContext.Provider>
+        </AppContext.Provider>
+      {/* </PageSetContext.Provider> */}
     </SessionProvider>
   );
 }

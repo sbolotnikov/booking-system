@@ -157,9 +157,7 @@ function Schedule({ templates, eventsSet, game, location }) {
                 date1.setDate(date1.getDate() + 1);
                 dateCurrent = date1.toISOString().split('T')[0];
                 date1 = new Date(dateCurrent);
-                // console.log(scheduleArr);
                 count++;
-                // add_schedule_many
               }
             }
             const res0 = await fetch('/api/supervise/del_schedule_range', {

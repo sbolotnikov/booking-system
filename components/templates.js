@@ -7,7 +7,7 @@ function Templates() {
   const [templates, setTemplates] = useState([]);
   const [editable, setEditable] = useState(false);
   const [events, setEvents] = useState([]);
-  const [game, setGame] = useState(0)
+  
   const value = useContext(AppContext);
   var games = value.games.map((item) => item.name);
   var locs = value.games.map((item) => item.locs);
@@ -15,6 +15,7 @@ function Templates() {
     item.map((loc) => [value.locations[loc].name, loc])
   );
   const [location, setLocation] = useState(locationsArray[0][0][1]);
+  const [game, setGame] = useState(0)
   const [locations, setLocations] = useState(locationsArray[0]);
 
  const setCurrentEventsUp = async(l, g) => {
