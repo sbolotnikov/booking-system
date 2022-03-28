@@ -6,9 +6,9 @@ import { onError } from '../../../utils/error';
 const handler = nc({
     onError,
   });
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
     const { id} = req.body;
-        await db.connect();  
+        await db.connect(); 
         const user = await Users
         .findOne({_id:mongoose.Types.ObjectId(id)}); 
         //Send success response

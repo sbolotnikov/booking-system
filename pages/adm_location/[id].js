@@ -44,16 +44,17 @@ function adm_location(props) {
   }, [location]);
   return (
     <div className="w-full flex justify-center items-center">
-       <div>
-          {!!reservation && visible &&
-
-                <ReservationForm
-                  prevDate={ ''}
-                  reservation={reservation}
-                  onClose={e=>{setVisible(!e)}}
-                />
-          }
-        </div>
+      <div>
+        {!!reservation && visible && (
+          <ReservationForm
+            prevDate={''}
+            reservation={reservation}
+            onClose={(e) => {
+              setVisible(!e);
+            }}
+          />
+        )}
+      </div>
       <div className="w-full max-w-[1000px] flex flex-row justify-center items-center flex-wrap">
         <h3 className="w-full xs:text-md sm:text-xl phone:text-2xl tablet:text-3xl text-center">
           Резервации для локации:
@@ -101,7 +102,8 @@ function adm_location(props) {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                location, date:e.target.value
+                location,
+                date: e.target.value,
               }),
             });
 
@@ -123,11 +125,24 @@ function adm_location(props) {
                     (item) =>
                       item.game == i && item.date.split('T')[0] == dateSet
                   )}
-                  schedules={schedules.filter(
-                    (item) =>
-                      item.game == i
-                  )[0]}
-                  onReservationClick={e=>{setReservation(e); setVisible(true)}}
+                  schedules={schedules.filter((item) => item.game == i)[0]}
+                  onReservationClick={async (e) => {
+                    
+                    console.log(e.adminID)
+                    const res = await fetch('/api/admin/get_admin', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        id: e.adminID,
+                      }),
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    setReservation({...e,adminName:data.name});
+                    setVisible(true);
+                  }}
                 />
               </div>
             );
