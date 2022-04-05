@@ -3,12 +3,19 @@ import { useState, useEffect, useContext } from 'react';
 import ReservationForm from '../../components/reservationForm';
 import AppContext from '../../appContext';
 import DaySchedule from '../../components/DaySchedule';
-
+import ReservationMenu from '../../components/reservationMenu';
+import { useSession } from 'next-auth/react';
+    
 function adm_location(props) {
+  const { data: session, loadings } = useSession();
   const [location, setLocation] = useState(props.id);
   const [reservations, setReservations] = useState([]);
   const [reservation, setReservation] = useState();
+  const [reserveCopied, setReserveCopied] = useState();
+  const [reservePaste, setReservePaste] = useState();
   const [visible, setVisible] = useState(false);
+  const [visibleMenu, setVisibleMenu] = useState(false);
+  const [menuType, setMenuType] = useState(0);
   const [schedules, setSchedules] = useState([]);
   const [gamesArray, setGamesArray] = useState([]);
   const [style1, setStyle1] = useState({ display: 'none' });
@@ -51,6 +58,34 @@ function adm_location(props) {
             reservation={reservation}
             onClose={(e) => {
               setVisible(!e);
+            }}
+          />
+        )}
+      </div>
+      <div>
+        { visibleMenu && (
+          <ReservationMenu
+            menuType={menuType} 
+            onEditRec={(e) => {
+              setVisible(!visible);
+              setVisibleMenu(!visibleMenu);
+            }}
+            onCopyRec={(e)=>{
+              setReserveCopied(reservation);
+              setVisibleMenu(!visibleMenu);
+            }}
+            onInsertRec={(e)=>{
+              console.log(dateSet, e, reserveCopied, reservePaste);
+              let textLine='';
+              if (reserveCopied.date.split('T')[0]+reserveCopied.reservationHour+reserveCopied.reservationMin!==dateSet+reservePaste.reservationHour+reservePaste.reservationMin)
+              textLine=`Смена даты/времени игры с ${reserveCopied.date.split('T')[0]} ${reserveCopied.reservationHour}:${reserveCopied.reservationMin} на${(reserveCopied.date.split('T')[0]!==dateSet)?' '+dateSet:''} ${(reserveCopied.reservationHour+reserveCopied.reservationMin!==reservePaste.reservationHour+reservePaste.reservationMin)?' '+reservePaste.reservationHour+':'+reservePaste.reservationMin:''}.`;
+              textLine+=(reserveCopied.game!==reservePaste.game)?` Заменить игру с ${gamesArray[reserveCopied.game].name} на ${gamesArray[reservePaste.game].name}.`:"";
+              textLine+=`Подтверждение от клиента:${e?'ДА':"НЕТ"}. Админ: ${session.user.name}`
+              console.log(textLine, session.user.id)
+              setVisibleMenu(!visibleMenu);
+            }}
+            onClose={(e) => {
+              setVisibleMenu(!e);
             }}
           />
         )}
@@ -121,6 +156,7 @@ function adm_location(props) {
                 <DaySchedule
                   startTime={value.startTime}
                   endTime={value.endTime}
+                  gameNumber={i}
                   reservations={reservations.filter(
                     (item) =>
                       item.game == i && item.date.split('T')[0] == dateSet
@@ -141,7 +177,16 @@ function adm_location(props) {
                     const data = await res.json();
                     console.log(data);
                     setReservation({...e,adminName:data.name});
-                    setVisible(true);
+                    setMenuType(1)
+                    setVisibleMenu(true);
+                  }}
+                  onAppointmentClick={(e) => {
+                    setReservePaste(e);
+                    if (reserveCopied!=={} && e.status=='green')
+                    {
+                    setMenuType(2);
+                    setVisibleMenu(true);
+                    }
                   }}
                 />
               </div>

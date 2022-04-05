@@ -1,5 +1,5 @@
 import Link from 'next/link';
-function DaySchedule({ startTime, endTime, reservations, schedules, onReservationClick }) {
+function DaySchedule({ startTime, endTime, gameNumber, reservations, schedules, onReservationClick, onAppointmentClick }) {
   var slots = [];
   let appt=[];
 
@@ -43,7 +43,10 @@ function DaySchedule({ startTime, endTime, reservations, schedules, onReservatio
           </div>
         ))}
         {appt.map((item, index) => (
-        <div key={`appt_${index}`} className="absolute bg-green-400 rounded-md leading-4 w-[95%] h-[50px] p-1" style={{top: `${(item.reservationHour-startTime+item.reservationMin/60)*50}px`,left:'4px'}}>
+        <div key={`appt_${index}`} data-value={`${index}`} className="absolute rounded-md leading-4 w-[95%] h-[50px] p-1" style={{top: `${(item.reservationHour-startTime+item.reservationMin/60)*50}px`,left:'4px',backgroundColor:item.status}}  onClick={(e)=>{
+          let sendObj=appt[e.target.dataset.value];
+          sendObj['game']=gameNumber;
+          onAppointmentClick(sendObj);}}>
           {`${item.reservationHour}:${item.reservationMin} ₽${item.price} ${item.perPerson?'с чел.':''}`}
         </div>
       ))}

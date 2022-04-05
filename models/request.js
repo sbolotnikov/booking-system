@@ -44,6 +44,17 @@ const RequestSchema = new Schema({
   reservationConfirmDate: {
     type: Date
   },
+  changesToRequest:[
+    {
+      note: {
+        type: String,
+        required: true,
+      },
+      adminID: {
+        type: String,
+        required: true,
+      }
+    }]
 });
 
 RequestSchema.set('timestamps', true);

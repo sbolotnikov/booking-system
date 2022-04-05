@@ -172,7 +172,8 @@ function SendReservationForm(props) {
             game:  props.time.game,
             location: props.time.location,
             hours: props.time.hour,
-            minutes: props.time.minutes
+            minutes: props.time.minutes,
+            color:'orange'
           }),
         });
         const confirm_code2 = await res2.json();
