@@ -5,7 +5,7 @@ import AppContext from '../../appContext';
 import DaySchedule from '../../components/DaySchedule';
 import ReservationMenu from '../../components/reservationMenu';
 import { useSession } from 'next-auth/react';
-    
+
 function adm_location(props) {
   const { data: session, loadings } = useSession();
   const [location, setLocation] = useState(props.id);
@@ -63,26 +63,132 @@ function adm_location(props) {
         )}
       </div>
       <div>
-        { visibleMenu && (
+        {visibleMenu && (
           <ReservationMenu
-            menuType={menuType} 
+            menuType={menuType}
             onEditRec={(e) => {
               setVisible(!visible);
               setVisibleMenu(!visibleMenu);
             }}
-            onCopyRec={(e)=>{
+            onCopyRec={(e) => {
               setReserveCopied(reservation);
               setVisibleMenu(!visibleMenu);
             }}
-            onInsertRec={(e)=>{
+            onInsertRec={async (e) => {
               console.log(dateSet, e, reserveCopied, reservePaste);
-              let textLine='';
-              if (reserveCopied.date.split('T')[0]+reserveCopied.reservationHour+reserveCopied.reservationMin!==dateSet+reservePaste.reservationHour+reservePaste.reservationMin)
-              textLine=`Смена даты/времени игры с ${reserveCopied.date.split('T')[0]} ${reserveCopied.reservationHour}:${reserveCopied.reservationMin} на${(reserveCopied.date.split('T')[0]!==dateSet)?' '+dateSet:''} ${(reserveCopied.reservationHour+reserveCopied.reservationMin!==reservePaste.reservationHour+reservePaste.reservationMin)?' '+reservePaste.reservationHour+':'+reservePaste.reservationMin:''}.`;
-              textLine+=(reserveCopied.game!==reservePaste.game)?` Заменить игру с ${gamesArray[reserveCopied.game].name} на ${gamesArray[reservePaste.game].name}.`:"";
-              textLine+=`Подтверждение от клиента:${e?'ДА':"НЕТ"}. Админ: ${session.user.name}`
-              console.log(textLine, session.user.id)
-              setVisibleMenu(!visibleMenu);
+              let textLine = '';
+              if (
+                reserveCopied.date.split('T')[0] +
+                  reserveCopied.reservationHour +
+                  reserveCopied.reservationMin !==
+                dateSet +
+                  reservePaste.reservationHour +
+                  reservePaste.reservationMin
+              )
+                textLine = `Смена даты/времени игры с ${
+                  reserveCopied.date.split('T')[0]
+                } ${reserveCopied.reservationHour}:${
+                  reserveCopied.reservationMin
+                } на${
+                  reserveCopied.date.split('T')[0] !== dateSet
+                    ? ' ' + dateSet
+                    : ''
+                } ${
+                  reserveCopied.reservationHour +
+                    reserveCopied.reservationMin !==
+                  reservePaste.reservationHour + reservePaste.reservationMin
+                    ? ' ' +
+                      reservePaste.reservationHour +
+                      ':' +
+                      reservePaste.reservationMin
+                    : ''
+                }.`;
+              textLine +=
+                reserveCopied.game !== reservePaste.game
+                  ? ` Заменить игру с ${
+                      gamesArray[reserveCopied.game].name
+                    } на ${gamesArray[reservePaste.game].name}.`
+                  : '';
+              textLine += `Подтверждение от клиента:${
+                e ? 'ДА' : 'НЕТ'
+              }. Админ: ${session.user.name}`;
+              console.log(textLine, session.user.id);
+              const res = await fetch('/api/admin/update_reservation', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  selectedId: reserveCopied._id,
+                  changeRecord: {
+                    note: textLine,
+                    adminID: session.user.name,
+                    dateChange: new Date(Date.now()),
+                  },
+                  reservePaste: {
+                    ...reservePaste,
+                    date: dateSet + 'T00:00:00.000+00:00',
+                    location,
+                  },
+                }),
+              });
+              // confirm reservation if needed
+              if (e==true){
+              const res1 = await fetch('/api/admin/confirm_reservation', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  selectedId: reserveCopied._id,
+                  location,
+                  game: reserveCopied.game,
+                }),
+              });
+
+              }
+
+              //  2- amongUs 3-5 games free appoinment in the schedule
+              if (reserveCopied.game > 1 && reserveCopied.game < 6) {
+                const res2 = await fetch('/api/reservation/make_busy_add', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    date: reserveCopied.date,
+                    schedule_id: reserveCopied.schedule_id,
+                    game: reserveCopied.game,
+                    location,
+                    hours: reserveCopied.reservationHour,
+                    minutes: reserveCopied.reservationMin,
+                    color: 'green',
+                  }),
+                });
+                const confirm_code2 = await res2.json();
+                console.log(confirm_code2);
+              }
+              // 2- amongUs 3-5 games make busy appoinment in the schedule
+              if (reservePaste.game > 1 && reservePaste.game < 6) {
+                const res3 = await fetch('/api/reservation/make_busy_add', {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    date: dateSet + 'T00:00:00.000+00:00',
+                    schedule_id: reservePaste._id,
+                    game: reservePaste.game,
+                    location,
+                    hours: reservePaste.reservationHour,
+                    minutes: reservePaste.reservationMin,
+                    color: e?"pink":'orange',
+                  }),
+                });
+                const confirm_code3 = await res3.json();
+                console.log(confirm_code3);
+              }
+              window.location.reload(false);
             }}
             onClose={(e) => {
               setVisibleMenu(!e);
@@ -163,8 +269,7 @@ function adm_location(props) {
                   )}
                   schedules={schedules.filter((item) => item.game == i)[0]}
                   onReservationClick={async (e) => {
-                    
-                    console.log(e.adminID)
+                    console.log(e.adminID);
                     const res = await fetch('/api/admin/get_admin', {
                       method: 'POST',
                       headers: {
@@ -176,16 +281,15 @@ function adm_location(props) {
                     });
                     const data = await res.json();
                     console.log(data);
-                    setReservation({...e,adminName:data.name});
-                    setMenuType(1)
+                    setReservation({ ...e, adminName: data.name });
+                    setMenuType(1);
                     setVisibleMenu(true);
                   }}
                   onAppointmentClick={(e) => {
                     setReservePaste(e);
-                    if (reserveCopied!=={} && e.status=='green')
-                    {
-                    setMenuType(2);
-                    setVisibleMenu(true);
+                    if (reserveCopied !== {} && e.status == 'green') {
+                      setMenuType(2);
+                      setVisibleMenu(true);
                     }
                   }}
                 />

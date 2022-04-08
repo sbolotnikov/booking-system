@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-function ReservationMenu({ menuType, onEditRec, onCopyRec,onInsertRec, onClose }) {
+function ReservationMenu({
+  menuType,
+  onEditRec,
+  onCopyRec,
+  onInsertRec,
+  onClose,
+}) {
   function StopScroll() {
     // prevent scrolling
     var x = 0;
@@ -37,35 +43,44 @@ function ReservationMenu({ menuType, onEditRec, onCopyRec,onInsertRec, onClose }
 
         <div className="w-full flex flex-col justify-center  items-center">
           {menuType == 1 && (
-            <div
+          <button
+              className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
               onClick={() => {
                 onEditRec(true);
               }}
             >
               Редактировать
-            </div>
+            </button>
           )}
           {menuType == 1 && (
-            <div
+            <button
+              className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
               onClick={() => {
                 onCopyRec(true);
               }}
             >
               Копировать
-            </div>
+            </button>
           )}
-          {menuType == 2 &&
-          <div onClick={() => {
+          {menuType == 2 && (
+            <button
+              className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+              onClick={() => {
                 onInsertRec(false);
               }}
-              >Вставить
-          </div>}
-          {menuType == 2 &&
-          <div onClick={() => {
+            >
+              Вставить
+            </button>
+          )}
+          {menuType == 2 && (
+            <button className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+              onClick={() => {
                 onInsertRec(true);
               }}
-              >Вставить с подтверждением времени
-          </div>}
+            >
+              Вставить с подтверждением времени
+            </button>
+          )}
         </div>
       </div>
     </div>
