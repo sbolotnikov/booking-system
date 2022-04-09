@@ -7,27 +7,25 @@ const handler = nc({
   onError,
 });
 handler.put(async (req, res) => {
-  const { selectedId, changeRecord, reservePaste } = req.body;
+  const { selectedId, changeRecord, reservePaste} = req.body;
   await db.connect();
   const request = await Request.findOne({_id:selectedId});
   // const request2 = await Schedule.updateOne(
   //   {date:request.date, location:request.location, game:request.game, appointments: { $elemMatch: { _id:request.schedule_id } } },
   //   { $set: { 'appointments.$.status': 'red' } }
   // );
-  console.log(changeRecord);
   const request1 = await Request.updateOne(
     { _id: selectedId },
-    {
-      $set: {
+    {$set: {
         game: reservePaste.game,
         date: reservePaste.date,
         reservationHour: reservePaste.reservationHour,
         reservationMin: reservePaste.reservationMin,
         schedule_id: reservePaste._id,
         reservationConfirmDate: null,
-      },
-      $push: { changesToRequest: changeRecord } 
-    }
+      } ,
+      $push: { changesToRequest: changeRecord }
+    } 
   );
   
   const rSch = await Schedule.updateOne(

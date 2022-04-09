@@ -7,7 +7,7 @@ const handler = nc({
     onError,
   });
 handler.put(async (req, res) => {
-    const { selectedId } = req.body;
+    const { selectedId, changeRecord } = req.body;
         await db.connect();   
         const request = await Request.findOne({_id:selectedId}); 
         const request2 = await Schedule.updateOne(
@@ -15,7 +15,8 @@ handler.put(async (req, res) => {
           { $set: { 'appointments.$.status': 'pink' } }
         );  
         const request3 = await Request
-        .updateOne({_id:selectedId},{ $set: { reservationConfirmDate: Date.now() } }); 
+        .updateOne({_id:selectedId},{ $set: { reservationConfirmDate: Date.now() }, 
+        $push: { changesToRequest: changeRecord } }); 
         //Send success response
         res.status(201).json(request);
         //Close DB connection

@@ -131,7 +131,7 @@ function SendReservationForm(props) {
       reservationMin: props.time.minutes,
       schedule_id: props.time._id,
       adminID: props.time.adminID,
-      specialNote
+      specialNote: [{note: specialNote , adminID: session.user.name, dateChange: new Date(Date.now()) }]
     };
     // Create new reservation Request
     const res = await fetch('/api/reservation/grab', {

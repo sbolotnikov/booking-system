@@ -109,9 +109,7 @@ function adm_location(props) {
                       gamesArray[reserveCopied.game].name
                     } на ${gamesArray[reservePaste.game].name}.`
                   : '';
-              textLine += `Подтверждение от клиента:${
-                e ? 'ДА' : 'НЕТ'
-              }. Админ: ${session.user.name}`;
+              textLine += `Подтверждение от клиента: ${ e ? 'ДА' : 'НЕТ'}.`;
               console.log(textLine, session.user.id);
               const res = await fetch('/api/admin/update_reservation', {
                 method: 'PUT',
@@ -141,8 +139,6 @@ function adm_location(props) {
                 },
                 body: JSON.stringify({
                   selectedId: reserveCopied._id,
-                  location,
-                  game: reserveCopied.game,
                 }),
               });
 
@@ -287,7 +283,8 @@ function adm_location(props) {
                   }}
                   onAppointmentClick={(e) => {
                     setReservePaste(e);
-                    if (reserveCopied !== {} && e.status == 'green') {
+                    console.log(reserveCopied)
+                    if (reserveCopied !== undefined && e.status == 'green') {
                       setMenuType(2);
                       setVisibleMenu(true);
                     }
