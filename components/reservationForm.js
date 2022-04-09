@@ -191,7 +191,7 @@ function ReservationForm({ prevDate, reservation, onClose }) {
             />
           </h4>
           <div className="w-full flex flex-row justify-between items-center">
-            <h4>Для служебного использования:</h4>
+            <h4>Служебные заметки: {!!reservation.specialNote?reservation.specialNote.length:"нет"} </h4>
             <button
               className=" p-2 h-4 bg-blue-500 rounded-full flex justify-center  items-center"
               onClick={handleAddNote}
@@ -258,7 +258,7 @@ function ReservationForm({ prevDate, reservation, onClose }) {
             )}
           </h4>
           <h4 className="w-full flex flex-row justify-start flex-wrap items-center">
-            Изменения в резервации
+            Изменений в резервации: {!!reservation.changesToRequest?reservation.changesToRequest.length:"нет"} 
           </h4>
           <div className="w-full h-[20vh] overflow-y-scroll rounded-md border border-gray-500">
             {reservation.changesToRequest.map((item, index) => (

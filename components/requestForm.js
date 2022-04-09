@@ -53,7 +53,7 @@ function RequestForm(props) {
     if (decision1 == 'Подтвердить') setVisible(true);
     if (decision1 == 'Да') {
       // снять блок
-      const res = await fetch('/api/admin/set_time_block', {
+     const res = await fetch('/api/admin/set_time_block', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ function RequestForm(props) {
           blockIt:false
         }),
       });
-      window.location.reload(false);
+      window.location.reload(false); 
     };
     if (decision1 == 'Ок') {
       // заблокировать

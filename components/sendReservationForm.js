@@ -36,7 +36,6 @@ function SendReservationForm(props) {
     }
   }, []);
 
-
   console.log(props.time.perPerson);
   function monthDayText(a) {
     const months = [
@@ -57,7 +56,6 @@ function SendReservationForm(props) {
     let d = a.slice(-2);
     return `${d} ${months[m - 1]}`;
   }
-
 
   const onReturn = (decision1) => {
     //
@@ -86,30 +84,19 @@ function SendReservationForm(props) {
    </h2>
    <h3 style="width: 100%;text-align:center">
    Адрес:${' '}<span> ${value.locations[props.time.location].address}</span>
- </h3>
- <h3 style="width:100%;text-align:left"><strong>Игра:</strong> ${
+   </h3>
+   <h3 style="width:100%;text-align:left"><strong>Игра:</strong> ${
    value.games[props.time.game].name
- }.</h3>
- <h3 style="width:100%"><strong>Количество игроков:</strong>${
+   }.</h3>
+   <h3 style="width:100%"><strong>Количество игроков:</strong>${
    props.players + 'ч.'
- }</h3>
- <h3 style="width:100%"><strong>Стоимость игры для всей команды составляет— ${
+   }</h3>
+   <h3 style="width:100%"><strong>Стоимость игры для всей команды составляет— ${
    props.time.perPerson ? props.time.price * props.players : props.time.price
- } руб.</strong>  Дополнительные скидки можно получиить после разговора с нашим оператором.</h3>
- <h3 style="width:100%"><strong>Специальные пожелания:</strong>${message}</h3>
- `;
-    let reg_message = `Время проведения: ${monthDay} -${' '} ${`${
-      props.time.hour
-    }:${props.time.minutes < 10 ? '0' : ''}${props.time.minutes}`}\n
-Адрес:${value.locations[props.time.location].address},\n
-Вы выбрали игру ${value.games[props.time.game].name}.\n
-Количество игроков:${props.players + 'ч.'}\n
-Стоимость игры для всей команды составляет— ${
-      props.time.price
-    } руб.   Дополнительные скидки можно получиить  \n
-    после разговора с нашим оператором.\n\n
-Специальные пожелания:\n ${message}
- `;
+   } руб.</strong>  Дополнительные скидки можно получиить после разговора с нашим оператором.</h3>
+   <h3 style="width:100%"><strong>Специальные пожелания:</strong>${message}</h3>
+   `;
+    let reg_message = `Время проведения: ${monthDay} -${' '} ${`${props.time.hour}:${props.time.minutes < 10 ? '0' : ''}${props.time.minutes}`}\n Адрес:${value.locations[props.time.location].address},\n Вы выбрали игру ${value.games[props.time.game].name}.\n Количество игроков:${props.players + 'ч.'}\n Стоимость игры для всей команды составляет— ${props.time.price} руб.   Дополнительные скидки можно получиить  \n после разговора с нашим оператором.\n\n Специальные пожелания:\n ${message}`;
     let data_mail = {
       name,
       email,
@@ -130,9 +117,15 @@ function SendReservationForm(props) {
       reservationHour: props.time.hour,
       reservationMin: props.time.minutes,
       schedule_id: props.time._id,
-      adminID: props.time.adminID,
-      specialNote: [{note: specialNote , adminID: session.user.name, dateChange: new Date(Date.now()) }]
+      adminID: props.time.adminID,    
     };
+    if (specialNote>"") data={...data, specialNote: [
+      {
+        note: specialNote,
+        adminID: session.user.name,
+        dateChange: new Date(Date.now()),
+      },
+    ],}
     // Create new reservation Request
     const res = await fetch('/api/reservation/grab', {
       method: 'POST',
@@ -157,27 +150,26 @@ function SendReservationForm(props) {
       }),
     });
     const confirm_code1 = await res1.json();
-    console.log("block appointment ",confirm_code1);
-//  2- amongUs 3-5 games
-    if ((props.time.game>1)&&(props.time.game<6)){
-
-        const res2 = await fetch('/api/reservation/make_busy_add', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            date: props.time.date,
-            schedule_id: props.time._id,
-            game:  props.time.game,
-            location: props.time.location,
-            hours: props.time.hour,
-            minutes: props.time.minutes,
-            color:'orange'
-          }),
-        });
-        const confirm_code2 = await res2.json();
-        console.log(confirm_code2);   
+    console.log('block appointment ', confirm_code1);
+    //  2- amongUs 3-5 games
+    if (props.time.game > 1 && props.time.game < 6) {
+      const res2 = await fetch('/api/reservation/make_busy_add', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date: props.time.date,
+          schedule_id: props.time._id,
+          game: props.time.game,
+          location: props.time.location,
+          hours: props.time.hour,
+          minutes: props.time.minutes,
+          color: 'orange',
+        }),
+      });
+      const confirm_code2 = await res2.json();
+      console.log(confirm_code2);
     }
     data_mail.html_message =
       `
@@ -211,7 +203,7 @@ function SendReservationForm(props) {
       }
     });
   };
-  
+
   return (
     <div>
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
@@ -222,7 +214,7 @@ function SendReservationForm(props) {
         {loading && <Loading />}
         <form
           className="w-[85%]  max-w-[700px]  bg-black rounded-md flex flex-col justify-between  items-center p-4"
-          style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)'}}
+          style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)' }}
           onSubmit={handleSubmit}
         >
           <button
@@ -323,17 +315,18 @@ function SendReservationForm(props) {
             minLength="5"
             rows={3}
           />
-            {props.time.adminID.length>0 && <textarea
-            className="w-full rounded mb-1 bg-[#0C1118]"
-            placeholder="Комментарий для служебного использования  если есть"
-            onChange={(e) => {
-              setSpecialNote(e.target.value);
-            }}
-            value={specialNote}
-            minLength="5"
-            rows={2}
-          />
-            }
+          {props.time.adminID.length > 0 && (
+            <textarea
+              className="w-full rounded mb-1 bg-[#0C1118]"
+              placeholder="Комментарий для служебного использования  если есть"
+              onChange={(e) => {
+                setSpecialNote(e.target.value);
+              }}
+              value={specialNote}
+              minLength="5"
+              rows={2}
+            />
+          )}
           <button
             type="submit"
             className="w-full rounded btnBlue p-2 flex justify-center items-center content-around"

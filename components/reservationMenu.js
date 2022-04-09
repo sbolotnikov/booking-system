@@ -4,6 +4,8 @@ function ReservationMenu({
   onEditRec,
   onCopyRec,
   onInsertRec,
+  onBlockTime,
+  onNewReservation,
   onClose,
 }) {
   function StopScroll() {
@@ -79,6 +81,33 @@ function ReservationMenu({
               }}
             >
               Вставить с подтверждением времени
+            </button>
+          )}
+          {((menuType == 2)||(menuType == 3)) && (
+            <button className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+              onClick={() => {
+                onBlockTime(true);
+              }}
+            >
+             Заблокировать время
+            </button>
+          )}
+          {menuType == 3 && (
+            <button className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+              onClick={() => {
+                onNewReservation();
+              }}
+            >
+             Создать новую резервацию
+            </button>
+          )}
+          {menuType == 4 && (
+            <button className="cursor-pointer w-full hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+              onClick={() => {
+                onBlockTime(false);
+              }}
+            >
+             Снять блок
             </button>
           )}
         </div>

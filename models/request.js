@@ -42,11 +42,9 @@ const RequestSchema = new Schema({
     {
       note: {
         type: String,
-        required: true,
       },
       adminID: {
         type: String,
-        required: true,
       },
       dateChange: {
         type: Date,
