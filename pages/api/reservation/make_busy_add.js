@@ -35,7 +35,7 @@ handler.put(async (req, res) => {
     console.log("block midi labirinth ",res4);
     blocked.push("block midi labirinth ");
   }   
-  if (game==5){
+  if((game==5)||(game==2)){
     const res5 = await Schedule.updateOne(
         { date, game:3, location, appointments: { $elemMatch: { reservationHour: hours, reservationMin:minutes } } },
         { $set: { 'appointments.$.status': color } }
