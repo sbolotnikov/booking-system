@@ -100,7 +100,7 @@ function DaySchedule({
               dangerouslySetInnerHTML={{
                 __html: `${item.reservationHour}:${
                   item.reservationMin
-                }  ${getPrice(item.schedule_id)} <div>${item.name}</div> `,
+                }  ${getPrice(item.schedule_id)}<br>${item.name} `,
               }}
             />
             <Link href={`tel:${item.phone}`} key={`reserve2${index}`}>

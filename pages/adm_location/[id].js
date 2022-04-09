@@ -357,7 +357,7 @@ function adm_location(props) {
                   )}
                   schedules={schedules.filter((item) => item.game == i)[0]}
                   onReservationClick={async (e) => {
-                    console.log(e.adminID);
+                    
                     const res = await fetch('/api/admin/get_admin', {
                       method: 'POST',
                       headers: {
