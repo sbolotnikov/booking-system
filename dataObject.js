@@ -2,6 +2,7 @@ let dataObject = {
     mainEmail:'Таинственный переулок<pereulok_74@mail.ru>',
     startTime:9,
     endTime:23,
+    timeBeforeRefresh:[0,4,0],
     games : [
         {
           name: `Квест "Тайны Гудини"` ,

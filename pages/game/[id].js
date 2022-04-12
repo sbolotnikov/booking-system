@@ -4,19 +4,62 @@ import AppContext from '../../appContext';
 function Game(gameId) {
   const value = useContext(AppContext);
   const [style1, setStyle1] = useState({ display: 'none' });
+  const [displayTime, setDisplayTime]= useState("00:00");
   var gamesArray = value.games.map((item) => [item.name, item.id]);
   const gameX = value.games.find((x) => x.id === gameId.id);
   const gameIndex = value.games.findIndex((x) => x.id === gameId.id);
   let locationsX = [];
   for (let i = 0; i < gameX.locs.length; i++)
     locationsX.push(value.locations[gameX.locs[i]]);
+    function timerDraw() {
+      // starting the , counting down seconds, and handling run-out-of-time exit 
+       
+      let seconds = value.timeBeforeRefresh[2];
+      let minutes = value.timeBeforeRefresh[1];
+      let hours = value.timeBeforeRefresh[0];
+      let secondsLeft = hours * 3600 + minutes * 60 + seconds;
+      if ((seconds !== 0) || (minutes !== 0) || (hours !== 0)) {
+          let timerInterval = setInterval(function () {
+              secondsLeft--;
+              if (seconds === 0) {
+                  seconds = 59;
+              }
+              else seconds--;
+              if (seconds === 59) {
+                  if (minutes === 0) {
+                      minutes = 59;
+                      hours--;
+                  } else minutes--;
+              }
+              setDisplayTime(stringTime(hours, minutes, seconds));
+              if ((secondsLeft === 0)) {
+                  clearInterval(timerInterval);
+                  window.location.reload(false);
+              }
+
+          }, 1000);
+      }
+  };
+  function stringTime(h, m, s) {
+      // turning time to string to display
+      if (h>0) return `${h < 10 ? '0' + h : h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`
+      else if (m>0) return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`
+      else return `${s < 10 ? '0' + s : s}`
+     
+  }
   useEffect(() => {
     document.getElementById(
       'gameHero'
     ).style.backgroundImage = `url(${gameX.bgImage})`;
+    timerDraw();
   }, []);
   return (
     <div>
+        
+      <div className='m-auto fixed top-12 right-5  bg-red-700 border-2 border-solid border-gray-400 rounded-md  flex flex-col content-evenly'>
+      Перезагрузка через {displayTime} 
+      </div>
+
       <div
         id="gameHero"
         className="bg-main-bg bg-top  bg-contain bg-no-repeat bg-fixed "
