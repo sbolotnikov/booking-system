@@ -5,6 +5,7 @@ function DaySchedule({
   gameNumber,
   reservations,
   schedules,
+  gameLength,
   onReservationClick,
   onAppointmentClick,
 }) {
@@ -57,8 +58,9 @@ function DaySchedule({
         <div
           key={`appt_${index}`}
           data-value={`${index}`}
-          className="absolute rounded-md leading-4 w-[95%] h-[50px] p-1"
+          className="absolute rounded-md leading-4 w-[95%] p-1"
           style={{
+            height:`${gameLength/60*50}px`,
             top: `${
               (item.reservationHour - startTime + item.reservationMin / 60) * 50
             }px`,
@@ -79,8 +81,9 @@ function DaySchedule({
       {reservations.map((item, index) => (
         <div
           key={`reserve${index}`}
-          className="absolute rounded-md leading-4 h-[50px] w-[95%] flex-wrap p-1"
+          className="absolute rounded-md leading-4 w-[95%] flex-wrap p-1"
           style={{
+            height:`${gameLength/60*50}px`,
             top: `${
               (item.reservationHour - startTime + item.reservationMin / 60) * 50
             }px`,

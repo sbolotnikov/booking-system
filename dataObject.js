@@ -18,6 +18,7 @@ let dataObject = {
           "Стоимость игры для команды от 2 до 4 человек – от <b>2000</b> до <b>3000 рублей.</b><br> Доплата за 5го и 6го игрока – <b>500 рублей за каждого</b>",
           booking:
             'Время прохождения квеста: 60 минут.',
+          gameLength:60,  
           locs: [0],
           minParticipants:2,
           maxParticipants:6
@@ -35,6 +36,7 @@ let dataObject = {
             'Стоимость игры для команды от 2 до 4 человек – от <b>2000</b> до <b>3000 рублей</b>.<br> Доплата за дополнительного игрока – <b>500 рублей</b>',
           booking:
             'Игра длится 60 минут',
+          gameLength:60,
           locs: [0],
           minParticipants:2,
           maxParticipants:6
@@ -69,6 +71,7 @@ let dataObject = {
           'Стоимость за одного игрока:<br><b>500 руб.</b> - в будние дни.<br><b>600 руб.</b> - в выходные, праздники.<br>',
           booking:
             'Игра длится 60 минут',
+          gameLength:60,  
           locs: [0],
           minParticipants:4,
           maxParticipants:10
@@ -86,6 +89,7 @@ let dataObject = {
           'Стоимость за одного игрока:<br><b>500 руб.</b> - в будние дни.<br><b>600 руб.</b> - в выходные, праздники.<br>',
           booking:
             'Игра длится 60 минут',
+          gameLength:60,  
           locs: [0],
           minParticipants:11,
           maxParticipants:15
@@ -103,6 +107,7 @@ let dataObject = {
           'Стоимость за одного игрока:<br><b>500 руб.</b> - в будние дни.<br><b>600 руб.</b> - в выходные, праздники.<br>',
           booking:
             'Игра длится 60 минут',
+          gameLength:60,  
           locs: [0],
           minParticipants:16,
           maxParticipants:32
@@ -120,6 +125,7 @@ let dataObject = {
           'Стоимость за одного игрока:<br><b>300 руб. за 30 минут</b> - в будние дни.<br><b>350 руб.</b> - в выходные, праздники.<br>В стоимость входит: 30 минут аренды, кулер с водой,<br>стаканчики, чай, сахар, микроволновка.',
           booking:
             'Игра длится 30 минут',
+          gameLength:30,
           locs: [0],
           minParticipants:1,
           maxParticipants:15

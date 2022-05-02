@@ -356,6 +356,7 @@ function adm_location(props) {
                       item.game == i && item.date.split('T')[0] == dateSet
                   )}
                   schedules={schedules.filter((item) => item.game == i)[0]}
+                  gameLength={value.games[i].gameLength}
                   onReservationClick={async (e) => {
                     
                     const res = await fetch('/api/admin/get_admin', {
