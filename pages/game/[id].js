@@ -81,7 +81,7 @@ function Game(gameId) {
             }}>
                   {gamesArray.map((item, index) => {
                     return (
-                      <h3 key={`games__${index}`} className="leading-4 py-5 hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
+                      <h3 key={`games__${index}`} className="leading-4 py-2 hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
                         <a key={`link__${index}`} href={`/game/${item[1]}`} >
                           {item[0]}
                         </a>
