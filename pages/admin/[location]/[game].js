@@ -87,7 +87,7 @@ function Game({location, game}) {
             onMouseEnter={(e) => {
               setStyle1({ display: 'flex' });
             }}
-            onTouchStart={()=>{
+            onClick={()=>{
               if (style1.display=='none') setStyle1({ display: 'flex'})
               else setStyle1({ display: 'none'})
             }}
@@ -114,11 +114,11 @@ function Game({location, game}) {
           <div className="w-full flex flex-row">
             Локации:
             <h3
-            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] m-1 leading-4"
+            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] m-1 leading-4 "
             onMouseEnter={(e) => {
               setStyle2({ display: 'flex' });
             }}
-            onTouchStart={()=>{
+            onClick={(e)=>{
               if (style2.display=='none') setStyle2({ display: 'flex'})
               else setStyle2({ display: 'none'})
             }}
@@ -132,8 +132,9 @@ function Game({location, game}) {
                   {locations &&
                 locations.map((item, index) => {
                     return (
-                      <h3 key={`locations__${index}`}   className="leading-4 py-1 text-center hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
-                        <a key={`link2__${index}`} href={`/admin/${index}/${game}`}>
+                      <h3 key={`locations__${index}`}   className="leading-4 py-1 text-center hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300"
+                       >
+                        <a key={`link2__${index}`} href={`/admin/${index}/${game}`} >
                           {item[0]}
                         </a>
                       </h3>

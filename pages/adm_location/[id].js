@@ -295,7 +295,7 @@ function adm_location(props) {
             onMouseLeave={(e) => {
               setStyle1({ display: 'none' });
             }}
-            onTouchStart={()=>{
+            onClick={()=>{
               if (style1.display=='none') setStyle1({ display: 'flex'})
               else setStyle1({ display: 'none'})
             }}
