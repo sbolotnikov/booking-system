@@ -48,7 +48,6 @@ function Game({location, game}) {
     // router.reload(`/admins/${location}/${e.target.value}`)
     game=e.target.value;
     Router.reload(`/admins/${location}/${e.target.value}`)
-    console.log(`/admins/${location}/${e.target.value}`)
     // setLocations(locationsArray[e.target.value]);
     // setLocation(locationsArray[e.target.value][0][1])
     // setGame(e.target.value);
@@ -81,10 +80,10 @@ function Game({location, game}) {
       {editable && <EditTemplate templates={templates} />}
               {/* location & game */}
               <form className="grid grid-col-2 m-auto sm:grid-flow-row phone:grid-flow-col laptop:grid-flow-col gap-4">
-          <h3 className="w-full flex flex-row">
+          <div className="w-full flex flex-row">
             Игра:
-            <div
-            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] ml-1"
+            <h3
+            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] m-1 leading-4"
             onMouseEnter={(e) => {
               setStyle1({ display: 'flex' });
             }}
@@ -93,13 +92,13 @@ function Game({location, game}) {
             {games[game]}
             <div className="absolute top-5 -left-14 h-[100vh] w-[300px] flex flex-col justify-start z-[1000] items-center" style={style1} >
 
-                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118]  p-0.5 m-1"  onMouseLeave={(e) => {
+                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118] overflow-hidden m-1"  onMouseLeave={(e) => {
               setStyle1({ display: 'none' }); 
             }}>
                   {games.map((item, index) => {
                     return (
-                      <h3 key={`games__${index}`}>
-                        <a key={`link__${index}`} href={`/admin/${location}/${index}`}>
+                      <h3 key={`games__${index}`} className="leading-4 py-1 text-center hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
+                        <a key={`link__${index}`} href={`/admin/${location}/${index}`} >
                           {item}
                         </a>
                       </h3>
@@ -107,12 +106,12 @@ function Game({location, game}) {
                   })}
                 </div> 
             </div>
-            </div>
-          </h3>
-          <h3 className="w-full flex flex-row">
+            </h3>
+          </div>
+          <div className="w-full flex flex-row">
             Локации:
-            <div
-            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] ml-1"
+            <h3
+            className="relative cursor-pointer outline-none border-none rounded-sm bg-[#0C1118] m-1 leading-4"
             onMouseEnter={(e) => {
               setStyle2({ display: 'flex' });
             }}
@@ -121,13 +120,13 @@ function Game({location, game}) {
             {locations[location][0]}
             <div className="absolute top-5 -left-14 h-[100vh] w-[300px] flex flex-col justify-start z-[1000] items-center" style={style2} >
 
-                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118]  p-0.5 m-1"  onMouseLeave={(e) => {
+                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118]  overflow-hidden m-1"  onMouseLeave={(e) => {
               setStyle2({ display: 'none' }); 
             }}>
                   {locations &&
                 locations.map((item, index) => {
                     return (
-                      <h3 key={`locations__${index}`}>
+                      <h3 key={`locations__${index}`}   className="leading-4 py-1 text-center hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
                         <a key={`link2__${index}`} href={`/admin/${index}/${game}`}>
                           {item[0]}
                         </a>
@@ -136,8 +135,8 @@ function Game({location, game}) {
                   })}
                 </div> 
             </div>
-            </div>
-          </h3>
+            </h3>
+          </div>
         </form>
       <Schedule templates={templates} eventsSet={events} game={game} location={location}/>
 

@@ -1,8 +1,9 @@
 let dataObject = {
-    mainEmail:'Таинственный переулок<pereulok_74@mail.ru>',
+    mainEmail:'Таинственный переулок<tainstvenniy.pereulok@yandex.ru>',
     startTime:9,
     endTime:23,
     timeBeforeRefresh:[0,4,0],
+    widthSpan:100,
     games : [
         {
           name: `Квест "Тайны Гудини"` ,
@@ -54,6 +55,7 @@ let dataObject = {
             'Стоимость за одного игрока:<br><b>500 руб.</b> - в будние дни.<br><b>600 руб.</b> - в выходные, праздники.<br>Независимо от количества игроков минимальная общая стоимость игры: 2600 руб. - в будние дни / 3200 руб. - в выходные, праздники.',
           booking:
             'Игра длится 60 минут',
+          gameLength:60,
           locs: [0],
           minParticipants:4,
           maxParticipants:12

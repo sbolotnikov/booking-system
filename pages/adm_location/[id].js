@@ -301,10 +301,10 @@ function adm_location(props) {
               style={style1}
               className="absolute top-8 right-0 z-[1000] w-full flex flex-row justify-center items-center flex-wrap "
             >
-              <div className="w-auto rounded-md border bg-[#0C1118]  p-0.5 m-1">
+              <div className="w-auto rounded-md border bg-[#0C1118] overflow-hidden m-1">
                 {locationsArray.map((item, index) => {
                   return (
-                    <h3 key={`locations__${index}`}>
+                    <h3 key={`locations__${index}`}  className="leading-4 py-1 hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
                       <a
                         key={`link__${index}`}
                         // href={`/adm_location/[${index}]`} as={`/adm_location/${index}`}
@@ -357,6 +357,7 @@ function adm_location(props) {
                   )}
                   schedules={schedules.filter((item) => item.game == i)[0]}
                   gameLength={value.games[i].gameLength}
+                  widthSpan={value.widthSpan}
                   onReservationClick={async (e) => {
                     
                     const res = await fetch('/api/admin/get_admin', {

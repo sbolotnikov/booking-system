@@ -6,6 +6,7 @@ function DaySchedule({
   reservations,
   schedules,
   gameLength,
+  widthSpan,
   onReservationClick,
   onAppointmentClick,
 }) {
@@ -38,7 +39,7 @@ function DaySchedule({
             key={`timeslot ${index}`}
             style={{
               width: '100%',
-              height: '50px',
+              height: `${widthSpan}px`,
               cursor: 'pointer',
               boxSizing: 'border-box',
               backgroundColor: 'bg-[#0C1118]',
@@ -60,9 +61,9 @@ function DaySchedule({
           data-value={`${index}`}
           className="absolute rounded-md leading-4 w-[95%] p-1"
           style={{
-            height:`${gameLength/60*50}px`,
+            height:`${gameLength/60*widthSpan}px`,
             top: `${
-              (item.reservationHour - startTime + item.reservationMin / 60) * 50
+              (item.reservationHour - startTime + item.reservationMin / 60) * widthSpan
             }px`,
             left: '4px',
             backgroundColor: item.status,
@@ -83,9 +84,9 @@ function DaySchedule({
           key={`reserve${index}`}
           className="absolute rounded-md leading-4 w-[95%] flex-wrap p-1"
           style={{
-            height:`${gameLength/60*50}px`,
+            height:`${gameLength/60*widthSpan}px`,
             top: `${
-              (item.reservationHour - startTime + item.reservationMin / 60) * 50
+              (item.reservationHour - startTime + item.reservationMin / 60) * widthSpan
             }px`,
             left: '4px',
             backgroundColor: `${

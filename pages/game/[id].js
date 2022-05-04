@@ -64,25 +64,25 @@ function Game(gameId) {
         id="gameHero"
         className="bg-main-bg bg-top  bg-contain bg-no-repeat bg-fixed "
       >
-        <div className="inner-wrap">
+        <div className="inner-wrap flex flex-col">
           <h2>БРОНИРОВАНИЕ ИГРЫ</h2>
           <h3
-            className="relative cursor-pointer"
+            className="relative cursor-pointer w-[85%] m-auto leading-4"
             onMouseEnter={(e) => {
-              setStyle1({ display: 'flex' });
+              setStyle1({ display: 'flex', });
             }}
 
           >
             {gameX.name}
-            <div className="absolute top-12 -left-3 h-[100vh] w-[100vw] flex flex-col justify-start z-[1000] items-center" style={style1} >
+            <div className="absolute top-12 right-0 w-full flex flex-col justify-start z-[1000] items-center " style={style1} >
 
-                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118]  p-0.5 m-1"  onMouseLeave={(e) => {
+                <div className="w-[95%] max-w-[1170px]  rounded-md border bg-[#0C1118]   overflow-hidden m-1"  onMouseLeave={(e) => {
               setStyle1({ display: 'none' }); 
             }}>
                   {gamesArray.map((item, index) => {
                     return (
-                      <h3 key={`games__${index}`}>
-                        <a key={`link__${index}`} href={`/game/${item[1]}`}>
+                      <h3 key={`games__${index}`} className="leading-4 py-5 hover:text-white hover:bg-purple-300 active:text-white active:bg-purple-400   focus:outline-none focus:ring focus:ring-purple-300">
+                        <a key={`link__${index}`} href={`/game/${item[1]}`} >
                           {item[0]}
                         </a>
                       </h3>

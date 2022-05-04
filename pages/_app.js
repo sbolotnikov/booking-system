@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/general.css';
 import '../styles/navStyle.css';
+import '../styles/dropdown.css';
 import '../styles/rating.css';
 import Layout from '../components/layout';
 // import { useState } from 'react';
