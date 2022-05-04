@@ -71,7 +71,11 @@ function Game(gameId) {
             onMouseEnter={(e) => {
               setStyle1({ display: 'flex', });
             }}
-
+           
+            onTouchStart={()=>{
+              if (style1.display=='none') setStyle1({ display: 'flex'})
+              else setStyle1({ display: 'none'})
+            }}
           >
             {gameX.name}
             <div className="absolute top-12 right-0 w-full flex flex-col justify-start z-[1000] items-center " style={style1} >

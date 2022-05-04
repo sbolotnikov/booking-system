@@ -87,7 +87,10 @@ function Game({location, game}) {
             onMouseEnter={(e) => {
               setStyle1({ display: 'flex' });
             }}
-
+            onTouchStart={()=>{
+              if (style1.display=='none') setStyle1({ display: 'flex'})
+              else setStyle1({ display: 'none'})
+            }}
           >
             {games[game]}
             <div className="absolute top-5 -left-14 h-[100vh] w-[300px] flex flex-col justify-start z-[1000] items-center" style={style1} >
@@ -115,7 +118,10 @@ function Game({location, game}) {
             onMouseEnter={(e) => {
               setStyle2({ display: 'flex' });
             }}
-
+            onTouchStart={()=>{
+              if (style2.display=='none') setStyle2({ display: 'flex'})
+              else setStyle2({ display: 'none'})
+            }}
           >
             {locations[location][0]}
             <div className="absolute top-5 -left-14 h-[100vh] w-[300px] flex flex-col justify-start z-[1000] items-center" style={style2} >
