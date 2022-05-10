@@ -1,5 +1,5 @@
 let dataObject = {
-    mainEmail:'Таинственный переулок<tainstvenniy.pereulok@yandex.ru>',
+    mainEmail:'Таинственный переулок<pereulok_74@mail.ru>',
     startTime:9,
     endTime:23,
     timeBeforeRefresh:[0,4,0],

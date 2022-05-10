@@ -7,6 +7,7 @@ import ReservationMenu from '../../components/reservationMenu';
 import { useSession } from 'next-auth/react';
 import SendReservationForm from '../../components/sendReservationForm';
 import GetPlayersAmount from '../../components/getPlayersAmount';
+import { useRouter } from 'next/router';
 
 function adm_location(props) {
   const { data: session, loadings } = useSession();
