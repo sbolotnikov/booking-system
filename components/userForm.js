@@ -20,8 +20,10 @@ function UserForm(props) {
         props.delUser({id:props.user._id,name:props.user.name});
       };
     return (
-        <div className="w-full relative flex flex-row flex-wrap mb-6 mx-2">
-          <h3>{props.user.name}</h3>
+        <div className="w-full relative flex flex-row justify-between flex-wrap mb-6 mx-2">
+          <img className="w-8" src={props.user.image}alt="user image"/>
+          <h3 className="mx-1">{props.user.name}</h3>
+          <h3>{"<"}{props.user.email}{">"}</h3>
           <select className="bg-main-bg mx-2" value={props.user.status} onChange={changeStatus}>
               <option value="undefined">Не определен</option>
               <option value="user">Пользователь</option>
@@ -30,7 +32,7 @@ function UserForm(props) {
               
           </select>
           <button
-        className='absolute top-0 right-0 p-2 h-4 bg-[#0C1118] rounded-full  flex justify-center  items-center'
+        className=' p-2 h-4 bg-[#0C1118] rounded-full  flex justify-center  items-center'
         onClick={handleDelete}
       >
        <img className="h-4" src={'/icons/close.svg'} alt="menu close" />
