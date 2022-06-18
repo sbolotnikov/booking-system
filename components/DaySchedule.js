@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
 function DaySchedule({
   startTime,
   endTime,
@@ -10,6 +12,7 @@ function DaySchedule({
   onReservationClick,
   onAppointmentClick,
 }) {
+  const [screenWidth, setScreenWidth] = useState(0);
   var slots = [];
   let appt = [];
 
@@ -31,8 +34,19 @@ function DaySchedule({
     if (!!obj) return `${obj.price}₽ ${obj.perPerson ? 'с чел.' : ''}`;
     return '';
   }
+  useEffect(() => {
+    setScreenWidth(window.innerWidth);
+    console.log(window.innerWidth)
+  }, [window.innerWidth]);
   return (
-    <div id="calendar" className="w-52 m-auto flex flex-wrap relative">
+    <div
+      id="calendar"
+      className={
+        screenWidth > 767
+          ? 'w-[98%] m-auto flex flex-wrap relative'
+          : 'w-48 m-auto flex flex-wrap relative'
+      }
+    >
       {slots &&
         slots.map((d, index) => (
           <div
@@ -61,9 +75,10 @@ function DaySchedule({
           data-value={`${index}`}
           className="absolute rounded-md leading-4 w-[95%] p-1"
           style={{
-            height:`${gameLength/60*widthSpan}px`,
+            height: `${(gameLength / 60) * widthSpan}px`,
             top: `${
-              (item.reservationHour - startTime + item.reservationMin / 60) * widthSpan
+              (item.reservationHour - startTime + item.reservationMin / 60) *
+              widthSpan
             }px`,
             left: '4px',
             backgroundColor: item.status,
@@ -84,9 +99,10 @@ function DaySchedule({
           key={`reserve${index}`}
           className="absolute rounded-md leading-4 w-[95%] flex-wrap p-1"
           style={{
-            height:`${gameLength/60*widthSpan}px`,
+            height: `${(gameLength / 60) * widthSpan}px`,
             top: `${
-              (item.reservationHour - startTime + item.reservationMin / 60) * widthSpan
+              (item.reservationHour - startTime + item.reservationMin / 60) *
+              widthSpan
             }px`,
             left: '4px',
             backgroundColor: `${
@@ -94,7 +110,10 @@ function DaySchedule({
             } `,
           }}
         >
-          <div key={`reserveBox${index}`} className="flex flex-row justify-between items-center">
+          <div
+            key={`reserveBox${index}`}
+            className="flex flex-row justify-between items-center"
+          >
             <div
               key={`reserve1${index}`}
               data-value={`${index}`}

@@ -7,7 +7,6 @@ import ReservationMenu from '../../components/reservationMenu';
 import { useSession } from 'next-auth/react';
 import SendReservationForm from '../../components/sendReservationForm';
 import GetPlayersAmount from '../../components/getPlayersAmount';
-import { useRouter } from 'next/router';
 
 function adm_location(props) {
   const { data: session, loadings } = useSession();
@@ -285,7 +284,7 @@ function adm_location(props) {
         />
       )}
 
-      <div className="w-full max-w-[1000px] flex flex-row justify-center items-center flex-wrap">
+      <div className="w-full flex flex-row justify-center items-center flex-wrap">
         <h3 className="w-full xs:text-md sm:text-xl phone:text-2xl tablet:text-3xl text-center">
           Резервации для локации:
           <div
@@ -345,12 +344,12 @@ function adm_location(props) {
             setSchedules(data1);
           }}
         />
-        <div className="flex flex-row overflow-x-scroll">
+         <div className="flex flex-row overflow-x-auto">
           {gamesArray.map((item, i) => {
             return (
-              <div key={'div0' + i} className="m-1">
-                <h4 key={'header' + i} className="h-20">
-                  {item.name}
+              <div key={'div0' + i} >
+                <h4 key={'header' + i} className="h-14">
+                  {item.nickname}
                 </h4>
                 <DaySchedule
                   startTime={value.startTime}

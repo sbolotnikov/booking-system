@@ -81,7 +81,7 @@ function EditTemplate({templates}) {
       <input
         className=" rounded m-1 "
         type="color"
-        value={"#74b9ff"}
+        defaultValue={"#74b9ff"}
         onChange={(e) => {
           e.preventDefault();
           setColor(e.target.value);
