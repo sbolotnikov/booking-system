@@ -68,7 +68,7 @@ const Login = ({ session }) => {
             <input
               type="email"
               name="email"
-              className="flex-1 outline-none border-none rounded-md p-0.5 mx-1"
+              className="flex-1 outline-none border-none text-popup rounded-md p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email}
@@ -80,7 +80,7 @@ const Login = ({ session }) => {
               type="password"
               id="password"
               name="password"
-              className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
+              className="flex-1 outline-none border-none text-popup rounded-md p-0.5 mx-1"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -104,7 +104,7 @@ const Login = ({ session }) => {
               type="email"
               id="email2"
               name="email2"
-              className="flex-1 outline-none border-none rounded-md p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-md text-popup p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email2}
