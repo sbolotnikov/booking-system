@@ -72,12 +72,13 @@ const BtnLogin = ({children, provider, bgColor, txtColor, options}) => {
       <div>
       { loading && <Loading /> }
       {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
-    <form onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
 
       {children}
 
-      <button type="submit" className="w-full button rounded-b-md" 
-      style={{ background: `${bgColor}`, color: `${txtColor}`}}>
+      <button type="submit" className=" btnBlue1 text-sm" 
+      // style={{ background: `${bgColor}`, color: `${txtColor}`}}
+      >
         Вход {(provider=='credentials')?'обычный':(provider=='google')?'через Гугл':"через почту"}
       </button>
 

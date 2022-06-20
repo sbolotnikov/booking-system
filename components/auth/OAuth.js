@@ -6,7 +6,7 @@ const OAuth = () => {
     <div>
       <BtnLogin 
         provider={"google"}
-        bgColor='#f2573f'
+        // bgColor='#f2573f'
       />
       {/* <BtnLogin 
         provider={providers.facebook}

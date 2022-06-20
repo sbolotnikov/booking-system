@@ -6,6 +6,7 @@ import AlertMenu from '../components/alertMenu';
 // import Email from '../components/auth/Email'
 
 const Login = ({ session }) => {
+  
   const [email, setEmail] = useState('');
   const [email2, setEmail2] = useState('');
   const [password, setPassword] = useState('');
@@ -43,12 +44,12 @@ const Login = ({ session }) => {
 
   return (
     <div
-      className="w-full flex justify-center items-center"
+      className="w-full h-screen flex justify-center items-center"
     >
     {revealAlert && <AlertMenu onReturn={onReturn} styling={alertStyle} />}
       <div
-        className="border-0 rounded-md max-auto p-4 shadow max-w-[450px] w-full m-3"
-        style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%)'}}
+        className="border-0 rounded-md p-4 shadow bg-popup max-w-[450px] w-full"
+        style={{ boxShadow: '0 0 150px rgb(255 236 0 / 50%),inset 0 0 20px #FFEC00'}}
       >
         <h2
           className="text-center font-bold uppercase"
@@ -59,15 +60,15 @@ const Login = ({ session }) => {
 
         <BtnLogin
           provider={'credentials'}
-          bgColor="gray"
+          bgColor=""
           options={{ redirect: false, email, password }}
         >
-          <div className="flex flex-col items-center p-3 bg-popup rounded-t-md bottom-0">
+          <div className="flex flex-col items-center p-3 rounded-t-md bottom-0">
             <label>Адрес эл. почты</label>
             <input
               type="email"
               name="email"
-              className="flex-1 outline-none border-none rounded-md bg-main-bg p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-md p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email}
@@ -89,21 +90,21 @@ const Login = ({ session }) => {
 
         <div className="text-center">✦ или ✦</div>
         <div>
-          <BtnLogin provider={'google'} bgColor="#f2573f" />    
+          <BtnLogin provider={'google'} bgColor="" />    
         </div>
         <div className="text-center">✦ или ✦</div>
         <BtnLogin
           provider={'email'}
-          bgColor="#22b05b"
+          bgColor=""
           options={{ redirect: false, email: email2 }}
         >
-          <div className="flex flex-col items-center p-3 bg-main-bg bottom-0">
+          <div className="flex flex-col items-center bottom-0">
             <label htmlFor="email">Вход через ваш эл. адрес</label>
             <input
               type="email"
               id="email2"
               name="email2"
-              className="flex-1 outline-none border-none rounded-sm bg-main-bg p-0.5 mx-1"
+              className="flex-1 outline-none border-none rounded-md p-0.5 mx-1"
               placeholder="email@example.com"
               required
               value={email2}
@@ -111,7 +112,16 @@ const Login = ({ session }) => {
             />
           </div>
         </BtnLogin>
-        <h4 className="w-full">Новые пользователи могут зайти через Гугл или получить ссылку для входа на почту</h4>
+        <h4 className="flex flex-col items-center justify-center w-full text-xs text-center">Новые пользователи могут зайти через Гугл, перейти на страницу регистрации или получить ссылку для входа на почту
+        <button
+        className="btnBlue1 p-2 max-w-xs"
+        onClick={() => {
+          Router.replace('/signup');
+        }}
+      >
+        Регистрация
+      </button>
+        </h4>
       </div>
       
     </div>

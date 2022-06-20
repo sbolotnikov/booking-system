@@ -8,10 +8,10 @@ const Credentials = () => {
   return (
     <BtnLogin 
       provider={"credentials"}
-      bgColor='gray'
+      // bgColor='gray'
       options={{redirect: false, email, password}}
     >
-      <div className="flex flex-col items-center p-3 bg-popup bottom-0">
+      <div className=" p-3 bg-popup bottom-0">
         <label>Email address</label>
         <input type="email" name="email"
         className="flex-1 outline-none border-none rounded-md bg-[#0C1118] p-0.5 mx-1" 
