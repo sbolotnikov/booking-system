@@ -5,7 +5,8 @@ function Game(gameId) {
   const value = useContext(AppContext);
   const [style1, setStyle1] = useState({ display: 'none' });
   const [displayTime, setDisplayTime]= useState("00:00");
-  var gamesArray = value.games.map((item) => [item.name, item.id]);
+  const gamesArray = value.games.map((item) => [item.name, item.id]);
+  // console.log(gamesArray);
   const gameX = value.games.find((x) => x.id === gameId.id);
   const gameIndex = value.games.findIndex((x) => x.id === gameId.id);
   let locationsX = [];

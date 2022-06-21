@@ -2,6 +2,7 @@ import GetLocation from '../../components/getLocation';
 import { useState, useContext } from 'react';
 import AppContext from '../../appContext';
 import { YMaps, Map, GeoObject } from 'react-yandex-maps';
+import Link from 'next/link';
 
 function contacts(props) {
   const [location, setLocation] = useState(props.id);
@@ -113,7 +114,17 @@ function contacts(props) {
             </span>
           </p>
           <p>
-            <span className="text-white text-xl font-black mr-2">@</span>
+            <span className="text-white text-lg font-black flex flex-row fill-white">
+              <img
+                className="object-fill w-6 mr-2"
+                src={'/icons/vk.svg'}
+                alt="menu call"
+              />
+              <Link href={locations[location].group}>{`Группа ВКонтакте: ${locations[location].group}`}</Link>
+            </span>
+          </p>
+          <p>
+            <span className="text-white text-xl font-black mr-4">@</span>
             {locations[location].email}
           </p>
           <p

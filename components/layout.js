@@ -12,19 +12,19 @@ export default function Layout({ children }) {
     { url: '/birthday', title: 'День Рождения' },
     { url: '#', title: 'Корпоратив' },
     { url: '#', title: 'Сертификат' },,
-    { url: '/contacts/0', title: 'Где находится?' },
+    { url: '/contacts/0', title: 'Контакты' },
   ];
   let navbarLinksAdmin = [
     { url: '/book', title: 'Забронировать' },
     { url: '/admin/0/0', title: 'Расписание' },
     { url: '/adm_location/0', title: 'Резервации' },
-    { url: '/contacts/0', title: 'Где находится?' },
+    { url: '/contacts/0', title: 'Контакты' },
   ];
   let navbarLinksSuper = [
     { url: '/book', title: 'Забронировать' },
     { url: '/admin/0/0', title: 'Расписание' },
     { url: '/adm_location/0', title: 'Резервации' },
-    { url: '/contacts/0', title: 'Где находится?' },
+    { url: '/contacts/0', title: 'Контакты' },
     { url: '/user_screen', title: 'Пользователи' },
   ];
   console.log(session)

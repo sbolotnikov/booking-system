@@ -136,7 +136,7 @@ export default function FrontPage() {
             </h3>
             <button
               id="topButton"
-              className=" navbar__item xs:p-[1rem] sm:p-4 order-2"
+              className=" navbar__item xs:p-[1rem] sm:p-4 order-2 max-w-xs"
               onClick={(e) => {
                 router.replace('/book');
               }}
