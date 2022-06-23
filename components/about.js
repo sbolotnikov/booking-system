@@ -4,6 +4,7 @@ import AccordionFAQ from './accordionFAQ';
 import Booking from './booking';
 import Slider from './slider';
 
+
 function AboutComponent() {
   const listArrayLeft = [
     {
