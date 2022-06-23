@@ -11,7 +11,7 @@ import Head from 'next/head';
 // install Swiper modules
 SwiperCore.use([Lazy, Autoplay, Pagination]);
 
-function slider() {
+function Slider() {
   // POSTS from VK  https://dev.vk.com/widgets/post
   let posts = [
     `<div id='vk_post_-40271005_12455'></div>
@@ -77,4 +77,4 @@ function slider() {
   );
 }
 
-export default slider;
+export default Slider;
