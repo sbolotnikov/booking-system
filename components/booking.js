@@ -3,7 +3,7 @@ import BookingCard from './bookingCard'
 import AppContext from '../appContext';
 function Booking() {
     const value = useContext(AppContext);
-  var games = value.games.sort((a, b) => a.name.localeCompare(b.name));
+  var games = value.games.sort((a, b) => {if (a.name > b.name) return 1;if (a.name < b.name) return -1;});
    games=games.concat(games);
     return (
         <div className="mediaScroller">

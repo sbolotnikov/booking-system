@@ -70,7 +70,7 @@ function Emailform(props) {
             <h2 className="w-full text-center font-extrabold">Есть вопросы?</h2>
             <p className="w-full text-gray-400">
               Мы с удовольствием ответим! Если вопрос срочный, лучше позвонить{' '}
-              <strong>+7(351) 258-30-00</strong>.
+              <strong>+{props.tel}</strong>.
             </p>
 
             <input

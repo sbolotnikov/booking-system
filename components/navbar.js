@@ -103,7 +103,7 @@ const Navbar = ({ navbarLinks, path }) => {
         )}
       </div>
       {emailFormVis && (
-        <Emailform
+        <Emailform tel={tel}
           onChange={(e) => {
             setEmailFormVis(false);
           }}

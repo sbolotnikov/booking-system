@@ -139,7 +139,7 @@ function contacts(props) {
       <div className="rounded w-full font-SourceSansPro bg-popup/60 max-w-[1170px] my-3 mx-auto p-1">
         <span>&#9888;</span> Локации работают только по предварительной записи,
         если вы хотите посетить нас просто, чтобы осмотреться, пожалуйста,
-        позвоните предварительно по телефону +7 (951) 258-30-00. Будем рады вас
+        позвоните предварительно по телефону +{locations[location].telephone}. Будем рады вас
         видеть!
       </div>
     </div>

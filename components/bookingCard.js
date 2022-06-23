@@ -27,7 +27,7 @@ function BookingCard(props) {
       id={props.id + 'header'} onClick={e =>{stopping===0?setStopping(1):setStopping(0); props.onVisible(stopping);}}
     >
       <div className="inner-wrap flex flex-col justify-center items-center">
-        <img className="w-10 mb-2 " src={props.item.img} alt="" />
+        <img className="w-10 h-10 mb-2 " src={props.item.img} alt="" />
         <h2 className="flex justify-center items-center">{props.item.name}</h2>
         <h3 className="flex justify-center items-center h-64">{props.item.short}</h3>
         <div className="m-3 relative" id={1+'.'+props.id+'.links'} onClick={e => handleVisible(e)} >

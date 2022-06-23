@@ -1,8 +1,10 @@
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useEffect, useRef, useContext} from 'react';
+import AppContext from '../appContext';
 function certificate() {
   const viewer = useRef(null);
-
+  const value = useContext(AppContext);
   useEffect(() => {
     import('@pdftron/webviewer').then(() => {
       WebViewer(
@@ -20,11 +22,48 @@ function certificate() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-start  py-2  ">
-      <h1 className="pt-8 font-bold mb-3 text-5xl">
-        {'Наши сертификаты и Прайс лист'}
-      </h1>
       <main className="grid max-w-[1368px] w-full phone:grid-cols-2">
+      <div className="flex flex-col ml-10  w-[85%] items-start justify-start ">
+      <h2 className="pt-8  font-bold w-full text-center text-3xl">
+            ПОДАРОЧНЫЙ СЕРТИФИКАТ<br/>ОТ 2,500 ₽<br/>
+          <Link href={`tel:${value.locations[0].telephone}`}><button className="btnBlue">Позвонить</button></Link>
+          </h2>
+          <div className="relative h-[50vh] w-full m-3">
+            <Image
+              src={`/images/certificates.jpg`}
+              alt={`certificates`}
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+          <h4 className=" mb-4 w-full font-semibold text-left text-xl">
+            Всегда в наличии подарочные сертификаты:
+            <ol className="text-left font-normal">
+              <li type="1">
+                квест на компанию до 4х человек, номинал 2500/3000
+              </li>
+              <li type="1">
+                прятки в темноте на компанию до 10 человек, номинал 5500/6500
+              </li>
+              <li type="1">
+                прятки "Среди нас" на компанию до 10 человек, номинал 5500/6500
+              </li>
+            </ol>
+            Возможны другие номиналы сертификата по индивидуальному запросу.
+          </h4>
+          <hr className="w-1/2 rounded border-2 bg-white m-auto border-solid border-white mb-3" />
+          <p className="my-4 ">
+            <dl className="font-semibold">Оплата сертификатов</dl>
+             <dt>Наличными</dt>
+            <dl className="font-semibold">Доставка</dl>
+            <dt>Доставим подарочный сертификат в любую точку Челябинска! Стоимость доставки рассчитывается при заказе.</dt>
+          </p>
+          <hr className="w-1/2 rounded border-2 bg-white m-auto border-solid border-white mb-3" />
+        </div>
         <div className="w-full">
+        <h2 className="pt-8  font-bold w-full text-center text-3xl">
+        ПРАЙС ЛИСТ<br/><br/>
+      
           <a
             href={'/docs/pricelist2106.pdf'}
             target="_blank"
@@ -33,22 +72,13 @@ function certificate() {
           >
             <button className="btnBlue">Скачать</button>
           </a>
-          <div className="max-w-full m-1 overflow-auto">
+          </h2>
+          <div className="max-w-full m-3 overflow-auto">
             <div
               className="webviewer"
               ref={viewer}
               style={{ height: '60vh' }}
             ></div>
-          </div>
-        </div>
-        <div className="flex flex-col ml-10  w-[85%] items-start justify-start ">
-          <div className="relative h-[50vh] w-full">
-            <Image
-              src={`/images/certificates.jpg`}
-              alt={`certificates`}
-              layout="fill"
-              objectFit="contain"
-            />
           </div>
         </div>
       </main>

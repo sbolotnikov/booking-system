@@ -2,7 +2,7 @@ import Card from './card';
 import { useState } from 'react';
 import AccordionFAQ from './accordionFAQ';
 import Booking from './booking';
-import Slider from './Slider';
+import Slider from './slider';
 
 function AboutComponent() {
   const listArrayLeft = [
@@ -201,7 +201,7 @@ function AboutComponent() {
           })}
         </div>
       </div>
-      <div className="flex w-full justify-between  bg-no-repeat bg-contain bg-left-bottom min-h-[100vh] bg-[#0C1118] laptop:bg-contain laptop:bg-aboutBG">
+      {/* <div className="flex w-full justify-between  bg-no-repeat bg-contain bg-left-bottom min-h-[100vh] bg-[#0C1118] laptop:bg-contain laptop:bg-aboutBG">
         <div className="hidden laptop:block laptop:w-[400px]"></div>
         <div className="my-auto">
           <h1 className="text-center text-2xl pt-10 font-extrabold">
@@ -300,7 +300,7 @@ function AboutComponent() {
                 >
                   Условия победы
                 </button>
-              </div>
+              </div> 
               {switchArray.map((item, index) => {
                 return (
                   <Card
@@ -325,12 +325,12 @@ function AboutComponent() {
           alt="Прятки в темноте"
           className="lazyloaded m-auto hidden  w-[50%] phone:order-first phone:block tablet:block tablet:order-none"
         />
-      </div>
+      </div>*/}
       <div className="m-7">
         <Booking />
       </div>
-        <Slider />
       <AccordionFAQ options={options} />
+      <Slider />
     </div>
   );
 }
