@@ -46,7 +46,7 @@ let dataObject = {
           maxParticipants:6
         },
         {
-          name: `Экшн-игра:AmongUs (прятки в лабиринте "Среди нас")` ,
+          name: `Экшн-игра: AmongUs (прятки в лабиринте "Среди нас")` ,
           nickname:"AmongUs",
           id: 'among_us',
           bgImage: '/images/among_us_photo1.jpg',
@@ -65,7 +65,7 @@ let dataObject = {
           maxParticipants:12
         },
         {
-          name: `Экшн-игра:Прятки во тьме. Малый лабиринт.` ,
+          name: `Экшн-игра: Прятки во тьме-1. Малый лабиринт.` ,
           nickname:"Прятки Мал.",
           id: 'hide_seek_sm',
           bgImage: '/images/black.png',
@@ -84,7 +84,7 @@ let dataObject = {
           maxParticipants:10
         },
         {
-          name: `Экшн-игра:Прятки во тьме. Средний лабиринт.` ,
+          name: `Экшн-игра: Прятки во тьме-2. Средний лабиринт.` ,
           nickname:"Прятки Ср.",
           id: 'hide_seek_md',
           bgImage: '/images/black.png',
@@ -103,7 +103,7 @@ let dataObject = {
           maxParticipants:15
         },  
         {
-          name: `Экшн-игра:Прятки во тьме. Большой лабиринт.` ,
+          name: `Экшн-игра: Прятки во тьме-3. Большой лабиринт.` ,
           nickname:"Прятки Бол.",
           id: 'hide_seek_lg',
           bgImage: '/images/black.png',
@@ -168,7 +168,7 @@ let dataObject = {
             symbol: '/icons/logoWhite.svg',
             address: "г. Челябинск,<br> улица Молодогвардейцев, 7",
             address_short:"улица Молодогвардейцев, 7, Челябинск",
-            telephone: "+7 (951) 258-30-00",
+            telephone: "89049419696",
             email: "questchel@mail.ru",
             group:"https://vk.com/chexit",
             address_desc:`500 метров от остановки «Ткацкая фабрика»</br>

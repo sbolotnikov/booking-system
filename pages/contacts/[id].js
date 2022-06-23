@@ -110,7 +110,7 @@ function contacts(props) {
                 src={'/icons/call.svg'}
                 alt="menu call"
               />
-              {locations[location].telephone}
+              <Link href={'tel:'+locations[location].telephone}>{'Тел.: '+locations[location].telephone}</Link>
             </span>
           </p>
           <p>
@@ -125,7 +125,7 @@ function contacts(props) {
           </p>
           <p>
             <span className="text-white text-xl font-black mr-4">@</span>
-            {locations[location].email}
+            <Link href={'mailto:'+locations[location].email}>{"Емейл: "+locations[location].email}</Link>
           </p>
           <p
             className="m-4"

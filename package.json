@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.0.1",
+    "@pdftron/webviewer": "^8.6.0",
     "@sendgrid/mail": "^7.6.2",
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",

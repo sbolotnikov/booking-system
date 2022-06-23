@@ -11,7 +11,7 @@ const Navbar = ({ navbarLinks, path }) => {
   const toggleMenuClick = () => {
     setMenuClicked(!menuClicked);
   };
-
+  const tel="89049419696";
   return (
     <nav className="navbar">
       <Link className="navbar__link" href={'/'}>
@@ -28,7 +28,7 @@ const Navbar = ({ navbarLinks, path }) => {
       {/* {nav.width()} */}
         { menuClicked && (
           <li className="navbar__item" key={'zeroitem'}>
-            <Link className="navbar__link bg-main-bg" href={'tel:+73512583000'}>
+            <Link className="navbar__link bg-main-bg" href={'tel:'+tel}>
               <a className="flex flex-row justify-center items-center"
                 onClick={() => {
                   setMenuClicked(false);
@@ -37,7 +37,7 @@ const Navbar = ({ navbarLinks, path }) => {
                 <div className="w-4">
                   <img src={'/icons/call.svg'} alt="menu call" />
                 </div>
-               <span>+7(351)258-3000</span>
+               <span>{tel}</span>
               </a>
             </Link>
           </li>
@@ -62,7 +62,7 @@ const Navbar = ({ navbarLinks, path }) => {
       <div className="navbar__right_span">
         {((session && session.user.status !== 'admin') || !session) && (
           <div className="navbar__menu_grid">
-            <Link href={'tel:+73512583000'}>
+            <Link href={'tel:'+tel}>
               <img className="object-fill" src={'/icons/call.svg'} alt="menu call" />
             </Link>
           </div>

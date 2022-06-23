@@ -10,8 +10,8 @@ export default function Layout({ children }) {
     { url: '/about', title: 'Об игре' },
     { url: '/book', title: 'Забронировать' },
     { url: '/birthday', title: 'День Рождения' },
-    { url: '#', title: 'Корпоратив' },
-    { url: '#', title: 'Сертификат' },,
+    { url: '/answer', title: 'Вопрос/Ответ' },
+    { url: '/certificate', title: 'Сертификат' },
     { url: '/contacts/0', title: 'Контакты' },
   ];
   let navbarLinksAdmin = [
