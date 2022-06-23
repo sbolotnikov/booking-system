@@ -65,6 +65,7 @@ function certificate() {
         ПРАЙС ЛИСТ<br/><br/>
       
           <a
+            id="price"
             href={'/docs/pricelist2106.pdf'}
             target="_blank"
             rel="noopener noreferrer"
