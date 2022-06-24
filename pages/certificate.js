@@ -25,7 +25,7 @@ function certificate() {
       <main className="grid max-w-[1368px] w-full phone:grid-cols-2">
       <div className="flex flex-col ml-10  w-[85%] items-start justify-start ">
       <h2 className="pt-8  font-bold w-full text-center text-3xl">
-            ПОДАРОЧНЫЙ СЕРТИФИКАТ<br/>ОТ 2,500 ₽<br/>
+            ПОДАРОЧНЫЙ СЕРТИФИКАТ<br/>ОТ 2500 ₽<br/>
           <Link href={`tel:${value.locations[0].telephone}`}><button className="btnBlue">Позвонить</button></Link>
           </h2>
           <div className="relative h-[50vh] w-full m-3">
@@ -54,7 +54,7 @@ function certificate() {
           <hr className="w-1/2 rounded border-2 bg-white m-auto border-solid border-white mb-3" />
           <p className="my-4 ">
             <dl className="font-semibold">Оплата сертификатов</dl>
-             <dt>Наличными</dt>
+             <dt>Наличными, безналичный расчет, перевод</dt>
             <dl className="font-semibold">Доставка</dl>
             <dt>Доставим подарочный сертификат в любую точку Челябинска! Стоимость доставки рассчитывается при заказе.</dt>
           </p>

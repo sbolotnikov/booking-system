@@ -125,8 +125,8 @@ let dataObject = {
           name: `Интерактивная стена <<Кидалки>>` ,
           nickname:"Кидалки",
           id: 'kidalki',
-          bgImage: '/images/pryatki_photo1.jpg',
-          img:'/icons/kidalki.svg',
+          bgImage: '/images/kidalki.png',
+          img:'/icons/projector.svg',
           short:'Необычно и весело! Вся стена – как огромный живой планшет.',
           toWhom:'возрастное ограничение 5-16 лет',
           price:330,
@@ -172,7 +172,7 @@ let dataObject = {
             email: "questchel@mail.ru",
             group:"https://vk.com/chexit",
             address_desc:`500 метров от остановки «Ткацкая фабрика»</br>
-            Есть бесплатная парковка. <br> <br> До встречи в Таинственном переулке!!!`,
+            Есть бесплатная парковка.`,
             coordinates:{x:55.2038,y:61.3264,zoom:17.23},
             coordinates1:{x:55.20358,y:61.32539,text:"Вход"}
         },

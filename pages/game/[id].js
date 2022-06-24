@@ -63,7 +63,7 @@ function Game(gameId) {
 
       <div
         id="gameHero"
-        className="bg-main-bg bg-top  bg-contain bg-no-repeat bg-fixed "
+        className="bg-main-bg bg-center bg-contain  bg-no-repeat bg-fixed "
       >
         <div className="inner-wrap flex flex-col">
           <h2>БРОНИРОВАНИЕ ИГРЫ</h2>

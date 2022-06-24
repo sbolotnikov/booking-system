@@ -18,7 +18,7 @@ function AboutComponent() {
       desc: 'Захватывающие и необычные квесты для искателей новых впечатлений',
     },
     {
-      imgLink: '/icons/firework.svg',
+      imgLink: '/icons/projector.svg',
       name: 'Интерактивная комната',
       desc: 'Вся стена – как огромный живой планшет',
     },    
@@ -152,7 +152,7 @@ function AboutComponent() {
     <div className="max-w-[1170px] w-full font-['SourceSansPro'] mx-auto mt-10">
       <h1 className="text-center  p-10 text-2xl font-extrabold">
         {' '}
-        Более 1000 м<sup>2</sup> развлечений
+        Крупнейший центр квестов и пряток на Южном Урале
       </h1>
       <div className="flex flex-col tablet:flex-row w-full my-3">
         <div className="w-full m-auto bg-popup/80">

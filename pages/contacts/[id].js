@@ -133,6 +133,14 @@ function contacts(props) {
               __html: locations[location].address_desc,
             }}
           ></p>
+          <p className="my-4 ">
+            <dl className="font-semibold">Оплата</dl>
+             <dt>Наличными, безналичный расчет, перевод</dt>
+            <dl className="font-semibold">Доставка</dl>
+            <dt>Доставим подарочный сертификат в любую точку Челябинска! Стоимость доставки рассчитывается при заказе.</dt>
+            <br/>
+            <dt className="text-center"> До встречи в Таинственном переулке!!!</dt>
+          </p>
           </div>
         </div>
       </div>
