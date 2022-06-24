@@ -110,7 +110,7 @@ function contacts(props) {
                 src={'/icons/call.svg'}
                 alt="menu call"
               />
-              <Link href={'tel:'+locations[location].telephone}>{'Тел.: '+locations[location].telephone}</Link>
+              <Link href={'tel:'+locations[location].telephone}>{locations[location].telephone}</Link>
             </span>
           </p>
           <p>
@@ -120,12 +120,12 @@ function contacts(props) {
                 src={'/icons/vk.svg'}
                 alt="menu call"
               />
-              <Link href={locations[location].group}>{`Группа ВКонтакте: ${locations[location].group}`}</Link>
+              <Link href={locations[location].group}>{`${locations[location].group}`}</Link>
             </span>
           </p>
           <p>
             <span className="text-white text-xl font-black mr-4">@</span>
-            <Link href={'mailto:'+locations[location].email}>{"Емейл: "+locations[location].email}</Link>
+            <Link href={'mailto:'+locations[location].email}>{locations[location].email}</Link>
           </p>
           <p
             className="m-4"
@@ -135,7 +135,7 @@ function contacts(props) {
           ></p>
           <p className="my-4 ">
             <dl className="font-semibold">Оплата</dl>
-             <dt>Наличными, безналичный расчет, перевод</dt>
+             <dt>Наличными, безналичный расчет</dt>
             <dl className="font-semibold">Доставка</dl>
             <dt>Доставим подарочный сертификат в любую точку Челябинска! Стоимость доставки рассчитывается при заказе.</dt>
             <br/>

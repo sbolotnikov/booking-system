@@ -54,7 +54,7 @@ function certificate() {
           <hr className="w-1/2 rounded border-2 bg-white m-auto border-solid border-white mb-3" />
           <p className="my-4 ">
             <dl className="font-semibold">Оплата сертификатов</dl>
-             <dt>Наличными, безналичный расчет, перевод</dt>
+             <dt>Наличными, безналичный расчет</dt>
             <dl className="font-semibold">Доставка</dl>
             <dt>Доставим подарочный сертификат в любую точку Челябинска! Стоимость доставки рассчитывается при заказе.</dt>
           </p>
