@@ -79,6 +79,7 @@
 /* variables */
 :root{
 --quests:7;
+--slides:4;
 }
 
 .slide{
@@ -93,32 +94,24 @@
   display:grid;
   overflow-x: auto;
 }
+.mediaScroller1 {
+  position: relative;
+  place-items: center;
+  display: grid;
+  overflow-x: auto;
+}
 
-
-.mediaScroller::before,
-.mediaScroller::after{
-  background: linear-gradient(to right, rgba(0,0,0,1) 0%, 
-  transparent 100%);
-  content: '';
-  height: 100%;
-  position: absolute;
-  width:15%;
-  z-index:4;
-}
-.mediaScroller::before{
-  left: 0;
-  top:0;
-}
-.mediaScroller::after{
-  right: 0;
-  top:0;
-  transform: rotateZ(180deg)
-}
 .slideTrack{
   display: flex;
   width: calc(320px*2*var(--quests));
   animation: scroll 40s alternate linear infinite;
   overflow-x:scroll;
+}
+.slideTrack1 {
+  display: flex;
+  width: calc(320px * 2 * var(--slides));
+  animation: scroll1 20s alternate linear infinite;
+  overflow-x: scroll;
 }
 .pauseAnim{
   animation-play-state: paused;
@@ -131,7 +124,14 @@
     transform: translateX(calc(-320px*var(--quests)));
   }
 }
-
+@keyframes scroll1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px*var(--slides)));
+  }
+}
 
 .inner-wrap {
   -moz-box-sizing: border-box;

@@ -7,7 +7,7 @@ export default function Layout({ children }) {
   const {data:session, loading} = useSession();
   const router = useRouter();
   let navbarLinks = [
-    { url: '/about', title: 'Об игре' },
+    { url: '/about', title: 'О нас' },
     { url: '/book', title: 'Забронировать' },
     { url: '/birthday', title: 'День Рождения' },
     { url: '/answer', title: 'Вопрос/Ответ' },
