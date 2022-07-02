@@ -1,9 +1,25 @@
 import Image from 'next/image'
+import { useEffect } from 'react';
 
 function PictureViewer({ linkPicture, note, isVideo, onChange }) {
+    const el = document.querySelector('#mainPage');
+    const lastY=el?.scrollTop
+
+    useEffect(() => {
+        const handleClick = event => {
+            event.target.scrollTop = lastY;
+        };    
+        el.addEventListener('scroll', handleClick);
+    
+        // 👇️ remove the event listener when component unmounts
+        return () => {
+          el.removeEventListener('scroll', handleClick);
+        };
+      }, []);
   return (
     <div
     className="absolute left-0 z-[1001] flex h-screen w-screen items-center justify-center bg-slate-500/70 backdrop-blur-md"
+    style={{ top: el?.scrollTop }}
     onClick={() => {
       onChange(true)
     }}
@@ -14,7 +30,7 @@ function PictureViewer({ linkPicture, note, isVideo, onChange }) {
       </div>
     ) : (
       <div className="relative w-screen h-screen">
-        <button className="absolute top-14 right-5  h-8 w-8 stroke-slate-50 fill-slate-50 z-[1000]"
+        <button className="absolute top-14 right-5  h-8 w-8 stroke-yellow-500 fill-yellow-500 z-[1000]"
           onClick={() => {
             onChange(true)
           }}
@@ -31,7 +47,7 @@ function PictureViewer({ linkPicture, note, isVideo, onChange }) {
     )}
 
     <div className="absolute right-0 bottom-0 flex w-full items-center justify-center">
-      <p className="mb-4 bg-slate-200 text-center font-extrabold text-red-500 shadow-md shadow-[#50d71e]  md:text-3xl md:shadow-2xl">
+      <p className="mb-4 text-center font-extrabold font-size-lg font-extrabold text-[#FFEC00] md:text-3xl" style={{textShadow: 'black 1px 1px 5px'}} >
         {note}
       </p>
     </div>

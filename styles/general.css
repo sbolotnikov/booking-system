@@ -94,12 +94,6 @@
   display:grid;
   overflow-x: auto;
 }
-.mediaScroller1 {
-  position: relative;
-  place-items: center;
-  display: grid;
-  overflow-x: auto;
-}
 
 .slideTrack{
   display: flex;
@@ -107,12 +101,7 @@
   animation: scroll 40s alternate linear infinite;
   overflow-x:scroll;
 }
-.slideTrack1 {
-  display: flex;
-  width: calc(320px * 2 * var(--slides));
-  animation: scroll1 20s alternate linear infinite;
-  overflow-x: scroll;
-}
+
 .pauseAnim{
   animation-play-state: paused;
 }
@@ -124,14 +113,7 @@
     transform: translateX(calc(-320px*var(--quests)));
   }
 }
-@keyframes scroll1 {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-320px*var(--slides)));
-  }
-}
+
 
 .inner-wrap {
   -moz-box-sizing: border-box;

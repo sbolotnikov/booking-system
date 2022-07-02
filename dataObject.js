@@ -175,7 +175,7 @@ let dataObject = {
             Есть бесплатная парковка.`,
             coordinates:{x:55.2038,y:61.3264,zoom:17.23},
             coordinates1:{x:55.20358,y:61.32539,text:"Вход"},
-            images:[{link:'/images/room1.jpg',title:'picture1'},{link:'/images/room2.jpg',title:'picture2'},{link:'/images/room3.jpg',title:'picture3'},{link:'/images/arrowsign.jpg',title:'picture4'}]
+            images:[{link:'/images/room1.jpg',title:'picture1 Hall'},{link:'/images/room2.jpg',title:'front desk'},{link:'/images/room3.jpg',title:'waiting area'},{link:'/images/arrowsign.jpg',title:'Указатели'}]
         },
       ],
       questions : [
