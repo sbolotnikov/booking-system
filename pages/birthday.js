@@ -144,7 +144,7 @@ function birthday() {
     },
   ];
   return (
-    <div className="w-full h-full bg-black">
+    <div className="w-full h-[95%] flex justify-center items-center bg-black">
       <div className="max-w-[1170px] w-full  flex flex-col m-auto">
         <label className="my-3">
           {'Выбрерите пакет : '}
